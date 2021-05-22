@@ -1,10 +1,26 @@
 import express from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import postsRouter from "./routers/postsRouter";
+dotenv.config();
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+const MONGO_URI = process.env.MONGO_URI;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/posts", postsRouter);
+
+mongoose
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(() => console.log("✅ MongoDB Connected.... "))
+  .catch((err) => console.log(err));
 
 const handleListening = () => {
   console.log(`✅ Listening on : http://localhost:${PORT}`);
