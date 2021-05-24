@@ -1,4 +1,17 @@
 import Post from "../models/post";
+import mongoose from "mongoose";
+
+const { ObjectId } = mongoose.Types;
+
+// ObjectId 검증 미들웨어
+export const checkObjectId = (req, res, next) => {
+  const { id } = req.params;
+  if (!ObjectId.isValid(id)) {
+    res.status(400).json({ success: false, message: "ObjectId 오류" });
+    return;
+  }
+  return next();
+};
 
 // 글 작성
 export const write = async (req, res) => {

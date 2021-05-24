@@ -5,8 +5,12 @@ const PostSchema = new mongoose.Schema(
     title: {
       type: String,
       trim: true,
+      required: true,
     },
-    body: String,
+    body: {
+      type: String,
+      required: true,
+    },
     tags: [String], // 문자열로 이루어진 배열
   },
   { timestamps: true }
