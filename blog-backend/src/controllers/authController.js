@@ -8,7 +8,6 @@ export const register = async (req, res) => {
     username: Joi.string().alphanum().min(3).max(20).required(),
     password: Joi.string().required(),
   });
-  console.log(`schema : ${schema}`);
   const result = schema.validate(req.body);
   if (result.error) {
     return res.status(400).json({ success: false });
@@ -43,7 +42,41 @@ export const register = async (req, res) => {
 };
 
 // 로그인
-export const login = async (req, res) => {};
+export const login = async (req, res) => {
+  const { username, password } = req.body;
+
+  // username, password가 없으면 에러 처리
+  if (!username || !password) {
+    return res.status(401).json({ success: "정보가 입력되지 않았습니다" });
+  }
+
+  try {
+    const user = await User.findByUsername(username);
+    // 계정이 존재하지 않으면 에러처리
+    if (!user) {
+      res.status(401).json({
+        success: "계정이 존재하지 않습니다",
+      });
+    }
+
+    const valid = await user.checkPassword(password);
+    // 잘못된 비밀번호
+    if (!valid) {
+      return res.status(401).json({
+        success: false,
+      });
+    }
+    const data = user.serialize();
+    res.status(200).json({
+      success: true,
+      user: data,
+    });
+  } catch (e) {
+    res.status(500).json({
+      error: e,
+    });
+  }
+};
 
 // 로그인 상태 확인
 export const check = async (req, res) => {};
