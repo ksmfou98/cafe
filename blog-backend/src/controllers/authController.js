@@ -28,12 +28,20 @@ export const register = async (req, res) => {
     await user.setPassword(password); // 비밀번호 설정
     await user.save(); // 데이터 베이스에 저장
 
+    const token = user.generateToken(); // 토큰 생성
+
     // 응답할 데이터에서 password 필드 제거
     const data = user.serialize();
-    res.status(200).json({
-      success: true,
-      user: data,
-    });
+    res
+      .cookie("access_token", token, {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 7일
+        httpOnly: true,
+      })
+      .status(200)
+      .json({
+        success: true,
+        user: data,
+      });
   } catch (e) {
     res.status(500).json({
       error: e,
@@ -66,11 +74,20 @@ export const login = async (req, res) => {
         success: false,
       });
     }
+
+    const token = user.generateToken();
+
     const data = user.serialize();
-    res.status(200).json({
-      success: true,
-      user: data,
-    });
+    res
+      .cookie("access_token", token, {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 7일
+        httpOnly: true,
+      })
+      .status(200)
+      .json({
+        success: true,
+        user: data,
+      });
   } catch (e) {
     res.status(500).json({
       error: e,
@@ -79,7 +96,14 @@ export const login = async (req, res) => {
 };
 
 // 로그인 상태 확인
-export const check = async (req, res) => {};
+export const check = async (req, res) => {
+  const { user } = res.locals; // jwtMiddleware에서 전역변수 설정을 했음
+  if (!user) {
+    // 로그인 중 아님
+    return res.status(401).json({ success: false });
+  }
+  res.status(200).json({ success: true, user });
+};
 
 // 로그아웃
 export const logout = async (req, res) => {};

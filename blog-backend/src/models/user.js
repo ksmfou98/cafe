@@ -1,5 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
 const saltRounds = 10;
 
 const UserSchema = new Schema({
@@ -25,11 +27,27 @@ UserSchema.statics.findByUsername = function (username) {
 };
 
 // 응답할 데이터에서 password 필드 제거
-UserSchema.methods.serialize = function(){
+UserSchema.methods.serialize = function () {
   const data = this.toJSON();
   delete data.password;
-  return data
-}
+  return data;
+};
+
+// 토큰 발급하기
+UserSchema.methods.generateToken = function () {
+  const token = jwt.sign(
+    // 첫 번째 파라미터에는 토큰 안에 집어넣고 싶은 데이터를 넣는다
+    {
+      _id: this.id,
+      username: this.username,
+    },
+    process.env.JWT_SECRET, // 두 번째 파라미터에는 JWT 암호를 넣는다.
+    {
+      expiresIn: "7d", // 7일 동안 유효함
+    }
+  );
+  return token;
+};
 
 const User = mongoose.model("User", UserSchema);
 export default User;
