@@ -1,25 +1,21 @@
+import LoginPage from 'pages/LoginPage';
+import PostListPage from 'pages/PostListPage';
+import PostPage from 'pages/PostPage';
+import RegisterPage from 'pages/RegisterPage';
+import WritePage from 'pages/WritePage';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* 이렇게 배열을 넣어주면 한 라우트 컴포넌트에 여러 개의 경로를 쉽게 설정할 수 있다. */}
+      <Route component={PostListPage} path={['/@:username', '/']} exact />
+      <Route component={LoginPage} path="/login" />
+      <Route component={RegisterPage} path="/register" />
+      <Route component={WritePage} path="/write" />
+      <Route component={PostPage} path="/@:username/:postId" />
+    </>
   );
 }
 
