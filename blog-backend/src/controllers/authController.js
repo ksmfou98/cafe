@@ -106,4 +106,6 @@ export const check = async (req, res) => {
 };
 
 // 로그아웃
-export const logout = async (req, res) => {};
+export const logout = async (req, res) => {
+  res.cookie("access_token").status(204);
+};
