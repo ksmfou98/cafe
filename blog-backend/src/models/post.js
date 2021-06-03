@@ -2,6 +2,11 @@ import mongoose, { Schema } from "mongoose";
 
 const PostSchema = new Schema(
   {
+    user: {
+      _id: mongoose.Types.ObjectId,
+      username: String,
+    },
+
     title: {
       type: String,
       trim: true,

@@ -100,12 +100,14 @@ export const check = async (req, res) => {
   const { user } = res.locals; // jwtMiddleware에서 전역변수 설정을 했음
   if (!user) {
     // 로그인 중 아님
-    return res.status(401).json({ success: false });
+    return res
+      .status(401)
+      .json({ success: "false", message: "로그인을 하지 않았습니다" });
   }
   res.status(200).json({ success: true, user });
 };
 
 // 로그아웃
 export const logout = async (req, res) => {
-  res.cookie("access_token").status(204);
+  res.cookie("access_token").status(204).json({ success: false });
 };
