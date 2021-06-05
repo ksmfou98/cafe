@@ -69,9 +69,16 @@ const textMap: textMapTypes = {
 
 interface AuthFormProps {
   type: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+  form: {
+    username: string;
+    password: string;
+    passwordConfirm?: string;
+  };
 }
 
-const AuthForm = ({ type }: AuthFormProps) => {
+const AuthForm = ({ type, onChange, form }: AuthFormProps) => {
   const text = textMap[type];
   return (
     <AuthFormBlock>
@@ -81,12 +88,16 @@ const AuthForm = ({ type }: AuthFormProps) => {
           autoComplete="username"
           name="username"
           placeholder="아이디"
+          onChange={onChange}
+          value={form.username}
         />
         <StyledInput
           autoComplete="new-password"
           name="password"
           placeholder="비밀번호"
           type="password"
+          onChange={onChange}
+          value={form.password}
         />
 
         {type === 'register' && (
@@ -95,6 +106,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
             name="passwordConfirm"
             placeholder="비밀번호 확인"
             type="password"
+            nChange={onChange}
+            value={form.passwordConfirm}
           />
         )}
 
