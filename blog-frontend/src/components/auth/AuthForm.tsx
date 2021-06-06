@@ -78,12 +78,12 @@ interface AuthFormProps {
   };
 }
 
-const AuthForm = ({ type, onChange, form }: AuthFormProps) => {
+const AuthForm = ({ type, onChange, form, onSubmit }: AuthFormProps) => {
   const text = textMap[type];
   return (
     <AuthFormBlock>
       <h3>{text}</h3>
-      <form>
+      <form onSubmit={onSubmit}>
         <StyledInput
           autoComplete="username"
           name="username"
@@ -111,7 +111,12 @@ const AuthForm = ({ type, onChange, form }: AuthFormProps) => {
           />
         )}
 
-        <ButtonWithMarginTop cyan fullWidth style={{ marginTop: '1rem' }}>
+        <ButtonWithMarginTop
+          type="submit"
+          cyan
+          fullWidth
+          style={{ marginTop: '1rem' }}
+        >
           {text}
         </ButtonWithMarginTop>
       </form>

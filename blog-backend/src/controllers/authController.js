@@ -3,6 +3,7 @@ import User from "../models/user";
 
 // 회원가입
 export const register = async (req, res) => {
+  console.log("dd");
   // Request Body 검증하기
   const schema = Joi.object().keys({
     username: Joi.string().alphanum().min(3).max(20).required(),
@@ -19,7 +20,7 @@ export const register = async (req, res) => {
     const exists = await User.findByUsername(username);
     if (exists) {
       return res.status(409).json({
-        success: "isExist",
+        success: false,
       });
     }
 

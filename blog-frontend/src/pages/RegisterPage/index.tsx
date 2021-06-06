@@ -1,14 +1,15 @@
 import AuthForm from 'components/auth/AuthForm';
 import AuthTemplate from 'components/auth/AuthTemplate';
 import React from 'react';
+import { withRouter } from 'react-router';
 import RegisterForm from '../../containers/auth/RegisterForm';
 
-const RegisterPage = () => {
+const RegisterPage = ({ history }: any) => {
   return (
     <AuthTemplate>
-      <RegisterForm />
+      <RegisterForm history={history} />
     </AuthTemplate>
   );
 };
 
-export default RegisterPage;
+export default withRouter(RegisterPage);
