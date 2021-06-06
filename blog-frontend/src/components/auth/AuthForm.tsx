@@ -106,7 +106,7 @@ const AuthForm = ({ type, onChange, form }: AuthFormProps) => {
             name="passwordConfirm"
             placeholder="비밀번호 확인"
             type="password"
-            nChange={onChange}
+            onChange={onChange}
             value={form.passwordConfirm}
           />
         )}

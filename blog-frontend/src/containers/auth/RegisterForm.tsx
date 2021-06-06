@@ -9,20 +9,21 @@ interface FormBody {
   value: string;
 }
 
-interface LoginFormProps {
+interface RegisterFormProps {
   dispatchChangeField: (FormBody: FormBody) => void;
   form: {
     username: string;
     password: string;
+    passwordConfirm: string;
   };
 }
 
-const LoginForm = ({ dispatchChangeField, form }: LoginFormProps) => {
+const RegisterForm = ({ dispatchChangeField, form }: RegisterFormProps) => {
   // 인풋 변경 이벤트 핸들러
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     let FormBody = {
-      form: 'login',
+      form: 'register',
       key: name,
       value,
     };
@@ -38,7 +39,7 @@ const LoginForm = ({ dispatchChangeField, form }: LoginFormProps) => {
 
   return (
     <AuthForm
-      type="login"
+      type="register"
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
@@ -49,7 +50,7 @@ const LoginForm = ({ dispatchChangeField, form }: LoginFormProps) => {
 function mapStateToProps(state: any) {
   // redux state로 부터 state를 component의 props으로 전달해줌
   // store의 값을 여기 state로 가져올수 있음
-  return { form: state.auth.login };
+  return { form: state.auth.register };
 }
 
 function mapDispatchToProps(dispatch: any) {
@@ -59,4 +60,4 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
