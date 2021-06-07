@@ -77,6 +77,11 @@ const LoginForm = ({
     if (user.username) {
       console.log('유저가 있습니다');
       history.push('/'); // 홈화면으로 이동
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
     } else {
       console.log('유저가 없습니다');
     }

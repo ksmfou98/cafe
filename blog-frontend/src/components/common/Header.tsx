@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import Responsive from './Responsive';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { UserStateTypes } from 'modules/user';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -36,15 +39,35 @@ const Spacer = styled.div`
   height: 4rem;
 `;
 
-const Header = () => {
+const UserInfo = styled.div`
+  font-weight: 800;
+  margin-right: 1rem;
+`;
+
+interface HeaderProps {
+  user: UserStateTypes;
+}
+
+const Header = ({ user }: HeaderProps) => {
   return (
     <>
       <HeaderBlock>
         <Wrapper>
-          <div className="logo">REATERS</div>
-          <div className="right">
-            <Button>로그인</Button>
+          <div className="logo">
+            <Link to={'/'}>REATERS</Link>
           </div>
+          {user.username ? (
+            <div className="right">
+              <UserInfo>{user.username}</UserInfo>
+              <Button>로그아웃</Button>
+            </div>
+          ) : (
+            <div className="right">
+              <Button>
+                <Link to={'/login'}>로그인</Link>
+              </Button>
+            </div>
+          )}
         </Wrapper>
       </HeaderBlock>
       <Spacer />
@@ -52,4 +75,10 @@ const Header = () => {
   );
 };
 
-export default Header;
+function mapStateToProps(state: any) {
+  //  redux state로 부터 state를 component의 props으로 전달해줌
+  //  store의 값을 여기 state로 가져올수 있음
+  return { user: state.user };
+}
+
+export default connect(mapStateToProps)(Header);
