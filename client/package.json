@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/babel-preset-css-prop": "^11.2.0",
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
@@ -17,7 +14,7 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
-    "babel-preset-react-app": "^10.0.0",
+    "node-sass": "^4.14.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
@@ -50,15 +47,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app",
-      "@emotion/babel-preset-css-prop"
-    ],
-    "plugins": [
-      "@emotion"
     ]
   },
   "proxy": "http://localhost:4000/"

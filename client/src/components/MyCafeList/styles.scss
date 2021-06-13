@@ -1,0 +1,146 @@
+.cafe-list {
+  padding: 50px 0 40px;
+  border-bottom: 1px solid #efefef;
+  background-color: #f8f8f8;
+  overflow: hidden;
+  .inner-mycafe {
+    position: relative;
+    width: 1100px;
+    margin: 0 auto;
+    .cafe-util {
+      overflow: hidden;
+      .list-menu {
+        float: left;
+        .list:first-child {
+          margin-left: 0;
+        }
+        .list {
+          position: relative;
+          float: left;
+          margin-left: 20px;
+          .list-item {
+            font-size: 20px;
+            color: #999;
+            text-decoration: none;
+            cursor: pointer;
+            .num-item {
+              margin-left: 6px;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+
+    .cafe-card {
+      margin-top: 8px;
+      .list-cafe {
+        position: relative;
+        margin: 0 -9px 0 -10px;
+        .cafe-list {
+          position: relative;
+          float: left;
+          padding: 10px 9px 10px 10px;
+          .cafe-link {
+            display: block;
+            width: 354px;
+            height: 112px;
+            padding: 15px 24px;
+            border: 1px solid #efefef;
+            border-radius: 4px;
+            background-color: #fff;
+            text-decoration: none;
+            box-sizing: border-box;
+            box-shadow: 0 1px 4px #f0e9e9;
+            .thumb-info-type {
+              overflow: hidden;
+              .wrap-thumb {
+                margin: 10px 16px 0 0;
+                width: 60px;
+                height: 60px;
+                float: left;
+                position: relative;
+                .img-thumb {
+                  display: inline-block;
+                  width: 100%;
+                  height: 100%;
+                  vertical-align: top;
+                }
+                .img-thumb::after {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  border: 1px solid rgba(0, 0, 0, 0.05);
+                  box-sizing: border-box;
+                  content: '';
+                  border-radius: 50%;
+                }
+              }
+              .wrap-info {
+                overflow: hidden;
+                .box-tbl {
+                  display: table;
+                  width: 100%;
+                  height: 100%;
+                  table-layout: fixed;
+                  .inner-tbl {
+                    height: 80px;
+                    display: table-cell;
+                    vertical-align: middle;
+                    .tit-info {
+                      display: -webkit-box;
+                      overflow: hidden;
+                      max-height: 43px;
+                      padding-right: 44px;
+                      line-height: 21px;
+                      font-size: 15px;
+                      font-weight: 700;
+                      color: #333;
+                      word-break: break-all;
+                      -webkit-box-orient: vertical;
+                      -webkit-line-clamp: 2;
+                    }
+                    .additional-info {
+                      margin-top: 10px;
+                      font-size: 0;
+                      .txt-item {
+                        display: inline-block;
+                        overflow: hidden;
+                        position: relative;
+                        max-width: 120px;
+                        padding-right: 14px;
+                        font-size: 13px;
+                        color: #959595;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        vertical-align: top;
+                      }
+                      .txt {
+                        font-size: 14px;
+                        color: #333;
+                        margin-right: 5px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .cafe-create {
+          .cafe-link {
+            border-style: dashed;
+            border-color: #e2e2e2;
+            background-color: rgba(0, 0, 0, 0) !important;
+          }
+          .txt-item {
+            max-width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+}

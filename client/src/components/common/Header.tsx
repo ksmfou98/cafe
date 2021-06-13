@@ -9,6 +9,7 @@ import { UserStateTypes } from 'modules/user';
 const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
+  z-index: 100;
   background: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
 `;
@@ -54,7 +55,7 @@ const Header = ({ user }: HeaderProps) => {
       <HeaderBlock>
         <Wrapper>
           <div className="logo">
-            <Link to={'/'}>REATERS</Link>
+            <Link to={'/'}>Dofe</Link>
           </div>
           {user.username ? (
             <div className="right">
