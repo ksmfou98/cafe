@@ -1,15 +1,15 @@
 #CafeInfoBox {
   overflow: hidden;
-  margin-bottom:20px;
   .cafe-info-bg {
     width: 100%;
-    border: 2px solid #999;
-    border-radius: 10px;
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
     padding: 10px 0;
     .info-tab {
-      margin: 6px 15px 0 15px;
+      padding: 10px 15px;
       font-weight: bold;
       letter-spacing: -1px;
+      border-bottom: 1px solid #e5e5e5;
     }
     .cafe-name {
       font-size: 20px;
@@ -22,10 +22,10 @@
     }
 
     .cafe-info {
-      padding: 0 15px;
+      padding: 0 15px 15px 15px;
       width: 100%;
       text-align: left;
-      margin-bottom: 20px;
+      border-bottom: 1px solid #e5e5e5;
       .info {
         margin-bottom: 6px;
       }
@@ -43,7 +43,7 @@
     }
 
     .cafe-btn {
-      padding: 10px 20px;
+      padding: 20px 20px 0;
       .cafe-join {
         display: block;
         margin-bottom: 8px;
