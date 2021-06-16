@@ -1,8 +1,8 @@
-import Header from 'components/common/Header';
+import Header from 'components/Header';
 import React from 'react';
 import './styles.scss';
-import MyCafeList from '../../components/MyCafeList/index';
-import AllCafeList from '../../components/AllCafeList/index';
+import MyCafeList from 'components/MyCafeList';
+import AllCafeList from 'components/AllCafeList';
 
 const LandingPage = () => {
   return (

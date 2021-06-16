@@ -1,0 +1,61 @@
+#CafeInfoBox {
+  overflow: hidden;
+  margin-bottom:20px;
+  .cafe-info-bg {
+    width: 100%;
+    border: 2px solid #999;
+    border-radius: 10px;
+    padding: 10px 0;
+    .info-tab {
+      margin: 6px 15px 0 15px;
+      font-weight: bold;
+      letter-spacing: -1px;
+    }
+    .cafe-name {
+      font-size: 20px;
+      line-height: 22px;
+      padding: 0 15px 5px;
+      margin: 15px 0;
+      font-weight: bold;
+      letter-spacing: -1px;
+      word-break: break-all;
+    }
+
+    .cafe-info {
+      padding: 0 15px;
+      width: 100%;
+      text-align: left;
+      margin-bottom: 20px;
+      .info {
+        margin-bottom: 6px;
+      }
+      .info-tit {
+        width: 50px;
+        display: block;
+        float: left;
+        font-size: 15px;
+      }
+      .txt-point {
+        color: #333;
+        font-weight: bold;
+        font-size: 17px;
+      }
+    }
+
+    .cafe-btn {
+      padding: 10px 20px;
+      .cafe-join {
+        display: block;
+        margin-bottom: 8px;
+        padding: 9px 0 10px;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+        font-weight: bold;
+        background: #343a40;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from './Button';
-import Responsive from './Responsive';
+import Button from '../Common/Button';
+import Responsive from '../Common/Responsive';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { UserStateTypes } from 'modules/user';

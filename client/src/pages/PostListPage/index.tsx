@@ -1,4 +1,4 @@
-import Header from 'components/common/Header';
+import Header from 'components/Header';
 import React from 'react';
 
 const PostListPage = () => {

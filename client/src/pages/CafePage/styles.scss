@@ -1,0 +1,32 @@
+.cafe-body {
+  width: 1080px;
+  margin: 0 auto;
+  .front-img {
+    position: relative;
+    width: 1080px;
+    max-height: 340px;
+    margin: 0 auto 20px;
+    .front-cate {
+      cursor: pointer;
+      background-image: none;
+      width: 1080px;
+      max-height: 340px;
+      a {
+        display: block;
+      }
+    }
+  }
+
+  .container {
+    .cafe-menu {
+      float: left;
+      width: 204px;
+      letter-spacing: -0.5px;
+      overflow: hidden;
+      text-align: left;
+    }
+    .cafe-content {
+      margin-left: 230px;
+    }
+  }
+}
