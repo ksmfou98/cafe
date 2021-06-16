@@ -4,6 +4,7 @@ import './styles.scss';
 import logo from 'static/logo.png';
 import CafeInfoBox from 'components/CafeInfoBox';
 import CafeMenuBox from 'components/CafeMenuBox';
+import CafeMainBoard from 'components/CafeMainBoard';
 
 const CafePage = () => {
   return (
@@ -23,7 +24,9 @@ const CafePage = () => {
             <CafeInfoBox />
             <CafeMenuBox />
           </div>
-          <div className="cafe-content">오른쪽</div>
+          <div className="cafe-content">
+            <CafeMainBoard />
+          </div>
         </div>
       </div>
     </div>

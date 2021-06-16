@@ -1,0 +1,46 @@
+#CafeMainBoard {
+  .list-title {
+    padding: 5px 10px;
+    color: #000;
+    font-size: 17px;
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+  }
+  .list-content {
+    overflow: hidden;
+    .list-box {
+      padding-top: 5px;
+      .list-in-box {
+        clear: both;
+        width: 100%;
+        line-height: 1.5;
+        tr {
+          padding: 15px 0;
+          display: block;
+          border-bottom: 1px solid #e6e4e4;
+          .link:hover {
+            text-decoration: underline;
+          }
+          .subject {
+            padding: 0 20px 0 14px;
+            font-size: 16.5px;
+            width: 100%;
+            .comment {
+              color: #ff0000;
+              margin-left: 5px;
+            }
+          }
+          .writer {
+            font-weight: bold;
+          }
+          .sub {
+            padding: 0 10px;
+            text-align: center;
+            width: 68px;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
