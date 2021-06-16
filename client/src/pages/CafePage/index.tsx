@@ -5,6 +5,7 @@ import logo from 'static/logo.png';
 import CafeInfoBox from 'components/CafeInfoBox';
 import CafeMenuBox from 'components/CafeMenuBox';
 import CafeMainBoard from 'components/CafeMainBoard';
+import Footer from 'components/Footer';
 
 const CafePage = () => {
   return (
@@ -29,6 +30,7 @@ const CafePage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

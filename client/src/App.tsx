@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Route component={LandingPage} exact path="/" />
-      <Route component={CafePage} exact path="/:cafe?" />
+      <Route component={CafePage} exact path="/:cafe" />
       <Route component={LoginPage} path="/login" />
       <Route component={RegisterPage} path="/register" />
       <Route component={WritePage} path="/write" />
