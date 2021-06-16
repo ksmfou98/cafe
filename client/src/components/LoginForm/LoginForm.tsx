@@ -45,6 +45,7 @@ const LoginForm = ({
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const { username, password } = form;
 
     let body = {

@@ -2,7 +2,7 @@ import AuthForm from 'components/auth/AuthForm';
 import AuthTemplate from 'components/auth/AuthTemplate';
 import React from 'react';
 import { withRouter } from 'react-router';
-import RegisterForm from '../../containers/auth/RegisterForm';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
 const RegisterPage = ({ history }: any) => {
   return (
