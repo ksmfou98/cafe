@@ -1,15 +1,16 @@
+import CafeBanner from 'components/CafeBanner';
+import CafeInfoBox from 'components/CafeInfoBox';
+import CafeJoinForm from 'components/CafeJoinForm';
+import Footer from 'components/Footer';
 import Header from 'components/Header';
+import CafeMenuBox from 'components/CafeMenuBox';
 import React from 'react';
 import './styles.scss';
-import CafeInfoBox from 'components/CafeInfoBox';
-import CafeMenuBox from 'components/CafeMenuBox';
-import CafeMainBoard from 'components/CafeMainBoard';
-import Footer from 'components/Footer';
-import CafeBanner from 'components/CafeBanner';
 
-const CafePage = () => {
+const CafeJoinPage = () => {
+  console.log('cafejoinPage');
   return (
-    <div id="CafePage">
+    <div id="CafeJoin">
       <Header />
       <div className="cafe-body">
         <CafeBanner />
@@ -19,7 +20,7 @@ const CafePage = () => {
             <CafeMenuBox />
           </div>
           <div className="cafe-content">
-            <CafeMainBoard />
+            <CafeJoinForm />
           </div>
         </div>
       </div>
@@ -28,4 +29,4 @@ const CafePage = () => {
   );
 };
 
-export default CafePage;
+export default CafeJoinPage;

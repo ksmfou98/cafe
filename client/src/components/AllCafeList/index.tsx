@@ -12,7 +12,7 @@ const AllCafeList = () => {
 
           <ul className="all-cafe-list">
             <li>
-              <a href="" className="link">
+              <a href="/dofe" className="link">
                 <div className="thumb-info-type">
                   <div className="wrap-thumb">
                     <img src="" alt="" className="img-thumb" />
