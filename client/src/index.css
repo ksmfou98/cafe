@@ -167,3 +167,19 @@ table {
   background-color: #efefef;
   content: '';
 }
+
+.page-layout {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+.cafe-menu {
+  float: left;
+  width: 204px;
+  letter-spacing: -0.5px;
+  overflow: hidden;
+  text-align: left;
+}
+.cafe-content {
+  margin-left: 230px;
+}

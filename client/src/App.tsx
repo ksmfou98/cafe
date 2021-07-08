@@ -1,4 +1,3 @@
-import CafeJoinPage from 'pages/CafeJoinPage';
 import CafePage from 'pages/CafePage';
 import LandingPage from 'pages/LandingPage';
 import LoginPage from 'pages/LoginPage';
@@ -11,8 +10,7 @@ function App() {
     <>
       <Switch>
         <Route component={LandingPage} exact path="/" />
-        <Route path="/:cafe" exact component={CafePage} />
-        <Route path="/:cafe/join" exact component={CafeJoinPage} />
+        <Route path="/:cafe" component={CafePage} />
         <Route component={LoginPage} path="/login" />
         <Route component={RegisterPage} path="/register" />
       </Switch>

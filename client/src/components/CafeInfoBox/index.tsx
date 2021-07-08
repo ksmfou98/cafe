@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 
 const CafeInfoBox = () => {
@@ -23,9 +24,9 @@ const CafeInfoBox = () => {
         </div>
 
         <div className="cafe-btn">
-          <a href="/dofe/join" className="cafe-join">
+          <Link to="/dofe/join" className="cafe-join">
             5초 카페 가입하기
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ const LandingPage = () => {
   return (
     <>
       <Header />
-      <div id="LandingPage" className="page-layout">
+      <div id="LandingPage">
         <MyCafeList />
         <AllCafeList />
       </div>
