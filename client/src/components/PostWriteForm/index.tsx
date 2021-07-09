@@ -9,7 +9,7 @@ const PostWriteForm = () => {
       <div id="PostWriteForm">
         <div className="list-title">
           <h3 className="title">카페 글쓰기</h3>
-          <button className="write-post">등록</button>
+          <button className="title-btn">등록</button>
         </div>
         <div className="cont-write">
           <form action="">

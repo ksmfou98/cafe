@@ -7,7 +7,7 @@ const CafeMainBoard = () => {
     <div id="CafeMainBoard">
       <div className="list-title">
         <h3 className="title">전체 게시물</h3>
-        <Link to="/dofe/write" className="write-post">
+        <Link to="/dofe/write" className="title-btn">
           글쓰기
         </Link>
       </div>
@@ -17,10 +17,10 @@ const CafeMainBoard = () => {
             <tbody>
               <tr>
                 <td className="subject">
-                  <a className="link" href="">
+                  <Link className="link" to="/dofe/post/1">
                     이도현과 노실분 구합니다
                     <span className="comment">[3]</span>
-                  </a>
+                  </Link>
                 </td>
                 <td className="sub writer">
                   <a className="link" href="">

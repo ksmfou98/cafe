@@ -198,19 +198,21 @@ table {
   color: #000;
   font-size: 17px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-weight: bold;
   border-bottom: 1px solid #000;
 }
+.list-title .title {
+  float: left;
+  line-height: 35px;
+}
 
-.list-title .write-post{
+.list-title .title-btn {
   background-color: #343a40;
-    padding: 10px 28px;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    display: block;
+  padding: 10px 28px;
+  color: #fff;
+  border: none;
+  float: right;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: block;
 }

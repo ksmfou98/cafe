@@ -9,6 +9,7 @@ import CafeBanner from 'components/CafeBanner';
 import { Route } from 'react-router-dom';
 import CafeJoinForm from 'components/CafeJoinForm';
 import PostWriteForm from 'components/PostWriteForm';
+import PostDetail from 'components/PostDetail';
 
 const CafePage = () => {
   return (
@@ -24,6 +25,7 @@ const CafePage = () => {
           <Route path="/:cafe" exact component={CafeMainBoard} />
           <Route path="/:cafe/join" exact component={CafeJoinForm} />
           <Route path="/:cafe/write" exact component={PostWriteForm} />
+          <Route path="/:cafe/post/:postid" exact component={PostDetail} />
         </div>
       </div>
       <Footer />
