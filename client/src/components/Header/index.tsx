@@ -50,6 +50,7 @@ interface HeaderProps {
 }
 
 const Header = ({ user }: HeaderProps) => {
+  console.log('해더 리랜더링');
   return (
     <>
       <HeaderBlock>

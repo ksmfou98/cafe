@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 
 const CafeMainBoard = () => {
@@ -6,6 +7,9 @@ const CafeMainBoard = () => {
     <div id="CafeMainBoard">
       <div className="list-title">
         <h3 className="title">전체 게시물</h3>
+        <Link to="/dofe/write" className="write-post">
+          글쓰기
+        </Link>
       </div>
       <div className="list-content">
         <div className="list-box">

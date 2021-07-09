@@ -182,4 +182,35 @@ table {
 }
 .cafe-content {
   margin-left: 230px;
+  min-height: 100vh;
+}
+
+.cont-tit {
+  padding: 14px 10px;
+  color: #000;
+  font-size: 17px;
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+}
+
+.list-title {
+  padding: 5px 10px;
+  color: #000;
+  font-size: 17px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+}
+
+.list-title .write-post{
+  background-color: #343a40;
+    padding: 10px 28px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    display: block;
 }

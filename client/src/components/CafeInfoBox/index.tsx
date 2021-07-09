@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './styles.scss';
 
 const CafeInfoBox = () => {
+  console.log("info 리랜더링")
   return (
     <div id="CafeInfoBox">
       <div className="cafe-info-bg">

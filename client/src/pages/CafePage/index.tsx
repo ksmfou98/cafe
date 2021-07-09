@@ -8,9 +8,9 @@ import Footer from 'components/Footer';
 import CafeBanner from 'components/CafeBanner';
 import { Route } from 'react-router-dom';
 import CafeJoinForm from 'components/CafeJoinForm';
+import PostWriteForm from 'components/PostWriteForm';
 
 const CafePage = () => {
-  console.log('dd');
   return (
     <>
       <Header />
@@ -22,7 +22,8 @@ const CafePage = () => {
         </div>
         <div className="cafe-content">
           <Route path="/:cafe" exact component={CafeMainBoard} />
-          <Route path="/:cafe/join" component={CafeJoinForm} />
+          <Route path="/:cafe/join" exact component={CafeJoinForm} />
+          <Route path="/:cafe/write" exact component={PostWriteForm} />
         </div>
       </div>
       <Footer />

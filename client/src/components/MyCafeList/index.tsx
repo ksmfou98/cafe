@@ -6,7 +6,7 @@ const MyCafeList = () => {
     <div className="cafe-list">
       <div className="inner-mycafe">
         <div className="cafe-util">
-          <div className="cafe-menu">
+          <div className="mycafe-menu">
             <ul className="list-menu">
               <li className="list">
                 <a href="#" className="list-item">

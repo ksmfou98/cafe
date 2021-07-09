@@ -1,0 +1,60 @@
+#PostWriteForm {
+  .list-title {
+    .write-post {
+      padding: 8px 28px;
+      font-weight: 700;
+    }
+  }
+
+  .cont-write {
+    padding-top: 12px;
+    padding-bottom: 50px;
+    .board-select {
+      select {
+        display: block;
+        position: relative;
+        width: 100%;
+        padding: 0 25px 0 11px;
+        border: 1px solid #ebecef;
+        background: #fff;
+        text-align: left;
+        box-sizing: border-box;
+        color: #000;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: 40px;
+        font-size: 15px;
+      }
+    }
+    .post-title {
+      margin-top: 12px;
+      input {
+        display: block;
+        width: 100%;
+        min-height: 40px;
+        padding: 11px 12px 10px;
+        border: 1px solid #ebecef;
+        box-sizing: border-box;
+        overflow: hidden;
+        resize: none;
+        word-break: break-all;
+        font-size: 15px;
+        letter-spacing: -0.23px;
+        line-height: 17px;
+        outline: none;
+        height: 40px;
+      }
+    }
+
+    .write-cont {
+      margin-top: 12px;
+      border: 1px solid #ebecef;
+      .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-rounded-corners {
+        height: 40vh;
+        overflow-y: scroll;
+      }
+    }
+  }
+}

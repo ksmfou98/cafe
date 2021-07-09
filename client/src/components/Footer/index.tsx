@@ -3,6 +3,7 @@ import './styles.scss';
 import { ImHappy, ImGithub } from 'react-icons/im';
 
 const Footer = () => {
+  console.log("footer 리랜더링")
   return (
     <div id="Footer">
       <div className="inner-footer">
