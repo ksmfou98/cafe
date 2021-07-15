@@ -36,6 +36,7 @@ const PostWriteForm = () => {
                 config={{ placeholder: '게시물을 작성해주세요' }}
                 onChange={(event: any, editor: any) => {
                   const data = editor.getData();
+                  console.log(data);
                 }}
                 editor={DecoupledEditor}
                 data=""

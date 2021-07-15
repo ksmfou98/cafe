@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 
-const CafeMainBoard = () => {
+const BoardList = () => {
   return (
-    <div id="CafeMainBoard">
+    <div id="BoardList">
       <div className="list-title">
         <h3 className="title">전체 게시물</h3>
         <Link to="/dofe/write" className="title-btn">
@@ -217,4 +217,4 @@ const CafeMainBoard = () => {
   );
 };
 
-export default CafeMainBoard;
+export default BoardList;

@@ -5,13 +5,19 @@
     width: 100%;
     border-top: 2px solid #333;
     border-bottom: 2px solid #333;
-    padding: 10px 0;
     .info-tab {
       padding: 10px 15px;
       font-weight: bold;
       letter-spacing: -1px;
       border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      justify-content: space-around;
+      .active {
+        color: black;
+        font-weight: 700;
+      }
     }
+    /* Cafe Info */
     .cafe-name {
       font-size: 20px;
       line-height: 22px;
@@ -21,7 +27,6 @@
       letter-spacing: -1px;
       word-break: break-all;
     }
-
     .cafe-info {
       padding: 0 15px 15px 15px;
       width: 100%;
@@ -43,11 +48,15 @@
       }
     }
 
+    /* UserActivity */
+    .UserActivity {
+      padding: 15px 15px;
+    }
+
     .cafe-btn {
-      padding: 20px 20px 0;
+      padding: 20px 20px;
       .cafe-join {
         display: block;
-        margin-bottom: 8px;
         padding: 9px 0 10px;
         font-size: 14px;
         line-height: 16px;

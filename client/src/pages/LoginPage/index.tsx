@@ -1,15 +1,14 @@
-import AuthForm from 'components/auth/AuthForm';
-import LoginForm from 'components/LoginForm/LoginForm';
+import LoginForm from 'components/LoginForm';
 import React from 'react';
-import { withRouter } from 'react-router';
-import AuthTemplate from '../../components/auth/AuthTemplate';
 
-const LoginPage = ({ history }: any) => {
+const LoginPage = () => {
   return (
-    <AuthTemplate>
-      <LoginForm history={history} />
-    </AuthTemplate>
+    <>
+      <div id="LoginPage">
+        <LoginForm />
+      </div>
+    </>
   );
 };
 
-export default withRouter(LoginPage);
+export default LoginPage;

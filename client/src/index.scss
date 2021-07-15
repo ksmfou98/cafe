@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import 'styles/main.scss';
 
 body {
   margin: 0;
@@ -207,7 +208,7 @@ table {
 }
 
 .list-title .title-btn {
-  background-color: #343a40;
+  background-color: $mainColor;
   padding: 10px 28px;
   color: #fff;
   border: none;
@@ -215,4 +216,19 @@ table {
   border-radius: 5px;
   font-size: 1rem;
   display: block;
+}
+
+.btn-type1 {
+  background-color: $mainColor;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  display: block;
+}
+
+.btn-type2 {
+  border: 1px solid $mainColor;
+  color: $mainColor;
+  display: block;
+  border-radius: 5px;
 }

@@ -1,0 +1,30 @@
+#Header {
+  width: 100%;
+
+  .inner-header {
+    width: 1080px;
+    margin: 0 auto;
+    padding: 10px 0;
+    overflow: hidden;
+    height: 50px;
+    .logo {
+      float: left;
+      line-height: 25px;
+      font-weight: 700;
+      font-size: 20px;
+    }
+    .user-info {
+      float: right;
+      display: flex;
+      .info-box {
+        display: flex;
+        .login-btn {
+          padding: 8px 13px;
+          margin-right: 10px;
+          font-weight: 700;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
