@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
+import userRouter from "./routers/userRouter";
 import cors from "cors";
 
 const app = express();
@@ -15,6 +16,8 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+// 라우터
+app.use("/api/v1/user", userRouter);
 
 // DB 실행
 mongoose
