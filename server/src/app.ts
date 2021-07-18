@@ -13,9 +13,13 @@ app.use(
     origin: true,
   })
 );
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+
 // 라우터
 app.use("/api/v1/user", userRouter);
 

@@ -9,10 +9,7 @@ export interface IUser {
   email: string;
   password: string;
   name: string;
-  wage: number;
-  status: string;
   token: string;
-  role: string;
 }
 
 export interface IUserMethod extends IUser, Document {
@@ -68,10 +65,10 @@ UserSchema.statics.findByEmail = function (email: string) {
   return this.findOne({ email });
 };
 
-// 입력받은 비밀번호, 디비에 저장된 비밀번호 비교
+// 입력받은 비밀번호가 , 디비에 저장된 암호화된 비밀번호와 같은지 비교
 UserSchema.methods.checkPassword = async function (password: string) {
   const result = await bcrypt.compare(password, this.password);
-  return result; // true or false
+  return result; // 같으면 1 다르면 0 이 저장됨
 };
 
 // 비밀번호 hash
@@ -80,14 +77,13 @@ UserSchema.methods.setPassword = async function (password: string) {
   this.password = hash;
 };
 
-// 토큰 발급하기
+// 토큰 발급하기 함수
 UserSchema.methods.generateToken = async function () {
   const token = jwt.sign(
     {
       _id: this._id,
-      email: this.email,
       name: this.name,
-      role: this.role,
+      email: this.email,
     },
     process.env.JWT_SECRET
   );
