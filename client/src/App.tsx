@@ -14,7 +14,6 @@ function App() {
         <Route component={LoginPage} exact path="/login" />
         <Route component={RegisterPage} exact path="/join" />
         <Route path="/:cafe" component={CafePage} />
-        <Route component={RegisterPage} exact path="/register" />
       </Switch>
     </>
   );

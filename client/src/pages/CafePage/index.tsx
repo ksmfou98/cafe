@@ -25,7 +25,7 @@ const CafePage = () => {
           <Route path="/:cafe/join" exact component={CafeJoinForm} />
           <Route path="/:cafe/write" exact component={PostWriteForm} />
           <Route path="/:cafe/post/:postid" exact component={PostDetail} />
-          <Route path="/:cafe" component={BoardList} />
+          <Route path="/:cafe" exact component={BoardList} />
         </div>
       </div>
       <Footer />
