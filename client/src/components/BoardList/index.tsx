@@ -7,7 +7,7 @@ const BoardList = () => {
     <div id="BoardList">
       <div className="list-title">
         <h3 className="title">전체 게시물</h3>
-        <Link to="/dofe/write" className="title-btn">
+        <Link to="/cafe/dofe/write" className="title-btn">
           글쓰기
         </Link>
       </div>
@@ -17,7 +17,7 @@ const BoardList = () => {
             <tbody>
               <tr>
                 <td className="subject">
-                  <Link className="link" to="/dofe/post/1">
+                  <Link className="link" to="/cafe/dofe/post/1">
                     이도현과 노실분 구합니다
                     <span className="comment">[3]</span>
                   </Link>

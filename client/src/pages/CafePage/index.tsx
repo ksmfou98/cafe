@@ -24,10 +24,10 @@ const CafePage = () => {
             <CafeMenuBox />
           </div>
           <div className="cafe-content">
-            <Route path="/:cafe/join" exact component={CafeJoinForm} />
-            <Route path="/:cafe/write" exact component={PostWriteForm} />
-            <Route path="/:cafe/post/:postid" exact component={PostDetail} />
-            <Route path="/:cafe" exact component={BoardList} />
+            <Route path="/cafe/:cafe/join" exact component={CafeJoinForm} />
+            <Route path="/cafe/:cafe/write" exact component={PostWriteForm} />
+            <Route path="/cafe/:cafe/post/:postid" exact component={PostDetail} />
+            <Route path="/cafe/:cafe" exact component={BoardList} />
           </div>
 
           <MyAlert />

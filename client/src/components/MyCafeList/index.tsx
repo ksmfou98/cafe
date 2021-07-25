@@ -14,12 +14,6 @@ const MyCafeList = () => {
                   <span className="num-item">1</span>
                 </a>
               </li>
-              <li className="list">
-                <a href="#" className="list-item">
-                  즐겨 찾는 카페
-                  <span className="num-item">0</span>
-                </a>
-              </li>
             </ul>
           </div>
         </div>

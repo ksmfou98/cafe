@@ -8,7 +8,7 @@ const PostDetail = () => {
       <div id="PostDetail">
         <div className="list-title">
           <h3 className="title">카페 글 보기</h3>
-          <Link to="/dofe" className="title-btn">
+          <Link to="/cafe/dofe" className="title-btn">
             목록
           </Link>
         </div>

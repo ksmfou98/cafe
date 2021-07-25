@@ -12,7 +12,7 @@ const CafeInfoBox = () => {
         </div>
 
         <div className="cafe-btn">
-          <Link to="/dofe/join" className="cafe-join">
+          <Link to="/cafe/dofe/join" className="cafe-join">
             5초 카페 가입하기
           </Link>
         </div>
