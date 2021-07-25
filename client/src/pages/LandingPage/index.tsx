@@ -3,7 +3,7 @@ import React from 'react';
 import './styles.scss';
 import MyCafeList from 'components/MyCafeList';
 import AllCafeList from 'components/AllCafeList';
-import Footer from 'components/Footer';
+
 
 const LandingPage = () => {
   return (
@@ -13,7 +13,6 @@ const LandingPage = () => {
         <MyCafeList />
         <AllCafeList />
       </div>
-      <Footer />
     </>
   );
 };

@@ -4,14 +4,16 @@ import './styles.scss';
 import CafeInfoBox from 'components/CafeInfoBox';
 import CafeMenuBox from 'components/CafeMenuBox';
 import BoardList from 'components/BoardList';
-import Footer from 'components/Footer';
-import { Route } from 'react-router-dom';
+import { Route, useRouteMatch } from 'react-router-dom';
 import CafeJoinForm from 'components/CafeJoinForm';
 import PostWriteForm from 'components/PostWriteForm';
 import PostDetail from 'components/PostDetail';
 import MyAlert from 'components/MyAlert';
 
 const CafePage = () => {
+  const match = useRouteMatch();
+  console.log(match);
+  console.log("리랜더링")
   return (
     <>
       <Header />
@@ -31,7 +33,6 @@ const CafePage = () => {
           <MyAlert />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

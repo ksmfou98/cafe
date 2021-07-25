@@ -26,7 +26,8 @@ const MyAlert = () => {
             <a href="">
               <div className="title">[맥쓰사] 맥북 왜 안킬까요 ??</div>
               <div className="reply">
-                <span>이지호</span>
+                <span className="ico">└	</span>
+                <span className="name">이지호</span>
                 이런식으로 해보는거 어떄요 ??
               </div>
               <div className="date">
@@ -39,7 +40,8 @@ const MyAlert = () => {
             <a href="">
               <div className="title">[맥쓰사] 맥북 왜 안킬까요 ??</div>
               <div className="reply">
-                <span>이지호</span>
+                <span className="ico">└	</span>
+                <span className="name">이지호</span>
                 이런식으로 해보는거 어떄요 ??
               </div>
               <div className="date">
@@ -52,7 +54,8 @@ const MyAlert = () => {
             <a href="">
               <div className="title">[맥쓰사] 맥북 왜 안킬까요 ??</div>
               <div className="reply">
-                <span>이지호</span>
+                <span className="ico">└	</span>
+                <span className="name">이지호</span>
                 이런식으로 해보는거 어떄요 ??
               </div>
               <div className="date">

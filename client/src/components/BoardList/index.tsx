@@ -209,6 +209,126 @@ const BoardList = () => {
                 </td>
                 <td className="sub">2021.06.16</td>
               </tr>
+
+              <tr>
+                <td className="subject">
+                  <a className="link" href="">
+                    이도현과 노실분 구합니다
+                    <span className="comment">[3]</span>
+                  </a>
+                </td>
+                <td className="sub writer">
+                  <a className="link" href="">
+                    ksmfou98
+                  </a>
+                </td>
+                <td className="sub">2021.06.16</td>
+              </tr>
+
+              <tr>
+                <td className="subject">
+                  <a className="link" href="">
+                    이도현과 노실분 구합니다
+                    <span className="comment">[3]</span>
+                  </a>
+                </td>
+                <td className="sub writer">
+                  <a className="link" href="">
+                    ksmfou98
+                  </a>
+                </td>
+                <td className="sub">2021.06.16</td>
+              </tr>
+
+              <tr>
+                <td className="subject">
+                  <a className="link" href="">
+                    이도현과 노실분 구합니다
+                    <span className="comment">[3]</span>
+                  </a>
+                </td>
+                <td className="sub writer">
+                  <a className="link" href="">
+                    ksmfou98
+                  </a>
+                </td>
+                <td className="sub">2021.06.16</td>
+              </tr>
+
+              <tr>
+                <td className="subject">
+                  <a className="link" href="">
+                    이도현과 노실분 구합니다
+                    <span className="comment">[3]</span>
+                  </a>
+                </td>
+                <td className="sub writer">
+                  <a className="link" href="">
+                    ksmfou98
+                  </a>
+                </td>
+                <td className="sub">2021.06.16</td>
+              </tr>
+
+              <tr>
+                <td className="subject">
+                  <a className="link" href="">
+                    이도현과 노실분 구합니다
+                    <span className="comment">[3]</span>
+                  </a>
+                </td>
+                <td className="sub writer">
+                  <a className="link" href="">
+                    ksmfou98
+                  </a>
+                </td>
+                <td className="sub">2021.06.16</td>
+              </tr>
+
+              <tr>
+                <td className="subject">
+                  <a className="link" href="">
+                    이도현과 노실분 구합니다
+                    <span className="comment">[3]</span>
+                  </a>
+                </td>
+                <td className="sub writer">
+                  <a className="link" href="">
+                    ksmfou98
+                  </a>
+                </td>
+                <td className="sub">2021.06.16</td>
+              </tr>
+
+              <tr>
+                <td className="subject">
+                  <a className="link" href="">
+                    이도현과 노실분 구합니다
+                    <span className="comment">[3]</span>
+                  </a>
+                </td>
+                <td className="sub writer">
+                  <a className="link" href="">
+                    ksmfou98
+                  </a>
+                </td>
+                <td className="sub">2021.06.16</td>
+              </tr>
+
+              <tr>
+                <td className="subject">
+                  <a className="link" href="">
+                    이도현과 노실분 구합니다
+                    <span className="comment">[3]</span>
+                  </a>
+                </td>
+                <td className="sub writer">
+                  <a className="link" href="">
+                    ksmfou98
+                  </a>
+                </td>
+                <td className="sub">2021.06.16</td>
+              </tr>
             </tbody>
           </table>
         </div>
