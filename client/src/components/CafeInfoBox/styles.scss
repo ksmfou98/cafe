@@ -1,17 +1,12 @@
 #CafeInfoBox {
   overflow: hidden;
-  margin-top: 45px;
+  padding-top: 50px;
   .cafe-info-bg {
     width: 100%;
-    border-top: 2px solid #333;
-    border-bottom: 2px solid #333;
     .info-tab {
       padding: 10px 15px;
       font-weight: bold;
       letter-spacing: -1px;
-      border-bottom: 1px solid #e5e5e5;
-      display: flex;
-      justify-content: space-around;
       .active {
         color: black;
         font-weight: 700;
@@ -31,7 +26,6 @@
       padding: 0 15px 15px 15px;
       width: 100%;
       text-align: left;
-      border-bottom: 1px solid #e5e5e5;
       .info {
         margin-bottom: 6px;
       }
@@ -46,11 +40,6 @@
         font-weight: bold;
         font-size: 17px;
       }
-    }
-
-    /* UserActivity */
-    .UserActivity {
-      padding: 15px 15px;
     }
 
     .cafe-btn {

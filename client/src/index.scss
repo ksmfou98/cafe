@@ -8,6 +8,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box; /* 엘리먼트의 box-sizing 값을 border box로 설정*/
   min-height: 100%;
+  padding-top: 55px;
 }
 
 #root {
@@ -31,7 +32,6 @@ a {
 }
 
 html,
-body,
 div,
 span,
 applet,
@@ -167,23 +167,6 @@ table {
   height: 1px;
   background-color: #efefef;
   content: '';
-}
-
-.page-layout {
-  width: 1080px;
-  margin: 0 auto;
-}
-
-.cafe-menu {
-  float: left;
-  width: 204px;
-  letter-spacing: -0.5px;
-  overflow: hidden;
-  text-align: left;
-}
-.cafe-content {
-  margin-left: 230px;
-  min-height: 100vh;
 }
 
 .cont-tit {

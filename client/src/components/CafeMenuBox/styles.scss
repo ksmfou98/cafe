@@ -1,25 +1,10 @@
+@import 'styles/main';
 #CafeMenuBox {
   .menubox-in {
     width: 100%;
     .menu-list {
       display: block;
       color: #3e464a;
-      border-bottom: 2px solid #000;
-      .cafe-menu-tit {
-        border-top: 2px solid #e5e5e5;
-        border-bottom: 1px solid #e5e5e5;
-        span {
-          display: inline-block;
-          max-width: 150px;
-          padding: 12px 0 10px 11px;
-          line-height: 14px;
-          vertical-align: top;
-          color: #000;
-          font-size: 14.5px;
-          font-weight: bold;
-        }
-      }
-
       .cafe-menu-tit:first-child {
         border-top: none;
       }
@@ -31,8 +16,9 @@
         line-height: 24px;
         li {
           color: #000;
-          font-size: 15px;
+          font-size: 1rem;
           padding: 3px 0 3px 10px;
+          height: 44px;
           .menu-link:hover {
             text-decoration: underline;
           }

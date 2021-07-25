@@ -1,15 +1,16 @@
 #Header {
   width: 100%;
-
+  background-color: #fff;
+  position: fixed;
+  height: 55px;
+  top: 0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
   .inner-header {
-    width: 1080px;
-    margin: 0 auto;
-    padding: 10px 0;
+    padding: 10px 50px;
     overflow: hidden;
-    height: 50px;
     .logo {
       float: left;
-      line-height: 25px;
+      line-height: 35px;
       font-weight: 700;
       font-size: 20px;
     }

@@ -6,9 +6,6 @@ const CafeMenuBox = () => {
     <div id="CafeMenuBox">
       <div className="menubox-in">
         <div className="menu-list">
-          <div className="cafe-menu-tit">
-            <span>즐겨찾는 게시판</span>
-          </div>
           <ul className="cafe-menu-list">
             <li>
               <a href="" className="menu-link">
@@ -17,9 +14,6 @@ const CafeMenuBox = () => {
             </li>
           </ul>
 
-          <div className="cafe-menu-tit">
-            <span>이도현 게시판</span>
-          </div>
           <ul className="cafe-menu-list">
             <li>
               <a href="" className="menu-link">
@@ -43,9 +37,6 @@ const CafeMenuBox = () => {
             </li>
           </ul>
 
-          <div className="cafe-menu-tit">
-            <span>지호종현 게시판</span>
-          </div>
           <ul className="cafe-menu-list">
             <li>
               <a href="" className="menu-link">
