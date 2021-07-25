@@ -1,0 +1,43 @@
+#CafeCreateForm {
+  .inner-form {
+    overflow: hidden;
+    width: 800px;
+    margin: 50px auto 0;
+    .form-tit {
+      margin-bottom: 40px;
+      .title {
+        font-size: 20px;
+        color: #000;
+      }
+      .description {
+        padding-top: 10px;
+        font-size: 13px;
+        color: #666;
+      }
+    }
+    .form {
+      label {
+        width: 150px;
+        display: inline-block;
+      }
+      .list {
+        margin-bottom: 15px;
+      }
+      input {
+        width: 500px;
+        height: 40px;
+        padding: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      .create-btn {
+        button {
+          margin: 0 auto;
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+}
