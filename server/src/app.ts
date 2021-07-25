@@ -3,6 +3,7 @@ import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routers/userRouter";
+import cafeRouter from "./routers/cafeRouter";
 import cors from "cors";
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(cookieParser());
 
 // 라우터
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/cafe", cafeRouter);
 
 // DB 실행
 mongoose
