@@ -64,17 +64,29 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket: Socket) => {
-  socket.on("newUser", (data) => {
-    // on 데이터를 받을때
-    io.emit("enter", data); // emit 데이터를 보낼때
+  socket.on("room", function (user_id) {
+    socket.join(user_id);
+    console.log(user_id + "방입장");
   });
 
-  socket.on("message", (data) => {
-    console.log("client가 보낸 데이터: ", data);
-    io.emit("upload", data);
+  // console.log("a user connected");
+  socket.on("send message", (messageobject) => {
+    console.log(messageobject.name);
+    console.log(messageobject.body);
+    io.to(messageobject.name).emit("message", messageobject.body);
   });
 
-  socket.on("leaveUser", (nick) => {
-    io.emit("out", nick);
-  });
+  // socket.on("newUser", (data) => {
+  //   // on 데이터를 받을때
+  //   io.emit("enter", data); // emit 데이터를 보낼때
+  // });
+
+  // socket.on("message", (data) => {
+  //   console.log("client가 보낸 데이터: ", data);
+  //   io.emit("upload", data);
+  // });
+
+  // socket.on("leaveUser", (nick) => {
+  //   io.emit("out", nick);
+  // });
 });
