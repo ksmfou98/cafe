@@ -10,6 +10,7 @@ export interface IUser {
   password: string;
   name: string;
   token: string;
+  cafes: string[];
 }
 
 export interface IUserMethod extends IUser, Document {
@@ -53,6 +54,14 @@ const UserSchema: Schema<IUserMethod> = new Schema(
         }
       },
     },
+    cafes: [
+      {
+        cafe: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Cafe",
+        },
+      },
+    ],
     token: {
       type: String,
     },

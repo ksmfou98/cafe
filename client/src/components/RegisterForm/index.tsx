@@ -1,45 +1,21 @@
-import client from 'lib/api/client';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import useLoginEffect from 'hooks/user/useLoginEffect';
+import useRegister from 'hooks/user/useRegister';
+import React from 'react';
 
 const RegisterForm = () => {
+  const {
+    onSubmit,
+    email,
+    onChangeEmail,
+    password,
+    onChangePassword,
+    passwordCheck,
+    onChangePasswordCheck,
+    name,
+    onChangeName,
+  } = useRegister();
 
-  const history = useHistory();
-
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-    passwordCheck: '',
-    name: '',
-  });
-
-  const { email, password, passwordCheck, name } = form;
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    const nextForm = {
-      ...form,
-      [name]: value,
-    };
-    setForm(nextForm);
-  };
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const body = {
-      email,
-      password,
-      name,
-    };
-
-    try {
-      const response = await client.post('/user/register', body);
-      history.push("/")
-    } catch (e) {
-      alert('회원가입 실패했습니다.');
-    }
-  };
+  useLoginEffect(); // 회원가입시 바로 로그인
 
   return (
     <>
@@ -54,28 +30,28 @@ const RegisterForm = () => {
               type="email"
               value={email}
               name="email"
-              onChange={onChange}
+              onChange={onChangeEmail}
               placeholder="이메일"
             />
             <input
               type="password"
               value={password}
               name="password"
-              onChange={onChange}
+              onChange={onChangePassword}
               placeholder="비밀번호"
             />
             <input
               type="password"
               value={passwordCheck}
               name="passwordCheck"
-              onChange={onChange}
+              onChange={onChangePasswordCheck}
               placeholder="비밀번호확인"
             />
             <input
               type="text"
               value={name}
               name="name"
-              onChange={onChange}
+              onChange={onChangeName}
               placeholder="이름"
             />
             <button type="submit" className="btn btn-type1">

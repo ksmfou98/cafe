@@ -1,6 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import user from './user';
+import user, { userState } from './user';
+
+export interface reduxStateStore {
+  user: userState;
+}
 
 const rootReducer = combineReducers({
   user: user.reducer,
