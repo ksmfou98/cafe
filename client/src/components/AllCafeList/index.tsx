@@ -1,7 +1,19 @@
-import React from 'react';
+import { SERVER_URL } from 'config';
+import { readAllCafeListAPI } from 'lib/api/cafe';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 import './styles.scss';
 
 const AllCafeList = () => {
+  const [cafes, setCafes] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await readAllCafeListAPI();
+      setCafes(response);
+    };
+    getData();
+  }, []);
   return (
     <div className="AllCafeList">
       <div className="cafe-body">
@@ -11,74 +23,29 @@ const AllCafeList = () => {
           </div>
 
           <ul className="all-cafe-list">
-            <li>
-              <a href="/cafe/dofe" className="link">
-                <div className="thumb-info-type">
-                  <div className="wrap-thumb">
-                    <img src="" alt="" className="img-thumb" />
+            {cafes.map((cafe: any, index) => (
+              <li key={index}>
+                <a href={`/cafe/${cafe.route}`} className="link">
+                  <div className="thumb-info-type">
+                    <div className="wrap-thumb">
+                      <img
+                        src={`${SERVER_URL}/${cafe.thumbnail}`}
+                        alt=""
+                        className="img-thumb"
+                      />
+                    </div>
+                    <div className="wrap-info">
+                      <p className="desc-info">{cafe.name}</p>
+                    </div>
                   </div>
-                  <div className="wrap-info">
-                    <p className="desc-info">이지호 사생활 카페</p>
+                  <div className="additional-info">
+                    <span className="text-item">맴버수</span>
+                    <span className="num">{cafe.members.length}</span>
+                    <span className="text-item">명</span>
                   </div>
-                </div>
-                <div className="additional-info">
-                  <span className="text-item">맴버수</span>
-                  <span className="num">2456</span>
-                  <span className="text-item">명</span>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="" className="link">
-                <div className="thumb-info-type">
-                  <div className="wrap-thumb">
-                    <img src="" alt="" className="img-thumb" />
-                  </div>
-                  <div className="wrap-info">
-                    <p className="desc-info">추종현 공익 생활 카페</p>
-                  </div>
-                </div>
-                <div className="additional-info">
-                  <span className="text-item">맴버수</span>
-                  <span className="num">2456</span>
-                  <span className="text-item">명</span>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="" className="link">
-                <div className="thumb-info-type">
-                  <div className="wrap-thumb">
-                    <img src="" alt="" className="img-thumb" />
-                  </div>
-                  <div className="wrap-info">
-                    <p className="desc-info">추종현 공익 생활 카페</p>
-                  </div>
-                </div>
-                <div className="additional-info">
-                  <span className="text-item">맴버수</span>
-                  <span className="num">2456</span>
-                  <span className="text-item">명</span>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="" className="link">
-                <div className="thumb-info-type">
-                  <div className="wrap-thumb">
-                    <img src="" alt="" className="img-thumb" />
-                  </div>
-                  <div className="wrap-info">
-                    <p className="desc-info">추종현 공익 생활 카페</p>
-                  </div>
-                </div>
-                <div className="additional-info">
-                  <span className="text-item">맴버수</span>
-                  <span className="num">2456</span>
-                  <span className="text-item">명</span>
-                </div>
-              </a>
-            </li>
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

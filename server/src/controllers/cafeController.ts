@@ -1,5 +1,31 @@
 import { Request, Response } from "express";
 import Cafe from "../models/cafe";
+import multer from "multer";
+
+// multer-optional
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+});
+var upload = multer({ storage: storage }).single("cafe_img");
+
+// 이미지 업로드
+export const uploadImg = (req: Request, res: Response) => {
+  upload(req, res, (err) => {
+    if (err) {
+      return res.json({ success: false, err });
+    }
+    return res.json({
+      success: true,
+      image: res.req.file.path,
+      fileName: res.req.file.filename,
+    });
+  });
+};
 
 // 카페 생성
 export const create = async (req: Request, res: Response) => {
@@ -40,6 +66,40 @@ export const create = async (req: Request, res: Response) => {
     });
   } catch (e) {
     return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
+
+// 내 카페 리스트 조회
+export const readMyCafeList = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
+  try {
+    const cafes = await Cafe.find({ manager: userId });
+    return res.status(200).json({
+      success: true,
+      cafes,
+    });
+  } catch (e) {
+    res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
+
+// 전체 카페 리스트 조회
+export const readAllCafeList = async (req: Request, res: Response) => {
+  try {
+    const cafes = await Cafe.find();
+    return res.status(200).json({
+      success: true,
+      cafes,
+    });
+  } catch (e) {
+    res.status(500).json({
       success: false,
       e,
     });

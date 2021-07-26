@@ -23,6 +23,8 @@ app.use(cookieParser());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/cafe", cafeRouter);
 
+app.use("/uploads", express.static("uploads")); // 이걸 해줌으로써 http://localhost:4000/uploads/1625692%E1%85%AE%208.39.33.png 이런식으로 접속해서 이미지볼수있음
+
 // DB 실행
 mongoose
   .connect(process.env.DBURL, {
