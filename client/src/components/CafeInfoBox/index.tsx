@@ -15,6 +15,7 @@ const CafeInfoBox = () => {
           <Link to="/cafe/dofe/join" className="cafe-join">
             5초 카페 가입하기
           </Link>
+          <a href="">채팅</a>
         </div>
       </div>
     </div>

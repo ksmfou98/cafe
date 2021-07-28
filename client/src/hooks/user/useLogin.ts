@@ -13,6 +13,7 @@ export default function useLogin() {
 
     try {
       const response = await loginAPI(email, password);
+      console.log(response);
       dispatch(SetUser(response.user));
     } catch (e) {
       alert('로그인에 실패했습니다.');
