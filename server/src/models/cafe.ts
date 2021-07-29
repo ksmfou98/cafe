@@ -1,6 +1,12 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 
-export interface ICafe {}
+export interface ICafe {
+  name: string;
+  thumbnail: string;
+  route: string;
+  members: string[];
+  manager: string;
+}
 export interface ICafeMethod extends ICafe, Document {}
 export interface ICafeStatics extends Model<ICafeMethod> {}
 

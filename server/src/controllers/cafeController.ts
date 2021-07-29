@@ -57,7 +57,7 @@ export const create = async (req: Request, res: Response) => {
 
     let cafe = new Cafe(req.body);
     cafe = await cafe.populate("manager").execPopulate(); // save 하기 전에 populate 한번 하는거임
-
+    cafe.members.push(manager);
     await cafe.save();
 
     return res.status(201).json({
@@ -83,7 +83,7 @@ export const readMyCafeList = async (req: Request, res: Response) => {
       cafes,
     });
   } catch (e) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       e,
     });
@@ -99,7 +99,33 @@ export const readAllCafeList = async (req: Request, res: Response) => {
       cafes,
     });
   } catch (e) {
-    res.status(500).json({
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
+
+// 카페 상세 정보
+export const CafeInfo = async (req: Request, res: Response) => {
+  const { route } = req.params;
+  try {
+    let cafeInfo = await Cafe.findOne({ route }).populate("manager", {
+      name: 1,
+      email: 1,
+    }); // manager를 populate 하는데  name: true, email: true 니깐 name과 email을 populate 하란 소리임
+    if (!cafeInfo) {
+      return res.status(400).json({
+        success: false,
+        message: "해당 라우트를 가진 카페가 없습니다",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      cafeInfo,
+    });
+  } catch (e) {
+    return res.status(500).json({
       success: false,
       e,
     });

@@ -30,3 +30,9 @@ export const readAllCafeListAPI = async () => {
   const response = await client.get('/cafe/readAllCafeList');
   return response.data.cafes;
 };
+
+// 카페 정보 불러오기
+export const cafeInfoAPI = async (route: string) => {
+  const response = await client.get(`/cafe/cafeInfo/${route}`);
+  return response.data.cafeInfo;
+};
