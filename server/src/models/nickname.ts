@@ -12,10 +12,13 @@ const NicknameSchema: Schema<INicknameMethod> = new Schema(
       maxlength: 15,
       minlength: 2,
     },
-
     cafe: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Cafe",
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   { timestamps: true }

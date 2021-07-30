@@ -179,3 +179,31 @@ export const checkNickname = async (req: Request, res: Response) => {
     });
   }
 };
+
+// 카페 가입
+export const cafeJoin = async (req: Request, res: Response) => {
+  const { cafeId, nickname, userId } = req.body;
+
+  try {
+    let cafe = await Cafe.findOne({ _id: cafeId });
+    cafe.members.push(userId);
+    await cafe.save();
+
+    let user = await User.findOne({ _id: userId });
+    user.cafes.push(cafeId);
+    await user.save();
+
+    const newNickname = new Nickname({ cafe: cafeId, user: userId, nickname });
+    await newNickname.save();
+
+    return res.status(200).json({
+      success: true,
+      newNickname,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};

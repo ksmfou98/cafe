@@ -43,7 +43,7 @@ const CafeInfoBox = () => {
               </a>
             </>
           ) : (
-            <Link to="/cafe/dofe/join" className="btn-type1">
+            <Link to={`/cafe/${route}/join`} className="btn-type1">
               5초 카페 가입하기
             </Link>
           )}
