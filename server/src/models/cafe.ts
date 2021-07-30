@@ -35,10 +35,8 @@ const CafeSchema: Schema<ICafeMethod> = new Schema(
     },
     members: [
       {
-        member: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
       },
     ],
     manager: {

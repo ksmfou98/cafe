@@ -56,10 +56,8 @@ const UserSchema: Schema<IUserMethod> = new Schema(
     },
     cafes: [
       {
-        cafe: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Cafe",
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Cafe",
       },
     ],
     token: {

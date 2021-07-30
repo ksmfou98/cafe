@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import Cafe from "../models/cafe";
 import multer from "multer";
+import Nickname from "../models/nickname";
+import User from "../models/user";
 
 // multer-optional
 var storage = multer.diskStorage({
@@ -58,6 +60,10 @@ export const create = async (req: Request, res: Response) => {
     let cafe = new Cafe(req.body);
     cafe = await cafe.populate("manager").execPopulate(); // save 하기 전에 populate 한번 하는거임
     cafe.members.push(manager);
+
+    let user = await User.findOne({ _id: manager });
+    user.cafes.push(cafe._id);
+    await user.save();
     await cafe.save();
 
     return res.status(201).json({
@@ -77,10 +83,10 @@ export const readMyCafeList = async (req: Request, res: Response) => {
   const { userId } = req.params;
 
   try {
-    const cafes = await Cafe.find({ manager: userId });
+    const user = await User.findOne({ _id: userId }).populate("cafes");
     return res.status(200).json({
       success: true,
-      cafes,
+      cafes: user.cafes,
     });
   } catch (e) {
     return res.status(500).json({
@@ -121,7 +127,8 @@ export const CafeInfo = async (req: Request, res: Response) => {
       });
     }
 
-    const member = cafeInfo.members.some(  // 현재 접속한 유저가 카페 맴버인지 확인
+    const member = cafeInfo.members.some(
+      // 현재 접속한 유저가 카페 맴버인지 확인
       (m: any) => m._id.toString() === userId
     );
 
@@ -129,6 +136,41 @@ export const CafeInfo = async (req: Request, res: Response) => {
       success: true,
       cafeInfo,
       member,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
+
+// 닉네임 중복 확인
+export const checkNickname = async (req: Request, res: Response) => {
+  const { cafeId, nickname } = req.body;
+
+  try {
+    if (!cafeId) {
+      return res.status(400).json({
+        success: false,
+        message: "카페가 존재하지 않습니다.",
+      });
+    }
+    const valid = await Nickname.findOne({
+      cafe: cafeId,
+      nickname,
+    });
+
+    if (valid) {
+      return res.status(409).json({
+        success: false,
+        message: "이미 존재하는 닉네임 입니다.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "사용 가능한 닉네임 입니다.",
     });
   } catch (e) {
     return res.status(500).json({

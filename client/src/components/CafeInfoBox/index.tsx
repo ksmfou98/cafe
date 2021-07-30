@@ -36,10 +36,10 @@ const CafeInfoBox = () => {
           {isMember === true ? (
             <>
               <a href="" className="btn-type1 spacing">
-                카페 채팅
+                카페 글쓰기
               </a>
               <a href="" className="btn-type2">
-                카페 글쓰기
+                카페 채팅
               </a>
             </>
           ) : (
