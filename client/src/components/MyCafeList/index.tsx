@@ -41,7 +41,7 @@ const MyCafeList = () => {
             <ul className="list-cafe">
               {cafes.map((cafe: any, index) => (
                 <li key={index} className="cafe-list">
-                  <a href="#" className="cafe-link">
+                  <a href={`/cafe/${cafe.route}`} className="cafe-link">
                     <div className="thumb-info-type">
                       <div className="wrap-thumb">
                         <img

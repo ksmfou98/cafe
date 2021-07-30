@@ -44,16 +44,18 @@
 
     .cafe-btn {
       padding: 20px 20px;
-      .cafe-join {
-        display: block;
+      .btn-type1,
+      .btn-type2 {
         padding: 9px 0 10px;
         font-size: 14px;
         line-height: 16px;
         text-align: center;
         cursor: pointer;
-        color: #fff;
         font-weight: bold;
-        background: #343a40;
+
+      }
+      .spacing {
+        margin-bottom: 5px;
       }
     }
   }

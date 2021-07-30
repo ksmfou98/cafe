@@ -108,7 +108,7 @@ export const readAllCafeList = async (req: Request, res: Response) => {
 
 // 카페 상세 정보
 export const CafeInfo = async (req: Request, res: Response) => {
-  const { route } = req.params;
+  const { route, userId } = req.params;
   try {
     let cafeInfo = await Cafe.findOne({ route }).populate("manager", {
       name: 1,
@@ -120,9 +120,15 @@ export const CafeInfo = async (req: Request, res: Response) => {
         message: "해당 라우트를 가진 카페가 없습니다",
       });
     }
+
+    const member = cafeInfo.members.some(  // 현재 접속한 유저가 카페 맴버인지 확인
+      (m: any) => m._id.toString() === userId
+    );
+
     return res.status(200).json({
       success: true,
       cafeInfo,
+      member,
     });
   } catch (e) {
     return res.status(500).json({

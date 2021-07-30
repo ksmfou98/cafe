@@ -1,5 +1,7 @@
 import useCafeInfoEffect from 'hooks/cafe/useCafeInfoEffect';
+import { reduxStateStore } from 'modules';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import './styles.scss';
 
@@ -10,8 +12,9 @@ interface matchProps {
 const CafeInfoBox = () => {
   const match = useRouteMatch<matchProps>();
   const route = match.params.cafe;
+  const user = useSelector((state: reduxStateStore) => state.user);
 
-  const { cafeInfo } = useCafeInfoEffect(route);
+  const { cafeInfo, isMember } = useCafeInfoEffect(route, user._id);
   return (
     <div id="CafeInfoBox">
       <div className="cafe-info-bg">
@@ -30,10 +33,20 @@ const CafeInfoBox = () => {
         </div>
 
         <div className="cafe-btn">
-          <Link to="/cafe/dofe/join" className="cafe-join">
-            5초 카페 가입하기
-          </Link>
-          <a href="">채팅</a>
+          {isMember === true ? (
+            <>
+              <a href="" className="btn-type1 spacing">
+                카페 채팅
+              </a>
+              <a href="" className="btn-type2">
+                카페 글쓰기
+              </a>
+            </>
+          ) : (
+            <Link to="/cafe/dofe/join" className="btn-type1">
+              5초 카페 가입하기
+            </Link>
+          )}
         </div>
       </div>
     </div>
