@@ -6,7 +6,7 @@ router.post("/uploadImg", cafeCtrl.uploadImg); // 카페 등록 썸네일 이미
 router.post("/create", cafeCtrl.create); // 카페 등록
 router.get("/readMyCafeList/:userId", cafeCtrl.readMyCafeList); // 내 카페 리스트
 router.get("/readAllCafeList", cafeCtrl.readAllCafeList); // 전체 카페 리스트
-router.get("/cafeInfo/:route/:userId", cafeCtrl.CafeInfo); // 카페 정보 불러오기
+router.get("/cafeInfo/:route/:userId?", cafeCtrl.CafeInfo); // 카페 정보 불러오기
 router.post("/checkNickname", cafeCtrl.checkNickname); // 닉네임 중복확인
 router.post("/cafeJoin", cafeCtrl.cafeJoin); //카페가입
 export default router;

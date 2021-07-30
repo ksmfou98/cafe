@@ -40,7 +40,6 @@ const CafeCreateForm = () => {
     e.preventDefault();
     try {
       await cafeCreateAPI(name, route, imgURL, user._id);
-      alert('카페생성이 완료되었습니다.');
       history.push('/');
     } catch (e) {
       alert('카페생성에 실패했습니다');
