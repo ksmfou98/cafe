@@ -22,6 +22,15 @@
       padding: 10px 20px;
       flex-grow: 1;
       overflow-y: scroll;
+      .chat {
+        overflow: hidden;
+        .left-chat {
+          float: left;
+        }
+        .right-chat {
+          float: right;
+        }
+      }
     }
     .chat-input-form {
       padding: 10px 20px;

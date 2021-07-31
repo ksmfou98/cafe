@@ -64,16 +64,17 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket: Socket) => {
-  socket.on("room", function (user_id) {
-    socket.join(user_id);
-    console.log(user_id + "방입장");
+  socket.on("room", function (room_id) {
+    socket.join(room_id);
+    console.log(room_id + "방입장");
   });
 
   // console.log("a user connected");
   socket.on("send message", (messageobject) => {
-    console.log(messageobject.name);
+    console.log(messageobject.room_id);
     console.log(messageobject.body);
-    io.to(messageobject.name).emit("message", messageobject.body);
+    console.log(messageobject.id);
+    io.to(messageobject.room_id).emit("message", messageobject);
   });
 
   // socket.on("newUser", (data) => {
