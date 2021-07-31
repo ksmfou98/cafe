@@ -12,7 +12,6 @@ const CafeJoinForm = () => {
   const [message, setMessage] = useState('');
   const cafe = useSelector((state: reduxStateStore) => state.cafe);
   const user = useSelector((state: reduxStateStore) => state.user);
-  const history = useHistory();
 
   const onNicknameCheck = async () => {
     const body = {

@@ -14,6 +14,16 @@ const CafeInfoBox = () => {
   const route = match.params.cafe;
   const user = useSelector((state: reduxStateStore) => state.user);
 
+  const openChatPopup = () => {
+    const popupX = window.screen.width / 2 - 800 / 2; // 팝업창을 가운데 띄우기 위한거
+    const popupY = window.screen.height / 2 - 630 / 2;
+    window.open(
+      `/channels/${route}`,
+      'Data',
+      `height=630,width=800, top = ${popupY}, left =  ${popupX}`,
+    );
+  };
+
   const { cafeInfo, isMember } = useCafeInfoEffect(route, user._id);
   return (
     <div id="CafeInfoBox">
@@ -38,9 +48,9 @@ const CafeInfoBox = () => {
               <a href="" className="btn-type1 spacing">
                 카페 글쓰기
               </a>
-              <a href="" className="btn-type2">
+              <button onClick={openChatPopup} className="btn-type2">
                 카페 채팅
-              </a>
+              </button>
             </>
           ) : (
             <Link to={`/cafe/${route}/join`} className="btn-type1">

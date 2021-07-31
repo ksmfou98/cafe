@@ -12,7 +12,6 @@ export default function useCafeInfoEffect(route: string, userId: string) {
     const getData = async () => {
       try {
         const response = await cafeInfoAPI(route, userId);
-        console.log(response);
         dispatch(SetCafe(response.cafeInfo));
         setIsMember(response.member);
       } catch (e) {
