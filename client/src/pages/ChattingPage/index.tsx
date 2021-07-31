@@ -26,6 +26,8 @@ const ChattingPage = () => {
   const [chat, setChat] = useState<any>([]);
   const [message, setMessage] = useState('');
 
+  const [memberList, setMemberList] = useState<string[]>([]);
+
   const { cafeInfo } = useCafeInfoEffect(room_id, user._id);
 
   // 스크롤 고정 해주는 애
@@ -35,16 +37,45 @@ const ChattingPage = () => {
   };
 
   useEffect(() => {
-    socket.emit('room', room_id);
+    socket.emit('room', room_id, user.name);
+
+    socket.on('members', (users) => {
+      let members: string[] = [];
+      Object.keys(users).forEach((key) => {
+        if (users[key].room_id === room_id) {
+          members.push(users[key].name);
+          console.log(users[key].room_id, room_id);
+        }
+      });
+      console.log(members);
+      setMemberList(members);
+    });
+
+    socket.on('exit', (users) => {
+      console.log(users);
+      let members: string[] = [];
+      Object.keys(users).forEach((key) => {
+        if (users[key].room_id === room_id) {
+          members.push(users[key].name);
+          console.log(users[key].room_id, room_id);
+        }
+      });
+      console.log(members);
+      setMemberList(members);
+    });
 
     socket.on('message', (message, str) => {
       console.log('get Chat Effect Rendering');
       console.log(message);
       console.log(str);
+
       const nextForm = {
         writer: message.id,
         content: message.body,
-        time: `${str.hours} : ${str.minutes}`,
+        time:
+          str.hours > 12
+            ? `오후 ${str.hours % 12}:${str.minutes}`
+            : `오전 ${str.hours}:${str.minutes}`,
       };
       setResponse(nextForm);
     });
@@ -83,39 +114,35 @@ const ChattingPage = () => {
         </div>
         <div className="chat-cont">
           {chat.map((c: any, index: any) => (
-            <>
+            <div key={index} className="chat">
               {user.name === c.writer ? (
-                <div key={index} className="chat">
-                  <div className="right-chat">
-                    <div className="talk">
-                      <div className="content">
-                        <div className="txt">{c.content}</div>
-                      </div>
-                      <div className="time">
-                        <span className="desc">{c.time}</span>
-                      </div>
+                <div className="right-chat">
+                  <div className="talk">
+                    <div className="content">
+                      <div className="txt">{c.content}</div>
+                    </div>
+                    <div className="time">
+                      <span className="desc">{c.time}</span>
                     </div>
                   </div>
                 </div>
               ) : (
-                <div key={index} className="chat">
-                  <div className="left-chat">
-                    <div className="profile-ico">
-                      <BsPeopleCircle size="28" />
+                <div className="left-chat">
+                  <div className="profile-ico">
+                    <BsPeopleCircle size="28" />
+                  </div>
+                  <div className="talk">
+                    <div className="writer">{c.writer}</div>
+                    <div className="content">
+                      <div className="txt">{c.content}</div>
                     </div>
-                    <div className="talk">
-                      <div className="writer">{c.writer}</div>
-                      <div className="content">
-                        <div className="txt">{c.content}</div>
-                      </div>
-                      <div className="time">
-                        <span className="desc">{c.time}</span>
-                      </div>
+                    <div className="time">
+                      <span className="desc">{c.time}</span>
                     </div>
                   </div>
                 </div>
               )}
-            </>
+            </div>
           ))}
           <div ref={messagesEndRef} />
         </div>
@@ -139,66 +166,12 @@ const ChattingPage = () => {
         </div>
         <div className="member-cont">
           <ul>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이도현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>추종현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이지호</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이도현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>추종현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이지호</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이도현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>추종현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이지호</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이도현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>추종현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이지호</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이도현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>추종현</span>
-            </li>
-            <li>
-              <BsPeopleCircle size="28" />
-              <span>이지호</span>
-            </li>
+            {memberList.map((member: string, index: any) => (
+              <li key={index}>
+                <BsPeopleCircle size="28" />
+                <span>{member}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
