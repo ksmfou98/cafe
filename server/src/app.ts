@@ -71,9 +71,7 @@ io.on("connection", (socket: Socket) => {
 
   // console.log("a user connected");
   socket.on("send message", (messageobject) => {
-    console.log(messageobject.room_id);
-    console.log(messageobject.body);
-    console.log(messageobject.id);
+    console.log(messageobject);
     io.to(messageobject.room_id).emit("message", messageobject);
   });
 

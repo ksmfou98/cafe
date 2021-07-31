@@ -21,20 +21,9 @@ const ChattingPage = () => {
     writer: '',
     content: '',
   });
-  const [chat, setChat] = useState<any>([
-    {
-      writer: '',
-      content: '',
-    },
-  ]);
-  const [message, setMessage] = useState('');
 
-  //   useEffect(() => {
-  //     socket.on('upload', (data) => {
-  //       console.log(data);
-  //       setResponse(data.message);
-  //     });
-  //   }, []);
+  const [chat, setChat] = useState<any>([]);
+  const [message, setMessage] = useState('');
 
   // 스크롤 고정 해주는 애
   const messagesEndRef = useRef<any>(null);
@@ -43,29 +32,24 @@ const ChattingPage = () => {
   };
 
   useEffect(() => {
-    // const room_id = roomName;
     socket.emit('room', room_id);
 
-    // socket.on('your_id', (id) => {
-    //   console.log(id);
-    //   setYour_id(id);
-    // });
-
     socket.on('message', (message) => {
+      console.log('get Chat Effect Rendering');
       console.log(message);
-      // setResponse(message.body);
       const nextForm = {
-        ...response,
         writer: message.id,
         content: message.body,
       };
       setResponse(nextForm);
     });
-  }, [room_id, response]);
+  }, [room_id]);
 
   useEffect(() => {
+    console.log('set Chat Effect Rendering');
     const getChat = async () => {
-      (await response.writer.length) > 0 && setChat(chat.concat(response)); // await 이 영향 안준다고 나와있지만 얘로 인해서 스크롤이  값을 불러온후에 실행됨
+      (await response.writer.length) > 0 &&
+        setChat((chat: any) => chat.concat(response)); // await 이 영향 안준다고 나와있지만 얘로 인해서 스크롤이  값을 불러온후에 실행됨
       scrollToBottom();
     };
     getChat();
@@ -85,11 +69,6 @@ const ChattingPage = () => {
     socket.emit('send message', messageobject);
     setMessage('');
   };
-  //   const onClick = (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-  //     socket.emit('message', { message });
-  //     setMessage('');
-  //   };
 
   return (
     <div id="ChattingPage">
@@ -103,15 +82,31 @@ const ChattingPage = () => {
               {user.name === c.writer ? (
                 <div key={index} className="chat">
                   <div className="right-chat">
-                    <span>{c.content}</span>
-                    <span>{c.writer}</span>
+                    <div className="talk">
+                      <div className="content">
+                        <div className="txt">{c.content}</div>
+                      </div>
+                      <div className="time">
+                        <span className="desc">오후 8:25</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (
                 <div key={index} className="chat">
                   <div className="left-chat">
-                    <span>{c.writer}</span>
-                    <span>{c.content}</span>
+                    <div className="profile-ico">
+                      <BsPeopleCircle size="28" />
+                    </div>
+                    <div className="talk">
+                      <div className="writer">{c.writer}</div>
+                      <div className="content">
+                        <div className="txt">{c.content}</div>
+                      </div>
+                      <div className="time">
+                        <span className="desc">오후 8:25</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
