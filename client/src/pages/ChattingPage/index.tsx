@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './styles.scss';
 import { useRouteMatch } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
@@ -25,6 +25,18 @@ const ChattingPage = () => {
   //       setResponse(data.message);
   //     });
   //   }, []);
+
+  // // 스크롤을 하단으로 이동시키는 함수
+  // const scrollToBottom = () => {
+  //   document.getElementsByClassName('chat-cont').scrollBy({ top: 100 });
+  // };
+
+  const messagesEndRef = useRef<any>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const user_id = roomName;
     socket.emit('room', user_id);
@@ -39,7 +51,11 @@ const ChattingPage = () => {
   }, []);
 
   useEffect(() => {
-    response.length > 0 && setChat([...chat, response]);
+    const getChat = async () => {
+      (await response.length) > 0 && setChat([...chat, response]); // await 이 영향 안준다고 나와있지만 얘로 인해서 스크롤이  값을 불러온후에 실행됨
+      scrollToBottom();
+    };
+    getChat();
   }, [response]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +88,7 @@ const ChattingPage = () => {
           {chat.map((c: any, index: any) => (
             <div>{c}</div>
           ))}
-          
+          <div ref={messagesEndRef} />
         </div>
         <div className="chat-input-form">
           <form action="" onSubmit={onClick}>
@@ -154,7 +170,6 @@ const ChattingPage = () => {
               <BsPeopleCircle size="28" />
               <span>이지호</span>
             </li>
-
           </ul>
         </div>
       </div>
