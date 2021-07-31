@@ -6,8 +6,8 @@ import { RiSendPlaneFill } from 'react-icons/ri';
 import { BsPeopleCircle } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { reduxStateStore } from 'modules';
+import useCafeInfoEffect from 'hooks/cafe/useCafeInfoEffect';
 const ENDPOINT = 'http://localhost:4000';
-
 const socket = socketIOClient(ENDPOINT);
 
 interface MatchProps {
@@ -20,10 +20,13 @@ const ChattingPage = () => {
   const [response, setResponse] = useState({
     writer: '',
     content: '',
+    time: '',
   });
 
   const [chat, setChat] = useState<any>([]);
   const [message, setMessage] = useState('');
+
+  const { cafeInfo } = useCafeInfoEffect(room_id, user._id);
 
   // 스크롤 고정 해주는 애
   const messagesEndRef = useRef<any>(null);
@@ -34,12 +37,14 @@ const ChattingPage = () => {
   useEffect(() => {
     socket.emit('room', room_id);
 
-    socket.on('message', (message) => {
+    socket.on('message', (message, str) => {
       console.log('get Chat Effect Rendering');
       console.log(message);
+      console.log(str);
       const nextForm = {
         writer: message.id,
         content: message.body,
+        time: `${str.hours} : ${str.minutes}`,
       };
       setResponse(nextForm);
     });
@@ -74,7 +79,7 @@ const ChattingPage = () => {
     <div id="ChattingPage">
       <div className="chat-form">
         <div className="chat-tit">
-          <h1>맥쓰사</h1>
+          <h1>{cafeInfo.name}</h1>
         </div>
         <div className="chat-cont">
           {chat.map((c: any, index: any) => (
@@ -87,7 +92,7 @@ const ChattingPage = () => {
                         <div className="txt">{c.content}</div>
                       </div>
                       <div className="time">
-                        <span className="desc">오후 8:25</span>
+                        <span className="desc">{c.time}</span>
                       </div>
                     </div>
                   </div>
@@ -104,7 +109,7 @@ const ChattingPage = () => {
                         <div className="txt">{c.content}</div>
                       </div>
                       <div className="time">
-                        <span className="desc">오후 8:25</span>
+                        <span className="desc">{c.time}</span>
                       </div>
                     </div>
                   </div>

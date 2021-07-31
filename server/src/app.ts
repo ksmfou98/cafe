@@ -72,7 +72,12 @@ io.on("connection", (socket: Socket) => {
   // console.log("a user connected");
   socket.on("send message", (messageobject) => {
     console.log(messageobject);
-    io.to(messageobject.room_id).emit("message", messageobject);
+    const date = new Date();
+    const time = {
+      hours: date.getHours(),
+      minutes: date.getMinutes(),
+    };
+    io.to(messageobject.room_id).emit("message", messageobject, time);
   });
 
   // socket.on("newUser", (data) => {
