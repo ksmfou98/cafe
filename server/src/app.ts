@@ -74,7 +74,7 @@ io.on("connection", (socket: Socket) => {
     };
     users[socket.id] = member;
 
-    io.emit("members", users);
+    io.emit("members", users, { room_id, name: user_name });
   });
 
   // console.log("a user connected");
@@ -90,8 +90,9 @@ io.on("connection", (socket: Socket) => {
 
   socket.on("disconnect", () => {
     if (users[socket.id]) {
+      const outMember = users[socket.id];
       delete users[socket.id];
-      io.emit("exit", users);
+      io.emit("exit", users, outMember);
     } else {
       console.log("dd");
     }

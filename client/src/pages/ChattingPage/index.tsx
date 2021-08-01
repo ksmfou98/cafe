@@ -39,7 +39,7 @@ const ChattingPage = () => {
   useEffect(() => {
     socket.emit('room', room_id, user.name);
 
-    socket.on('members', (users) => {
+    socket.on('members', (users, inMember) => {
       let members: string[] = [];
       Object.keys(users).forEach((key) => {
         if (users[key].room_id === room_id) {
@@ -49,10 +49,25 @@ const ChattingPage = () => {
       });
       console.log(members);
       setMemberList(members);
+
+      if (inMember.room_id === room_id) {
+        const mention = {
+          message: `${inMember.name}님이 들어오셨습니다.`,
+        };
+        setChat((chat: any) => chat.concat(mention));
+        scrollToBottom();
+      }
     });
 
-    socket.on('exit', (users) => {
-      console.log(users);
+    socket.on('exit', (users, outMember) => {
+      console.log(users, outMember);
+      if (outMember.room_id === room_id) {
+        const mention = {
+          message: `${outMember.name}님이 나가셨습니다.`,
+        };
+        setChat((chat: any) => chat.concat(mention));
+        scrollToBottom();
+      }
       let members: string[] = [];
       Object.keys(users).forEach((key) => {
         if (users[key].room_id === room_id) {
@@ -114,35 +129,40 @@ const ChattingPage = () => {
         </div>
         <div className="chat-cont">
           {chat.map((c: any, index: any) => (
-            <div key={index} className="chat">
-              {user.name === c.writer ? (
-                <div className="right-chat">
-                  <div className="talk">
-                    <div className="content">
-                      <div className="txt">{c.content}</div>
+            <>
+              {c.message && <div className="in-out-message">{c.message}</div>}
+              {!c.message && (
+                <div key={index} className="chat">
+                  {user.name === c.writer ? (
+                    <div className="right-chat">
+                      <div className="talk">
+                        <div className="content">
+                          <div className="txt">{c.content}</div>
+                        </div>
+                        <div className="time">
+                          <span className="desc">{c.time}</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="time">
-                      <span className="desc">{c.time}</span>
+                  ) : (
+                    <div className="left-chat">
+                      <div className="profile-ico">
+                        <BsPeopleCircle size="28" />
+                      </div>
+                      <div className="talk">
+                        <div className="writer">{c.writer}</div>
+                        <div className="content">
+                          <div className="txt">{c.content}</div>
+                        </div>
+                        <div className="time">
+                          <span className="desc">{c.time}</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="left-chat">
-                  <div className="profile-ico">
-                    <BsPeopleCircle size="28" />
-                  </div>
-                  <div className="talk">
-                    <div className="writer">{c.writer}</div>
-                    <div className="content">
-                      <div className="txt">{c.content}</div>
-                    </div>
-                    <div className="time">
-                      <span className="desc">{c.time}</span>
-                    </div>
-                  </div>
+                  )}
                 </div>
               )}
-            </div>
+            </>
           ))}
           <div ref={messagesEndRef} />
         </div>
@@ -162,7 +182,7 @@ const ChattingPage = () => {
       </div>
       <div className="member-list">
         <div className="member-tit">
-          <span>Members(70)</span>
+          <span>Members({memberList.length})</span>
         </div>
         <div className="member-cont">
           <ul>
