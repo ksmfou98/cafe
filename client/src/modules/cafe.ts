@@ -18,6 +18,7 @@ const initialState: cafeState = {
     _id: '',
     name: '',
     email: '',
+    nickname: '',
   },
   members: [],
 };

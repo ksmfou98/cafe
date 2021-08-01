@@ -33,7 +33,7 @@ const CafeInfoBox = () => {
           <div className="cafe-info">
             <div className="cafe-manager info">
               <span className="info-tit">매니져</span>
-              <span className="txt-point">{cafeInfo.manager.name}</span>
+              <span className="txt-point">{cafeInfo.manager.nickname}</span>
             </div>
             <div className="cafe-member info">
               <span className="info-tit">맴버수</span>

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import Cafe from "../models/cafe";
 import multer from "multer";
-import Nickname from "../models/nickname";
 import User from "../models/user";
 
 // multer-optional
@@ -119,6 +118,7 @@ export const CafeInfo = async (req: Request, res: Response) => {
     let cafeInfo = await Cafe.findOne({ route }).populate("manager", {
       name: 1,
       email: 1,
+      nickname: 1,
     }); // manager를 populate 하는데  name: true, email: true 니깐 name과 email을 populate 하란 소리임
     if (!cafeInfo) {
       return res.status(400).json({
@@ -145,44 +145,9 @@ export const CafeInfo = async (req: Request, res: Response) => {
   }
 };
 
-// 닉네임 중복 확인
-export const checkNickname = async (req: Request, res: Response) => {
-  const { cafeId, nickname } = req.body;
-
-  try {
-    if (!cafeId) {
-      return res.status(400).json({
-        success: false,
-        message: "카페가 존재하지 않습니다.",
-      });
-    }
-    const valid = await Nickname.findOne({
-      cafe: cafeId,
-      nickname,
-    });
-
-    if (valid) {
-      return res.status(409).json({
-        success: false,
-        message: "이미 존재하는 닉네임 입니다.",
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      message: "사용 가능한 닉네임 입니다.",
-    });
-  } catch (e) {
-    return res.status(500).json({
-      success: false,
-      e,
-    });
-  }
-};
-
 // 카페 가입
 export const cafeJoin = async (req: Request, res: Response) => {
-  const { cafeId, nickname, userId } = req.body;
+  const { cafeId, userId } = req.body;
 
   try {
     let cafe = await Cafe.findOne({ _id: cafeId });
@@ -193,12 +158,8 @@ export const cafeJoin = async (req: Request, res: Response) => {
     user.cafes.push(cafeId);
     await user.save();
 
-    const newNickname = new Nickname({ cafe: cafeId, user: userId, nickname });
-    await newNickname.save();
-
     return res.status(200).json({
       success: true,
-      newNickname,
     });
   } catch (e) {
     return res.status(500).json({

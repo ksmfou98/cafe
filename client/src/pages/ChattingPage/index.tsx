@@ -37,7 +37,7 @@ const ChattingPage = () => {
   };
 
   useEffect(() => {
-    socket.emit('room', room_id, user.name);
+    socket.emit('room', room_id, user.nickname);
 
     socket.on('members', (users, inMember) => {
       let members: string[] = [];
@@ -115,7 +115,7 @@ const ChattingPage = () => {
     const messageobject = {
       room_id,
       body: message,
-      id: user.name,
+      id: user.nickname,
     };
     socket.emit('send message', messageobject);
     setMessage('');
@@ -133,7 +133,7 @@ const ChattingPage = () => {
               {c.message && <div className="in-out-message">{c.message}</div>}
               {!c.message && (
                 <div key={index} className="chat">
-                  {user.name === c.writer ? (
+                  {user.nickname === c.writer ? (
                     <div className="right-chat">
                       <div className="talk">
                         <div className="content">

@@ -3,7 +3,7 @@ import User from "../models/user";
 
 // 회원가입
 export const register = async (req: Request, res: Response) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, nickname } = req.body;
 
   try {
     // email 이미 존재하는지 확인
@@ -15,7 +15,7 @@ export const register = async (req: Request, res: Response) => {
       });
     }
 
-    const user = new User({ email, name });
+    const user = new User({ email, name, nickname });
 
     await user.setPassword(password); // 비밀번호 설정
     await user.save(); // 데이터베이스에 저장

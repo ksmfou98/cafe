@@ -43,6 +43,11 @@ const UserSchema: Schema<IUserMethod> = new Schema(
       required: true,
       trim: true,
     },
+    nickname: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     password: {
       type: String,
       required: true,

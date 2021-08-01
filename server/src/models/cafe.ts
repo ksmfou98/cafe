@@ -15,7 +15,6 @@ const CafeSchema: Schema<ICafeMethod> = new Schema(
     name: {
       type: String,
       required: true,
-      trim: true,
       unique: true,
       maxlength: 30,
       minlength: 2,

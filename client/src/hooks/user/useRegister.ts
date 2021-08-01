@@ -9,12 +9,13 @@ export default function useRegister() {
   const [password, onChangePassword] = useInput('');
   const [passwordCheck, onChangePasswordCheck] = useInput('');
   const [name, onChangeName] = useInput('');
+  const [nickname, onChangeNickname] = useInput('');
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const response = await registerAPI(email, password, name);
+      const response = await registerAPI(email, password, name, nickname);
       dispatch(SetUser(response.user));
     } catch (e) {
       alert('회원가입에 실패했습니다');
@@ -31,5 +32,7 @@ export default function useRegister() {
     onChangePasswordCheck,
     name,
     onChangeName,
+    nickname,
+    onChangeNickname,
   };
 }

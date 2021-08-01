@@ -13,6 +13,8 @@ const RegisterForm = () => {
     onChangePasswordCheck,
     name,
     onChangeName,
+    nickname,
+    onChangeNickname,
   } = useRegister();
 
   useLoginEffect(); // 회원가입시 바로 로그인
@@ -53,6 +55,13 @@ const RegisterForm = () => {
               name="name"
               onChange={onChangeName}
               placeholder="이름"
+            />
+            <input
+              type="text"
+              value={nickname}
+              name="nickname"
+              onChange={onChangeNickname}
+              placeholder="닉네임"
             />
             <button type="submit" className="btn btn-type1">
               가입하기

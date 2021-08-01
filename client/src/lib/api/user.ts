@@ -5,11 +5,13 @@ export const registerAPI = async (
   email: string,
   password: string,
   name: string,
+  nickname: string,
 ) => {
   const body = {
     email,
     password,
     name,
+    nickname,
   };
 
   const response = await client.post('/user/register', body);

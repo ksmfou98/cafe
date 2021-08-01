@@ -17,9 +17,9 @@ const Header = () => {
           </a>
           <div className="user-info">
             <div className="info-box">
-              {user.name ? (
+              {user.nickname ? (
                 <div className="info">
-                  <div className="username">{user.name}</div>
+                  <div className="username">{user.nickname}</div>
                   <button
                     className="btn-type1 btn logout"
                     type="button"

@@ -11,42 +11,8 @@
       .join-input {
         padding: 20px;
         margin-bottom: 20px;
-        .nickname {
-          display: flex;
-          align-items: center;
-          margin-bottom: 10px;
-          justify-content: center;
-          label {
-            width: 100px;
-            font-weight: 700;
-            font-size: 16px;
-            color: #333;
-            line-height: 20px;
-            vertical-align: top;
-            text-align: left;
-          }
-          input {
-            height: 40px;
-            padding: 0 14px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            color: #333;
-            line-height: 20px;
-            border-radius: 3px;
-            background: #fff;
-            width: 250px;
-            outline: none;
-            vertical-align: top;
-          }
-          button {
-            padding: 11px 22px;
-            margin-left: 15px;
-          }
-        }
-        p {
-          text-align: center;
-          padding: 5px;
-        }
+        
+       
       }
 
       .join-btn {
