@@ -30,7 +30,7 @@ const MyCafeList = () => {
                 <li className="list">
                   <a href="#" className="list-item">
                     내 카페
-                    <span className="num-item">1</span>
+                    <span className="num-item">{cafes.length}</span>
                   </a>
                 </li>
               </ul>
