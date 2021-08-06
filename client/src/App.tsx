@@ -6,6 +6,7 @@ import ChattingPage from 'pages/ChattingPage';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import 'styles/main.scss';
+import CafeManagePage from 'pages/CafeManagePage';
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
       <Switch>
         <Route path="/channels/:cafe" component={ChattingPage} />
         <Route path="/cafe/:cafe" component={CafePage} />
-        <Route component={LoginPage} exact path="/login" />
-        <Route component={RegisterPage} exact path="/join" />
-        <Route component={LandingPage} path="/" />
+        <Route path="/manage/:cafe" component={CafeManagePage} />
+        <Route path="/login" exact component={LoginPage} />
+        <Route path="/join" exact component={RegisterPage} />
+        <Route path="/" component={LandingPage} />
       </Switch>
     </>
   );

@@ -3,6 +3,7 @@ import { reduxStateStore } from 'modules';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { IoMdSettings } from 'react-icons/io';
 import './styles.scss';
 
 interface matchProps {
@@ -39,6 +40,12 @@ const CafeInfoBox = () => {
               <span className="info-tit">맴버수</span>
               <span className="txt-point">{cafeInfo.members?.length}명</span>
             </div>
+            {cafeInfo.manager._id === user._id && (
+              <div className="cafe-manage">
+                <IoMdSettings />
+                <Link to={`/manage/${route}`}>카페관리</Link>
+              </div>
+            )}
           </div>
         </div>
 

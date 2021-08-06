@@ -11,9 +11,6 @@ import PostDetail from 'components/PostDetail';
 import MyAlert from 'components/MyAlert';
 
 const CafePage = () => {
-  const match = useRouteMatch();
-  console.log(match);
-  console.log("리랜더링")
   return (
     <>
       <Header />
@@ -26,10 +23,13 @@ const CafePage = () => {
           <div className="cafe-content">
             <Route path="/cafe/:cafe/join" exact component={CafeJoinForm} />
             <Route path="/cafe/:cafe/write" exact component={PostWriteForm} />
-            <Route path="/cafe/:cafe/post/:postid" exact component={PostDetail} />
+            <Route
+              path="/cafe/:cafe/post/:postid"
+              exact
+              component={PostDetail}
+            />
             <Route path="/cafe/:cafe" exact component={BoardList} />
           </div>
-
           <MyAlert />
         </div>
       </div>

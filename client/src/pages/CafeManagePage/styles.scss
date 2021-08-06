@@ -1,0 +1,12 @@
+#CafeManagePage {
+  display: flex;
+  flex: 1 1 auto;
+  .manage-nav {
+    flex: 0 1 250px;
+    padding: 30px 0;
+  }
+  .manage-cont {
+    flex: 1 1;
+    padding: 30px 0;
+  }
+}
