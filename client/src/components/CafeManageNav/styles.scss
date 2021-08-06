@@ -1,2 +1,54 @@
+@import 'styles/main';
 #CafeManageNav {
+  width: 200px;
+  .cafe-info {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e5ee;
+    .cafe-name {
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: bold;
+      letter-spacing: -1px;
+      word-break: break-all;
+      margin-bottom: 10px;
+    }
+    .cafe-members {
+      margin-bottom: 5px;
+    }
+  }
+
+  .cafe-manage {
+    background: #fff;
+    border: 1px solid #e0e5ee;
+    margin-bottom: 20px;
+    .manage {
+      a {
+        display: flex;
+        padding: 15px 10px;
+        border-bottom: 1px solid #f1f3f6;
+        font-size: 17px;
+        line-height: 16px;
+        align-items: center;
+        &:hover {
+          background-color: #f8f8f8;
+          color: $mainColor;
+        }
+        svg {
+          margin-right: 7px;
+          color: #999;
+        }
+      }
+    }
+  }
+
+  .cafe-delete {
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
 }
