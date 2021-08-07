@@ -8,6 +8,8 @@ const Header = () => {
   const user = useSelector((state: reduxStateStore) => state.user);
   const { onLogout } = useLogout();
 
+
+
   return (
     <>
       <div id="Header">
@@ -15,6 +17,7 @@ const Header = () => {
           <a className="logo" href="/">
             Dofe
           </a>
+
           <div className="user-info">
             <div className="info-box">
               {user.nickname ? (

@@ -31,13 +31,13 @@
         font-size: 17px;
         line-height: 16px;
         align-items: center;
+        color: rgb(111, 109, 109);
         &:hover {
           background-color: #f8f8f8;
           color: $mainColor;
         }
         svg {
           margin-right: 7px;
-          color: #999;
         }
       }
     }

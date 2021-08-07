@@ -2,11 +2,85 @@
   .inner-box {
     display: flex;
     flex: 1 1 auto;
-    .left-box {
-      flex: 0 1 250px;
-    }
-    .right-box {
+    padding: 25px 75px 0;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 1px;
+    border: 1px solid #e0e5ee;
+    align-items: baseline;
+
+    .content {
       flex: 1 1;
+      .desc_info {
+        margin-top: 4px;
+        font-size: 13px;
+        color: #808080;
+      }
+      .board-list {
+        margin: 21px 0 30px;
+        padding: 8px;
+        border-radius: 1px;
+        background-color: #e7edf3;
+        ul {
+          margin-bottom: 10px;
+          li {
+            padding: 0 19px;
+            height: 50px;
+            margin-bottom: -1px;
+            border: 1px solid #e0e5ee;
+            font-size: 16px;
+            background-color: #fff;
+            box-sizing: border-box;
+            line-height: 45px;
+            &:hover {
+              background-color: #fdfdfd;
+            }
+            .inner-list {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .left-item {
+                display: flex;
+                align-items: center;
+                svg {
+                  margin-right: 8px;
+                  color: #999;
+                  &:hover {
+                    cursor: move;
+                  }
+                }
+              }
+              .right-item {
+                display: flex;
+                align-items: center;
+                button {
+                  margin-right: 5px;
+                  padding: 3px 12px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .board-form {
+        flex: 0 1 350px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        input {
+          padding: 5px 10px;
+          border: 1px solid #e0e5ee;
+          border-radius: 5px;
+          margin-right: 10px;
+          width: 92%;
+          height: 35px;
+        }
+        button {
+          padding: 5px 15px;
+          height: 35px;
+        }
+      }
     }
   }
 }
