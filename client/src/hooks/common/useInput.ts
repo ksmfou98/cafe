@@ -1,7 +1,7 @@
-import { useCallback, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 
 type OnChange = (e: any) => void;
-type ReturnTypes<T = any> = [T, OnChange];
+type ReturnTypes<T = any> = [T, OnChange, Dispatch<SetStateAction<T>>];
 
 export default function useInput<T = any>(initialValue: T): ReturnTypes {
   const [value, setValue] = useState(initialValue);
@@ -10,5 +10,5 @@ export default function useInput<T = any>(initialValue: T): ReturnTypes {
     setValue(e.target.value);
   }, []);
 
-  return [value, onChange];
+  return [value, onChange, setValue];
 }

@@ -55,7 +55,6 @@ export const create = async (req: Request, res: Response) => {
         message: "카페 주소가 이미 존재합니다.",
       });
     }
-
     let cafe = new Cafe(req.body);
     cafe = await cafe.populate("manager").execPopulate(); // save 하기 전에 populate 한번 하는거임
     cafe.members.push(manager);

@@ -1,6 +1,9 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 
-export interface IBoard {}
+export interface IBoard {
+  name: string;
+  cafe: string;
+}
 export interface IBoardMethod extends IBoard, Document {}
 export interface IBoardStatics extends Model<IBoardMethod> {}
 
