@@ -6,11 +6,11 @@ const checkManager = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { cafeId, managerId } = req.body;
+  const { cafeId } = req.params;
   try {
     const cafe = await Cafe.findOne({
       _id: cafeId,
-      manager: managerId,
+      manager: res.locals.user._id,
     });
 
     if (!cafe) {

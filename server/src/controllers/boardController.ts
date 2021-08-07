@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import Board from "../models/board";
 
 // 게시판 생성
-export const create = async (req: Request, res: Response) => {
-  const { name, cafeId } = req.body;
+export const createBoard = async (req: Request, res: Response) => {
+  const { name } = req.body;
+  const { cafeId } = req.params;
   try {
     const board = new Board({ name, cafe: cafeId });
     await board.save();
@@ -41,7 +42,7 @@ export const readBoardList = async (req: Request, res: Response) => {
 };
 
 // 게시판 수정
-export const update = async (req: Request, res: Response) => {
+export const updateBoard = async (req: Request, res: Response) => {
   const { boardId, name } = req.body;
   try {
     const board = await Board.findByIdAndUpdate(
@@ -59,6 +60,33 @@ export const update = async (req: Request, res: Response) => {
     return res.status(200).json({
       success: true,
       board,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
+
+// 게시판 삭제
+export const deleteBoard = async (req: Request, res: Response) => {
+  const { cafeId, boardId } = req.params;
+  try {
+    const board = await Board.findOneAndDelete({
+      _id: boardId,
+      cafe: cafeId,
+    });
+
+    if (!board) {
+      return res.status(400).json({
+        success: false,
+        message: "해당 게시판이 존재하지 않습니다",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
     });
   } catch (e) {
     return res.status(500).json({

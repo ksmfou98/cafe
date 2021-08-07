@@ -10,6 +10,7 @@ import cors from "cors";
 import http from "http";
 // import socketio from "socket.io";
 import { Server, Socket } from "socket.io";
+import userAuth from "./lib/userAuth";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -23,6 +24,9 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// middleware
+app.use(userAuth);
 
 // 라우터
 app.use("/api/v1/user", userRouter);

@@ -25,7 +25,7 @@ export const register = async (req: Request, res: Response) => {
     // 응답할 데이터에서 password 필드 제거
     const data = user.serialize();
 
-    res.cookie("x_auth", token).status(200).json({
+    res.cookie("user", token).status(200).json({
       success: true,
       user: data,
     });
