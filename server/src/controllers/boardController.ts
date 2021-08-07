@@ -19,3 +19,23 @@ export const create = async (req: Request, res: Response) => {
     });
   }
 };
+
+// 게시판 목록 조회
+export const readBoardList = async (req: Request, res: Response) => {
+  const { cafeId } = req.params;
+  try {
+    const boards = await Board.find({
+      cafe: cafeId,
+    });
+
+    return res.status(200).json({
+      success: true,
+      boards,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
