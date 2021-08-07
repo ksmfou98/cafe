@@ -1,8 +1,11 @@
 import React from 'react';
 import './styles.scss';
 import { AiOutlineMenu } from 'react-icons/ai';
+import useBoardListEffect from 'hooks/board/useBoardListEffect';
+import { boardState } from 'modules/board';
 
 const CafeManageBoard = () => {
+  const { boards } = useBoardListEffect();
   return (
     <>
       <div id="CafeManageBoard">
@@ -20,86 +23,24 @@ const CafeManageBoard = () => {
                     <span>전체 게시판</span>
                   </div>
                 </li>
-                <li>
-                  <div className="inner-list">
-                    <div className="left-item">
-                      <AiOutlineMenu />
-                      <span>자유 게시판</span>
+                {boards.map((board: boardState, index) => (
+                  <li key={index}>
+                    <div className="inner-list">
+                      <div className="left-item">
+                        <AiOutlineMenu />
+                        <span>{board.name}</span>
+                      </div>
+                      <div className="right-item">
+                        <button type="button" className="btn-type2">
+                          수정
+                        </button>
+                        <button type="button" className="btn-type1">
+                          삭제
+                        </button>
+                      </div>
                     </div>
-                    <div className="right-item">
-                      <button type="button" className="btn-type2">
-                        수정
-                      </button>
-                      <button type="button" className="btn-type1">
-                        삭제
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="inner-list">
-                    <div className="left-item">
-                      <AiOutlineMenu />
-                      <span>자유 게시판</span>
-                    </div>
-                    <div className="right-item">
-                      <button type="button" className="btn-type2">
-                        수정
-                      </button>
-                      <button type="button" className="btn-type1">
-                        삭제
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="inner-list">
-                    <div className="left-item">
-                      <AiOutlineMenu />
-                      <span>자유 게시판</span>
-                    </div>
-                    <div className="right-item">
-                      <button type="button" className="btn-type2">
-                        수정
-                      </button>
-                      <button type="button" className="btn-type1">
-                        삭제
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="inner-list">
-                    <div className="left-item">
-                      <AiOutlineMenu />
-                      <span>자유 게시판</span>
-                    </div>
-                    <div className="right-item">
-                      <button type="button" className="btn-type2">
-                        수정
-                      </button>
-                      <button type="button" className="btn-type1">
-                        삭제
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="inner-list">
-                    <div className="left-item">
-                      <AiOutlineMenu />
-                      <span>자유 게시판</span>
-                    </div>
-                    <div className="right-item">
-                      <button type="button" className="btn-type2">
-                        수정
-                      </button>
-                      <button type="button" className="btn-type1">
-                        삭제
-                      </button>
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                ))}
               </ul>
               <div className="board-form">
                 <input type="text" placeholder="게시판을 추가해주세요" />
