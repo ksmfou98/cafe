@@ -12,7 +12,7 @@ const MyAlert = () => {
             <a href="">
               <div className="title">[맥쓰사] 맥북 왜 안킬까요 ??</div>
               <div className="reply">
-                <span className="ico">└	</span>
+                <span className="ico">└ </span>
                 <span className="name">이지호</span>
                 이런식으로 해보는거 어떄요 ??
               </div>
@@ -24,39 +24,11 @@ const MyAlert = () => {
 
           <li>
             <a href="">
-              <div className="title">[맥쓰사] 맥북 왜 안킬까요 ??</div>
+              <div className="title">[수만휘] 이 문제집 어디껀가요 ??</div>
               <div className="reply">
-                <span className="ico">└	</span>
-                <span className="name">이지호</span>
-                이런식으로 해보는거 어떄요 ??
-              </div>
-              <div className="date">
-                <span>2021-07-25</span>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <div className="title">[맥쓰사] 맥북 왜 안킬까요 ??</div>
-              <div className="reply">
-                <span className="ico">└	</span>
-                <span className="name">이지호</span>
-                이런식으로 해보는거 어떄요 ??
-              </div>
-              <div className="date">
-                <span>2021-07-25</span>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <div className="title">[맥쓰사] 맥북 왜 안킬까요 ??</div>
-              <div className="reply">
-                <span className="ico">└	</span>
-                <span className="name">이지호</span>
-                이런식으로 해보는거 어떄요 ??
+                <span className="ico">└ </span>
+                <span className="name">아무무</span>
+                해법 수학 입니다
               </div>
               <div className="date">
                 <span>2021-07-25</span>
