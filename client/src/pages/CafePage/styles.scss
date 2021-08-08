@@ -1,6 +1,6 @@
 .page-layout {
   // background-color: #f0f2f5;
-  max-width: 1300px;
+  max-width: 1250px;
   margin: 0 auto;
 }
 
@@ -14,17 +14,17 @@
       letter-spacing: -0.5px;
       overflow: hidden;
       text-align: left;
-      flex: 0 1 290px;
+      flex: 0 1 204px;
       align-self: flex-start;
       position: sticky;
       top: 55px;
     }
     .cafe-content {
-      flex: 1 1 750px;
+      flex: 1 1 650px;
       margin: 0 90px;
       // min-height: 100vh;
       padding-top: 50px;
-      width: 750px;
+      width: 650px;
     }
   }
 }

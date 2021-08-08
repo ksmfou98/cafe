@@ -1,6 +1,7 @@
 #CafeInfoBox {
   overflow: hidden;
   padding-top: 50px;
+  margin-bottom: 30px;
   .cafe-info-bg {
     width: 100%;
     .info-tab {
@@ -14,7 +15,7 @@
     }
     /* Cafe Info */
     .cafe-name {
-      font-size: 20px;
+      font-size: 17px;
       line-height: 22px;
       padding: 0 15px 5px;
       margin: 15px 0;
@@ -23,7 +24,7 @@
       word-break: break-all;
     }
     .cafe-info {
-      padding: 0 15px 15px 15px;
+      padding: 0 15px 4px 15px;
       width: 100%;
       text-align: left;
       .info {
@@ -36,8 +37,8 @@
         }
         .txt-point {
           color: #333;
-          font-weight: bold;
-          font-size: 17px;
+          font-size: 16px;
+          font-weight: 500;
         }
       }
 
@@ -47,8 +48,8 @@
         color: #666;
         display: flex;
         align-items: center;
-        svg{
-          color:rgb(180, 178, 178)
+        svg {
+          color: rgb(180, 178, 178);
         }
       }
     }

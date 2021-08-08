@@ -3,6 +3,8 @@ import { PostStateEmpty } from 'modules/post';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { BiLike } from 'react-icons/bi';
+import { FaRegComment } from 'react-icons/fa';
 import './styles.scss';
 
 const BoardList = () => {
@@ -23,26 +25,42 @@ const BoardList = () => {
       </div>
       <div className="list-content">
         <div className="list-box">
-          <table className="list-in-box">
-            <tbody>
+          <div className="list-in-box">
+            <ul>
               {posts.map((post: any, index) => (
-                <tr key={index}>
-                  <td className="subject">
+                <li key={index}>
+                  <div className="title">
                     <a className="link" href="">
                       {post.title}
-                      <span className="comment">[3]</span>
                     </a>
-                  </td>
-                  <td className="sub writer">
-                    <a className="link" href="">
-                      {post.writer.nickname}
-                    </a>
-                  </td>
-                  <td className="sub">{post.createdAt.slice(0, 10)}</td>
-                </tr>
+                  </div>
+
+                  <div
+                    className="content"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                  ></div>
+
+                  <div className="sub">
+                    <div className="sub-left">
+                      <span>{post.createdAt.slice(0, 10)}</span>
+                      <span className="spe">|</span>
+                      <span>{post.writer.nickname}</span>
+                    </div>
+                    <div className="sub-right">
+                      <div className="item like">
+                        <BiLike size="16" />
+                        <span>[0]</span>
+                      </div>
+                      <div className="item comment">
+                        <FaRegComment size="15" />
+                        <span>[4]</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
               ))}
-            </tbody>
-          </table>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

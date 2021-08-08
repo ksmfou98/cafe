@@ -1,3 +1,5 @@
+@import 'styles/main';
+
 #BoardList {
   .list-content {
     overflow: hidden;
@@ -7,30 +9,53 @@
         clear: both;
         width: 100%;
         line-height: 1.5;
-        tr {
-          padding: 15px 0;
+        li {
+          padding: 15px 0 5px 0;
           display: block;
           border-bottom: 1px solid #e6e4e4;
           .link:hover {
             text-decoration: underline;
           }
-          .subject {
-            padding: 0 20px 0 14px;
+          .title {
             font-size: 16.5px;
             width: 100%;
-            .comment {
-              color: #ff0000;
-              margin-left: 5px;
-            }
+            font-weight: 500;
           }
-          .writer {
-            font-weight: bold;
+          .content {
+            font-size: 14px;
+            padding: 10px 0 7px;
+            max-height: 100px;
+            overflow: hidden;
           }
+
           .sub {
-            padding: 0 10px;
-            text-align: center;
-            width: 68px;
             white-space: nowrap;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            .sub-left {
+              color: #6f6f6f;
+              .spe {
+                margin: 0 5px;
+              }
+            }
+            .sub-right {
+              display: flex;
+              .item {
+                display: flex;
+                align-items: center;
+                margin-right: 9px;
+                svg {
+                  margin-right: 3px;
+                }
+              }
+              .like {
+                color: $mainColor;
+              }
+              .comment {
+                color: #4a4848;
+              }
+            }
           }
         }
       }

@@ -16,11 +16,13 @@
         line-height: 24px;
         li {
           color: #000;
-          font-size: 1rem;
           padding: 3px 0 3px 10px;
-          height: 44px;
+          height: 37px;
           .menu-link:hover {
             text-decoration: underline;
+          }
+          button {
+            font-size: 15px;
           }
         }
       }
