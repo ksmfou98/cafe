@@ -28,3 +28,35 @@ export const createPost = async (req: Request, res: Response) => {
     });
   }
 };
+
+// 게시물 조회
+export const readPostList = async (req: Request, res: Response) => {
+  const { cafeId, boardId } = req.params;
+  try {
+    if (boardId === "all") {
+      const posts = await Post.find({
+        cafe: cafeId,
+      });
+
+      return res.status(200).json({
+        success: true,
+        posts,
+      });
+    }
+
+    const posts = await Post.find({
+      cafe: cafeId,
+      board: boardId,
+    });
+
+    return res.status(200).json({
+      success: true,
+      posts,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};

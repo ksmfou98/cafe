@@ -10,6 +10,8 @@ router.post(
   checkLoggedIn,
   checkUserIsMember,
   postCtrl.createPost
-);
+); // 게시물 생성
+
+router.get("/readPostList/:cafeId/:boardId", postCtrl.readPostList);
 
 export default router;
