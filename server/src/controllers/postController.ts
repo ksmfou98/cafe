@@ -36,22 +36,22 @@ export const readPostList = async (req: Request, res: Response) => {
     if (boardId === "all") {
       const posts = await Post.find({
         cafe: cafeId,
-      });
+      }).populate("writer");
 
       return res.status(200).json({
         success: true,
-        posts,
+        posts: [...posts.reverse()],
       });
     }
 
     const posts = await Post.find({
       cafe: cafeId,
       board: boardId,
-    });
+    }).populate("writer");
 
     return res.status(200).json({
       success: true,
-      posts,
+      posts: [...posts.reverse()],
     });
   } catch (e) {
     return res.status(500).json({

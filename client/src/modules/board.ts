@@ -6,8 +6,8 @@ export interface boardState {
 }
 
 const initialState: boardState = {
-  _id: '',
-  name: '',
+  _id: 'all',
+  name: '전체 글보기',
 };
 
 const board = createSlice({
