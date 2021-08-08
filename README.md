@@ -56,7 +56,7 @@
 
 <br/>
 
-## UI Screen
+## UI Screen (이미지를 클릭하시면 크게 보실 수 있습니다 !)
 
 <img src="https://user-images.githubusercontent.com/64634992/128635224-53fb7d14-d14d-4acb-98c4-4cc3f87c60eb.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635277-0f5ca7ac-e168-47df-a410-508c7b8b0cff.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635286-4a76e9d8-0f39-40e7-a5a9-36ea57d23c43.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635294-2ce3b8e7-2af1-49c1-9742-dcbb491c6628.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635306-25697ba5-1242-43a1-875a-959a8458f9d8.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635309-74575639-5fbd-4e17-811e-271a219560df.png" width="48%" />
 
