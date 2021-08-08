@@ -43,6 +43,7 @@ const CafeManageBoard = () => {
                           <input
                             type="text"
                             value={updateName}
+                            className="edit-input"
                             onChange={onChangeUpdateName}
                           />
                         ) : (
@@ -57,11 +58,16 @@ const CafeManageBoard = () => {
                           <>
                             <button
                               type="button"
+                              className="btn-type2"
                               onClick={() => onUpdate(board._id)}
                             >
-                              완료
+                              수정 완료
                             </button>
-                            <button type="button" onClick={updateCancel}>
+                            <button
+                              type="button"
+                              className="btn-type1"
+                              onClick={updateCancel}
+                            >
                               취소
                             </button>
                           </>

@@ -15,8 +15,9 @@ const board = createSlice({
   initialState,
   reducers: {
     SetBoard: (state: boardState, action: PayloadAction<boardState>) => {
-      const { name } = action.payload;
+      const { name, _id } = action.payload;
       state.name = name;
+      state._id = _id;
     },
   },
 });
