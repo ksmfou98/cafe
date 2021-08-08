@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import './styles.scss';
 import { AiOutlineHome } from 'react-icons/ai';
 import { BsClipboard } from 'react-icons/bs';

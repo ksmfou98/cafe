@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import userRouter from "./routers/userRouter";
 import cafeRouter from "./routers/cafeRouter";
 import boardRouter from "./routers/boardRouter";
+import postRouter from "./routers/postRouter";
 import cors from "cors";
 // 여기서부터 웹소켓 테스트
 import http from "http";
@@ -32,6 +33,7 @@ app.use(userAuth);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/cafe", cafeRouter);
 app.use("/api/v1/board", boardRouter);
+app.use("/api/v1/post", postRouter);
 
 app.use("/uploads", express.static("uploads")); // 이걸 해줌으로써 http://localhost:4000/uploads/1625692%E1%85%AE%208.39.33.png 이런식으로 접속해서 이미지볼수있음
 
