@@ -15,14 +15,20 @@
         font-size: 13px;
         line-height: 24px;
         li {
-          color: #000;
-          padding: 3px 0 3px 10px;
-          height: 37px;
+          padding: 8px 0 8px 10px;
           .menu-link:hover {
             text-decoration: underline;
           }
           button {
             font-size: 15px;
+          }
+        }
+        .menu-active {
+          background: #e0e7f7;
+          border-radius: 10px;
+          button {
+            color: #5b4ef6;
+            font-weight: 600;
           }
         }
       }

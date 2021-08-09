@@ -10,6 +10,7 @@ const CafeMenuBox = () => {
   const { boards } = useBoardListEffect();
   const dispatch = useDispatch();
   const cafe = useSelector((state: reduxStateStore) => state.cafe);
+  const board = useSelector((state: reduxStateStore) => state.board);
   const history = useHistory();
 
   const onDispatchforBoard = (boardId: string, name: string) => {
@@ -22,7 +23,7 @@ const CafeMenuBox = () => {
       <div className="menubox-in">
         <div className="menu-list">
           <ul className="cafe-menu-list">
-            <li>
+            <li className={board.name === '전체 글보기' ? 'menu-active' : ''}>
               <button
                 type="button"
                 onClick={() => onDispatchforBoard('all', '전체 글보기')}
@@ -31,14 +32,17 @@ const CafeMenuBox = () => {
                 전체 글보기
               </button>
             </li>
-            {boards.map((board: boardState, index) => (
-              <li key={index}>
+            {boards.map((b: boardState, index) => (
+              <li
+                key={index}
+                className={board.name === b.name ? 'menu-active' : ''}
+              >
                 <button
                   type="button"
-                  onClick={() => onDispatchforBoard(board._id, board.name)}
+                  onClick={() => onDispatchforBoard(b._id, b.name)}
                   className="menu-link"
                 >
-                  {board.name}
+                  {b.name}
                 </button>
               </li>
             ))}
