@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import './styles.scss';
 import logo from 'static/logo.png';
+import Button from 'components/common/Button';
 
 const Header = () => {
   const user = useSelector((state: reduxStateStore) => state.user);
@@ -46,9 +47,9 @@ const Header = () => {
                 </div>
               ) : (
                 <div className="info">
-                  <a href="/login" className="btn-type1 btn">
+                  <Button color={true} to={'/login'}>
                     로그인
-                  </a>
+                  </Button>
                 </div>
               )}
             </div>

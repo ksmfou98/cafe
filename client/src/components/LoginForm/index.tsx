@@ -1,6 +1,9 @@
+import Button from 'components/common/Button';
 import useLogin from 'hooks/user/useLogin';
 import useLoginEffect from 'hooks/user/useLoginEffect';
 import React from 'react';
+import styled from 'styled-components';
+import { css } from 'styled-components';
 import './styles.scss';
 
 const LoginForm = () => {
@@ -32,18 +35,29 @@ const LoginForm = () => {
               onChange={onChangePassword}
               placeholder="비밀번호"
             />
-            <button type="submit" className="btn btn-type1">
-              로그인
-            </button>
+            <StyledButton color={true}>로그인</StyledButton>
           </form>
           <hr />
-          <a className="btn btn-type2" href="/join">
+
+          <StyledLink to={'/join'} color={false}>
             회원가입
-          </a>
+          </StyledLink>
         </div>
       </div>
     </>
   );
 };
 
+const StyledButton = styled(Button)`
+  width: 100%;
+  font-size: 16px;
+  padding: 14px;
+`;
+
+const StyledLink = styled(Button)`
+  width: 100%;
+  font-size: 16px;
+  padding: 14px;
+  display: block;
+`;
 export default LoginForm;
