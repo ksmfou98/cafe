@@ -1,7 +1,7 @@
 .page-layout {
-  // background-color: #f0f2f5;
   max-width: 1250px;
   margin: 0 auto;
+  height: 100%;
 }
 
 #CafePage {
@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     flex: 1 1 auto;
+    height: 100%;
     .cafe-menu {
       width: 204px;
       letter-spacing: -0.5px;

@@ -1,11 +1,12 @@
 import usePostListEffect from 'hooks/post/usePostListEffect';
-import { postState, PostStateEmpty } from 'modules/post';
-import React from 'react';
+import { PostStateEmpty } from 'modules/post';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BiLike } from 'react-icons/bi';
 import { FaRegComment } from 'react-icons/fa';
 import './styles.scss';
+import Image from 'components/common/Image';
+import NoPost from 'static/NoPost.png';
 
 const BoardList = () => {
   const { cafe, board, posts } = usePostListEffect();
@@ -27,6 +28,11 @@ const BoardList = () => {
         <div className="list-box">
           <div className="list-in-box">
             <ul>
+              {posts.length === 0 && (
+                <div className="no-post">
+                  <Image text={'게시물이 존재하지 않습니다'} img={NoPost} />
+                </div>
+              )}
               {posts.map((post: any, index) => (
                 <li key={index}>
                   <div className="title">

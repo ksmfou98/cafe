@@ -35,11 +35,11 @@ const LoginForm = () => {
               onChange={onChangePassword}
               placeholder="비밀번호"
             />
-            <StyledButton color={true}>로그인</StyledButton>
+            <StyledButton color={'true'}>로그인</StyledButton>
           </form>
           <hr />
 
-          <StyledLink to={'/join'} color={false}>
+          <StyledLink to={'/join'} color={'false'}>
             회원가입
           </StyledLink>
         </div>

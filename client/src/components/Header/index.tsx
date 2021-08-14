@@ -47,7 +47,7 @@ const Header = () => {
                 </div>
               ) : (
                 <div className="info">
-                  <Button color={true} to={'/login'}>
+                  <Button color={'true'} to={'/login'}>
                     로그인
                   </Button>
                 </div>

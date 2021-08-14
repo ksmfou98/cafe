@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 interface ButtonProps {
-  color: boolean;
+  color: string;
   to?: string;
   children?: React.ReactNode;
   onClick?: () => void;
@@ -26,16 +26,15 @@ const Button = ({ color, to, children, onClick, ...rest }: ButtonProps) => {
 };
 
 interface commonStyleProps {
-  color: boolean;
+  color: string;
 }
 
 const commonStyle = css`
   border-radius: 5px;
-  margin-right: 10px;
   font-weight: 700;
   font-size: 14px;
   ${(props: commonStyleProps) =>
-    props.color
+    props.color === 'true'
       ? css`
           background-color: ${palette.mainColor};
           color: #fff;
@@ -49,12 +48,14 @@ const commonStyle = css`
 
 const StyledLink = styled(Link)`
   ${commonStyle}
-  padding: 3px 13px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 15px;
 `;
 
 const StyledButton = styled.button`
   ${commonStyle}
-  padding: 6px 13px;
 `;
 
 export default Button;

@@ -9,10 +9,10 @@ const PostDetail = () => {
     <>
       <div id="PostDetail">
         <div className="list-title">
-          <Button to={`/cafe/${cafe.route}/edit/${postId}`} color={false}>
+          <Button to={`/cafe/${cafe.route}/edit/${postId}`} color={'false'}>
             수정
           </Button>
-          <Button color={false}>삭제</Button>
+          <Button color={'false'}>삭제</Button>
           <Link to="/cafe/dofe" className="title-btn">
             목록
           </Link>
