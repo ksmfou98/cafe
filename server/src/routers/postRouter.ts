@@ -27,4 +27,12 @@ router.patch(
   checkUserIsMember,
   postCtrl.updatePost
 ); // 게시물 수정
+
+router.delete(
+  "/delete/:cafeId/:postId",
+  checkLoggedIn,
+  checkUserIsMember,
+  postCtrl.deletePost
+);
+
 export default router;
