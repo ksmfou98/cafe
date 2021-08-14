@@ -60,3 +60,29 @@ export const readPostList = async (req: Request, res: Response) => {
     });
   }
 };
+
+// 게시물 상세보기
+export const readPostDetail = async (req: Request, res: Response) => {
+  const { postId } = req.params;
+
+  try {
+    const post = await Post.findById({ _id: postId }).populate("board writer");
+
+    if (!post) {
+      return res.status(400).json({
+        success: false,
+        message: "해당 게시물이 존재하지 않습니다.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      post,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
