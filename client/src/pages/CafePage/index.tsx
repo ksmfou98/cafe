@@ -4,11 +4,12 @@ import './styles.scss';
 import CafeInfoBox from 'components/CafeInfoBox';
 import CafeMenuBox from 'components/CafeMenuBox';
 import BoardList from 'components/BoardList';
-import { Route, useRouteMatch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import CafeJoinForm from 'components/CafeJoinForm';
-import PostWriteForm from 'components/PostWriteForm';
 import PostDetail from 'components/PostDetail';
 import MyAlert from 'components/MyAlert';
+import PostUpload from 'components/PostUpload';
+import PostEdit from 'components/PostEdit';
 
 const CafePage = () => {
   return (
@@ -22,9 +23,10 @@ const CafePage = () => {
           </div>
           <div className="cafe-content">
             <Route path="/cafe/:cafe/join" exact component={CafeJoinForm} />
-            <Route path="/cafe/:cafe/write" exact component={PostWriteForm} />
+            <Route path="/cafe/:cafe/upload" exact component={PostUpload} />
+            <Route path="/cafe/:cafe/edit/:postId" exact component={PostEdit} />
             <Route
-              path="/cafe/:cafe/post/:postid"
+              path="/cafe/:cafe/post/:postId"
               exact
               component={PostDetail}
             />

@@ -1,5 +1,5 @@
 import usePostListEffect from 'hooks/post/usePostListEffect';
-import { PostStateEmpty } from 'modules/post';
+import { postState, PostStateEmpty } from 'modules/post';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ const BoardList = () => {
       <div className="list-title">
         <h3 className="title">{board.name}</h3>
         <Link
-          to={`/cafe/${cafe.route}/write`}
+          to={`/cafe/${cafe.route}/upload`}
           onClick={() => dispatch(PostStateEmpty())}
           className="title-btn"
         >
@@ -30,9 +30,12 @@ const BoardList = () => {
               {posts.map((post: any, index) => (
                 <li key={index}>
                   <div className="title">
-                    <a className="link" href="">
+                    <Link
+                      to={`/cafe/${cafe.route}/post/${post._id}`}
+                      className="link"
+                    >
                       {post.title}
-                    </a>
+                    </Link>
                   </div>
 
                   <div

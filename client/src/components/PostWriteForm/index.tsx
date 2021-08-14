@@ -1,51 +1,24 @@
-import React from 'react';
 import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import './styles.scss';
 import useBoardListEffect from 'hooks/board/useBoardListEffect';
 import { boardState } from 'modules/board';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { SetPost } from 'modules/post';
-import { reduxStateStore } from 'modules';
-import { postCreateAPI } from 'lib/api/post';
-import { useHistory } from 'react-router-dom';
+import useHandlePost from 'hooks/post/useHandlePost';
 
-const PostWriteForm = () => {
+const PostWriteForm = ({ onSubmit }: any) => {
   const { boards } = useBoardListEffect();
-
   const dispatch = useDispatch();
-  const history = useHistory();
-  const post = useSelector((state: reduxStateStore) => state.post);
-  const cafe = useSelector((state: reduxStateStore) => state.cafe);
-  const { boardId, title, content } = post;
 
-  const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
-    const { value, name } = e.target;
-    let body = {
-      key: name,
-      value,
-    };
-    dispatch(SetPost(body));
-  };
-
-  const onCreate = async () => {
-    try {
-      await postCreateAPI(cafe._id, title, content, boardId);
-      history.push(`/cafe/${cafe.route}`);
-    } catch (e) {
-      alert('게시물 작성에 실패했습니다');
-      console.log(e);
-    }
-  };
+  const { onChange, title, content, boardId } = useHandlePost();
   return (
     <>
       <div id="PostWriteForm">
         <div className="list-title">
           <h3 className="title">카페 글쓰기</h3>
-          <button className="title-btn" type="button" onClick={onCreate}>
-            등록
+          <button className="title-btn" type="button" onClick={onSubmit}>
+            완료
           </button>
         </div>
         <div className="cont-write">

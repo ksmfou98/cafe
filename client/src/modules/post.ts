@@ -22,11 +22,13 @@ const post = createSlice({
       const { key, value } = action.payload;
       state[key] = value;
     },
+    EditPost: (state: postState, action: PayloadAction<postState>) =>
+      action.payload,
 
     PostStateEmpty: () => initialState,
   },
 });
 
-export const { SetPost, PostStateEmpty } = post.actions;
+export const { SetPost, EditPost, PostStateEmpty } = post.actions;
 
 export default post;

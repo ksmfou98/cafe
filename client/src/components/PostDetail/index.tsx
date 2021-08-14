@@ -1,24 +1,31 @@
-import React from 'react';
 import './styles.scss';
 import { Link } from 'react-router-dom';
+import usePostDetailEffect from 'hooks/post/usePostDetailEffect';
+import Button from 'components/common/Button';
 
 const PostDetail = () => {
+  const { post, cafe, postId } = usePostDetailEffect();
   return (
     <>
       <div id="PostDetail">
         <div className="list-title">
-          <h3 className="title">카페 글 보기</h3>
+          <Button to={`/cafe/${cafe.route}/edit/${postId}`} color={false}>
+            수정
+          </Button>
+          <Button color={false}>삭제</Button>
           <Link to="/cafe/dofe" className="title-btn">
             목록
           </Link>
         </div>
-
         <div className="post-body">
-          <div className="post-title">개발자 되는법</div>
-          <span className="post-writer">ksmfou98</span>
+          <div className="post-title">{post.title}</div>
+          <span className="post-writer">{post.writer.nickname}</span>
           <span className="sperator">·</span>
-          <span className="post-date">2021-07-10</span>
-          <div className="post-content">내용</div>
+          <span className="post-date">{post.createdAt.slice(0, 10)}</span>
+          <div
+            className="post-content"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          ></div>
         </div>
       </div>
     </>
