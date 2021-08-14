@@ -20,4 +20,11 @@ router.get(
   checkUserIsMember,
   postCtrl.readPostDetail
 ); // 게시물 상세보기
+
+router.patch(
+  "/update/:cafeId",
+  checkLoggedIn,
+  checkUserIsMember,
+  postCtrl.updatePost
+); // 게시물 수정
 export default router;

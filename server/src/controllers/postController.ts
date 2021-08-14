@@ -86,3 +86,33 @@ export const readPostDetail = async (req: Request, res: Response) => {
     });
   }
 };
+
+// 게시물 수정
+export const updatePost = async (req: Request, res: Response) => {
+  const { postId, title, content, boardId } = req.body;
+
+  try {
+    const post = await Post.findByIdAndUpdate(
+      { _id: postId },
+      { title, content, board: boardId },
+      { new: true }
+    );
+
+    if (!post) {
+      return res.status(400).json({
+        success: false,
+        message: "해당 게시물이 존재하지 않습니다.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      post,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
