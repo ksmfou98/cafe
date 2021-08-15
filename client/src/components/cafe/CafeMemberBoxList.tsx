@@ -11,6 +11,9 @@ const CafeMemberBoxList = () => {
     <CafeMemberBoxListBlock>
       <div className="tit">
         <span>Members &nbsp; ({members.length})</span>
+        <LinkedAllMember to={''} className="">
+          전체보기
+        </LinkedAllMember>
       </div>
 
       <ul>
@@ -18,10 +21,6 @@ const CafeMemberBoxList = () => {
           <CafeMemberBoxItem key={index} nickname={member.nickname} />
         ))}
       </ul>
-
-      <LinkedAllMember to={''} className="">
-        전체보기
-      </LinkedAllMember>
     </CafeMemberBoxListBlock>
   );
 };
@@ -32,6 +31,9 @@ const CafeMemberBoxListBlock = styled.div`
     color: #505153;
     font-weight: 500;
     font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   ul {
     padding: 15px 0 5px;

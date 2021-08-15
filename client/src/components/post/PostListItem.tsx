@@ -3,6 +3,8 @@ import { BiLike } from 'react-icons/bi';
 import { FaRegComment } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FiArrowUp, FiArrowDown } from 'react-icons/fi';
+import { BsPeopleCircle } from 'react-icons/bs';
 
 interface PostListItemProps {
   route: string;
@@ -23,8 +25,16 @@ const PostListItem = ({
 }: PostListItemProps) => {
   return (
     <PostListItemBlock>
-      <div></div>
-      <div>
+      <StyledLikeBlock>
+        <button className="fst-btn">
+          <FiArrowUp size="22" />
+        </button>
+        <span>20</span>
+        <button className="lst-btn">
+          <FiArrowDown size="22" />
+        </button>
+      </StyledLikeBlock>
+      <div className="right-box">
         <div className="title">
           <Link to={`/cafe/${route}/post/${postId}`} className="link">
             {title}
@@ -36,15 +46,15 @@ const PostListItem = ({
         ></div>
         <div className="sub">
           <div className="sub-left">
-            <span>{createdAt.slice(0, 10)}</span>
+            <span className="sub-inner">
+              <BsPeopleCircle size="20" />
+              Posted by &nbsp;
+              <span className="nickname"> {nickname}</span>
+            </span>
             <span className="spe">|</span>
-            <span>{nickname}</span>
+            <span>{createdAt.slice(0, 10)}</span>
           </div>
           <div className="sub-right">
-            <div className="item like">
-              <BiLike size="16" />
-              <span>[0]</span>
-            </div>
             <div className="item comment">
               <FaRegComment size="15" />
               <span>[4]</span>
@@ -58,52 +68,95 @@ const PostListItem = ({
 
 const PostListItemBlock = styled.li`
   padding: 25px;
-  display: block;
+  display: flex;
   box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.08);
   border-radius: 7px;
-  .link:hover {
-    text-decoration: underline;
-  }
-  .title {
-    font-size: 16.5px;
+  margin: 15px 0;
+  background: #fff;
+  .right-box {
     width: 100%;
-    font-weight: 500;
-  }
-  .content {
-    font-size: 14px;
-    padding: 10px 0 7px;
-    max-height: 100px;
-    overflow: hidden;
-  }
-
-  .sub {
-    white-space: nowrap;
-    font-size: 12px;
-    display: flex;
-    justify-content: space-between;
-    .sub-left {
-      color: #6f6f6f;
-      .spe {
-        margin: 0 5px;
-      }
+    .link:hover {
+      text-decoration: underline;
     }
-    .sub-right {
+    .title {
+      font-size: 16.5px;
+      width: 100%;
+      font-weight: 500;
+    }
+    .content {
+      font-size: 14px;
+      padding: 10px 0 15px;
+      border-bottom: 1px solid #e6e6e6;
+      margin-bottom: 15px;
+    }
+
+    .sub {
+      white-space: nowrap;
+      font-size: 12px;
       display: flex;
-      .item {
+      justify-content: space-between;
+      .sub-left {
+        color: #9b9a9a;
         display: flex;
         align-items: center;
-        margin-right: 9px;
-        svg {
-          margin-right: 3px;
+        font-weight: 600;
+        .sub-inner {
+          display: flex;
+          align-items: center;
+          .nickname {
+            color: ${palette.mainColor};
+            font-weight: 700;
+          }
+          svg {
+            margin-right: 8px;
+          }
+        }
+        .spe {
+          margin: 0 5px;
         }
       }
-      .like {
-        color: ${palette.mainColor};
-      }
-      .comment {
-        color: #4a4848;
+      .sub-right {
+        display: flex;
+        .item {
+          display: flex;
+          align-items: center;
+          margin-right: 9px;
+          svg {
+            margin-right: 3px;
+          }
+        }
+        .comment {
+          color: #4a4848;
+        }
       }
     }
+  }
+`;
+
+const StyledLikeBlock = styled.div`
+  padding-right: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75px;
+  color: #999;
+  span {
+    line-height: 23px;
+    padding-bottom: 3px;
+    /* color: #df190f; */
+    color: ${palette.mainColor};
+    font-weight: 700;
+  }
+  button {
+    padding: 0;
+    color: #999;
+  }
+  .fst-btn {
+    color: ${palette.mainColor};
+  }
+  .lst-btn {
+    flex-grow: 1;
+    /* color: #df190f; */
   }
 `;
 

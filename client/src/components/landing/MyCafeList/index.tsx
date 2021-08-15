@@ -18,7 +18,7 @@ const MyCafeList = () => {
       console.log(response);
       setCafes(response);
     };
-    getData();
+    if (user._id) getData();
   }, [user._id]);
   return (
     <div className="MyCafeList">

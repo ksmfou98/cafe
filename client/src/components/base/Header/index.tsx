@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import './styles.scss';
 import logo from 'static/logo.png';
 import Button from 'components/common/Button';
+import styled from 'styled-components';
 
 const Header = () => {
   const user = useSelector((state: reduxStateStore) => state.user);
@@ -47,9 +48,9 @@ const Header = () => {
                 </div>
               ) : (
                 <div className="info">
-                  <Button color={'true'} to={'/login'}>
+                  <StyledButton color={'true'} to={'/login'}>
                     로그인
-                  </Button>
+                  </StyledButton>
                 </div>
               )}
             </div>
@@ -59,5 +60,10 @@ const Header = () => {
     </>
   );
 };
+
+const StyledButton = styled(Button)`
+  width: 80px;
+  height: 30px;
+`;
 
 export default Header;
