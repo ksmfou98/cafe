@@ -50,7 +50,6 @@ const CafeJoinFormBlock = styled.div`
       padding: 0 20px 23px 20px;
       border-bottom: 1px solid #ececec;
       margin-top: 30px;
-      min-height: 20vh;
 
       .join-btn {
         display: flex;

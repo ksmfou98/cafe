@@ -13,7 +13,7 @@ interface ButtonProps {
 const Button = ({ color, to, children, onClick, ...rest }: ButtonProps) => {
   if (to) {
     return (
-      <StyledLink color={color} to={to} {...rest}>
+      <StyledLink color={color} to={to} onClick={onClick} {...rest}>
         {children}
       </StyledLink>
     );

@@ -1,15 +1,16 @@
 import Header from 'components/base/Header';
-import React from 'react';
 import './styles.scss';
 import CafeInfoBox from 'components/cafe/CafeInfoBox';
 import CafeMenuBox from 'components/cafe/CafeMenuBox';
-import BoardList from 'components/cafe/BoardList';
+import PostList from 'components/post/PostList';
 import { Route } from 'react-router-dom';
 import CafeJoinForm from 'components/cafe/CafeJoinForm';
 import PostDetail from 'components/post/PostDetail';
 import MyAlert from 'components/cafe/MyAlert';
 import PostUpload from 'components/post/PostUpload';
 import PostEdit from 'components/post/PostEdit';
+import CafeMemberBoxList from 'components/cafe/CafeMemberBoxList';
+import GoToGithubBox from 'components/cafe/GoToGithubBox';
 
 const CafePage = () => {
   return (
@@ -20,6 +21,7 @@ const CafePage = () => {
           <div className="cafe-menu">
             <CafeInfoBox />
             <CafeMenuBox />
+            <CafeMemberBoxList />
           </div>
           <div className="cafe-content">
             <Route path="/cafe/:cafe/join" exact component={CafeJoinForm} />
@@ -30,9 +32,13 @@ const CafePage = () => {
               exact
               component={PostDetail}
             />
-            <Route path="/cafe/:cafe" exact component={BoardList} />
+            <Route path="/cafe/:cafe" exact component={PostList} />
           </div>
-          <MyAlert />
+
+          <div className="cafe-right">
+            <MyAlert />
+            <GoToGithubBox />
+          </div>
         </div>
       </div>
     </>

@@ -114,7 +114,7 @@ export const readAllCafeList = async (req: Request, res: Response) => {
 export const CafeInfo = async (req: Request, res: Response) => {
   const { route, userId } = req.params;
   try {
-    let cafeInfo = await Cafe.findOne({ route }).populate("manager", {
+    let cafeInfo = await Cafe.findOne({ route }).populate("manager members", {
       name: 1,
       email: 1,
       nickname: 1,

@@ -1,7 +1,7 @@
 import useBoardListEffect from 'hooks/board/useBoardListEffect';
 import { reduxStateStore } from 'modules';
 import { boardState, SetBoard } from 'modules/board';
-import React from 'react';
+import { HiOutlineClipboardList } from 'react-icons/hi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './styles.scss';
@@ -24,6 +24,9 @@ const CafeMenuBox = () => {
         <div className="menu-list">
           <ul className="cafe-menu-list">
             <li className={board.name === '전체 글보기' ? 'menu-active' : ''}>
+              <span className="ico">
+                <HiOutlineClipboardList size="22" />
+              </span>
               <button
                 type="button"
                 onClick={() => onDispatchforBoard('all', '전체 글보기')}
@@ -37,6 +40,9 @@ const CafeMenuBox = () => {
                 key={index}
                 className={board.name === b.name ? 'menu-active' : ''}
               >
+                <span className="ico">
+                  <HiOutlineClipboardList size="22" />
+                </span>
                 <button
                   type="button"
                   onClick={() => onDispatchforBoard(b._id, b.name)}

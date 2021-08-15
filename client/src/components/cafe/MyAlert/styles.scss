@@ -1,11 +1,6 @@
 @import 'styles/main';
 #MyAlert {
-  flex: 0 0 220px;
-  align-self: flex-start;
-  position: sticky;
-  top: 55px;
-  padding-top: 50px;
-
+  margin-bottom: 80px;
   .alert-tit {
     font-size: 16px;
     font-weight: 600;

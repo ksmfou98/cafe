@@ -27,5 +27,13 @@
       padding-top: 50px;
       width: 650px;
     }
+
+    .cafe-right {
+      flex: 0 0 220px;
+      align-self: flex-start;
+      position: sticky;
+      top: 55px;
+      padding-top: 50px;
+    }
   }
 }

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { string } from 'yargs';
 import { userState } from './user';
 
 export interface cafeState {
@@ -20,7 +19,14 @@ const initialState: cafeState = {
     email: '',
     nickname: '',
   },
-  members: [],
+  members: [
+    {
+      _id: '',
+      name: '',
+      email: '',
+      nickname: '',
+    },
+  ],
 };
 
 const cafe = createSlice({
