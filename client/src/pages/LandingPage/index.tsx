@@ -1,10 +1,10 @@
-import Header from 'components/Header';
+import Header from 'components/base/Header';
 import React from 'react';
 import './styles.scss';
-import MyCafeList from 'components/MyCafeList';
-import AllCafeList from 'components/AllCafeList';
+import MyCafeList from 'components/landing/MyCafeList';
+import AllCafeList from 'components/landing/AllCafeList';
 import { Route } from 'react-router-dom';
-import CafeCreateForm from 'components/CafeCreateForm';
+import CafeCreateForm from 'components/cafe/CafeCreateForm';
 
 const LandingPage = () => {
   return (

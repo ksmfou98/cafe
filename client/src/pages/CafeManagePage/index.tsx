@@ -1,7 +1,7 @@
-import CafeManageBoard from 'components/CafeManageBoard';
-import CafeManageHome from 'components/CafeManageHome';
-import CafeManageNav from 'components/CafeManageNav';
-import Header from 'components/Header';
+import CafeManageBoard from 'components/manage/CafeManageBoard';
+import CafeManageHome from 'components/manage/CafeManageHome';
+import CafeManageNav from 'components/manage/CafeManageNav';
+import Header from 'components/base/Header';
 import React from 'react';
 import { Route } from 'react-router-dom';
 import './styles.scss';

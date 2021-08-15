@@ -1,4 +1,4 @@
-import PostWriteForm from 'components/PostWriteForm';
+import PostWriteForm from 'components/post/PostWriteForm';
 import useHandlePost from 'hooks/post/useHandlePost';
 import usePostEditEffect from 'hooks/post/usePostEditEffect';
 

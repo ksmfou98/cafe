@@ -1,15 +1,15 @@
-import Header from 'components/Header';
+import Header from 'components/base/Header';
 import React from 'react';
 import './styles.scss';
-import CafeInfoBox from 'components/CafeInfoBox';
-import CafeMenuBox from 'components/CafeMenuBox';
-import BoardList from 'components/BoardList';
+import CafeInfoBox from 'components/cafe/CafeInfoBox';
+import CafeMenuBox from 'components/cafe/CafeMenuBox';
+import BoardList from 'components/cafe/BoardList';
 import { Route } from 'react-router-dom';
-import CafeJoinForm from 'components/CafeJoinForm';
-import PostDetail from 'components/PostDetail';
-import MyAlert from 'components/MyAlert';
-import PostUpload from 'components/PostUpload';
-import PostEdit from 'components/PostEdit';
+import CafeJoinForm from 'components/cafe/CafeJoinForm';
+import PostDetail from 'components/post/PostDetail';
+import MyAlert from 'components/cafe/MyAlert';
+import PostUpload from 'components/post/PostUpload';
+import PostEdit from 'components/post/PostEdit';
 
 const CafePage = () => {
   return (
