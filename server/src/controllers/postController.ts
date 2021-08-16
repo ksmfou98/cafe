@@ -167,7 +167,7 @@ export const likePost = async (req: Request, res: Response) => {
   const userId = res.locals.user._id;
 
   try {
-    const post = await Post.findById({ _id: postId });
+    let post = await Post.findById({ _id: postId });
     if (!post) {
       return res.status(400).json({
         success: false,
@@ -175,6 +175,37 @@ export const likePost = async (req: Request, res: Response) => {
       });
     }
 
+    // 싫어요를 누른 상태이면 그냥 return
+    const disliked = post.like_users.some(
+      (user) => user.user.toString() === userId && user.like === "bad"
+    );
+    if (disliked) {
+      return res.status(409).json({
+        success: false,
+        message: "현재 싫어요를 누른 상태입니다.",
+      });
+    }
+
+    // 이미 좋아요를 누른 사람이면 좋아요 누른걸 취소
+    const liked = post.like_users.some(
+      (user) => user.user.toString() === userId && user.like === "good"
+    );
+    if (liked) {
+      post.like_count--;
+      post.like_users = post.like_users.filter(
+        (user) => user.user.toString() !== userId
+      );
+
+      await post.save();
+
+      return res.status(200).json({
+        success: true,
+        message: "좋아요를 취소 하였습니다.",
+        post,
+      });
+    }
+
+    // 이미 좋아요를 누른사람이 아니라면, 좋아요를 눌러주자
     post.like_count++;
     post.like_users.push({
       user: userId,
@@ -185,6 +216,7 @@ export const likePost = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       success: true,
+      message: "좋아요를 눌렀습니다.",
       post,
     });
   } catch (e) {
@@ -196,4 +228,66 @@ export const likePost = async (req: Request, res: Response) => {
 };
 
 // 게시물 싫어요
-export const dislikePost = async (req: Request, res: Response) => {};
+export const dislikePost = async (req: Request, res: Response) => {
+  const { postId } = req.body;
+  const userId = res.locals.user._id;
+
+  try {
+    let post = await Post.findById({ _id: postId });
+    if (!post) {
+      return res.status(400).json({
+        success: false,
+        message: "해당 게시물을 찾을 수 없습니다",
+      });
+    }
+
+    // 좋아요를 누른 상태이면 그냥 return
+    const liked = post.like_users.some(
+      (user) => user.user.toString() === userId && user.like === "good"
+    );
+    if (liked) {
+      return res.status(409).json({
+        success: false,
+        message: "현재 좋아요를 누른 상태입니다.",
+      });
+    }
+
+    // 이미 싫어요를 누른 사람이면 싫어요 누른걸 취소
+    const disliked = post.like_users.some(
+      (user) => user.user.toString() === userId && user.like === "bad"
+    );
+    if (disliked) {
+      post.like_count++;
+      post.like_users = post.like_users.filter(
+        (user) => user.user.toString() !== userId
+      );
+
+      await post.save();
+
+      return res.status(200).json({
+        success: true,
+        message: "싫어요를 취소 하였습니다.",
+        post,
+      });
+    }
+
+    post.like_count--;
+    post.like_users.push({
+      user: userId,
+      like: "bad",
+    });
+
+    await post.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "싫어요를 눌렀습니다.",
+      post,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};

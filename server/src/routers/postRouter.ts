@@ -42,4 +42,11 @@ router.post(
   postCtrl.likePost
 ); // 게시물 좋아요
 
+router.post(
+  "/dislike/:cafeId",
+  checkLoggedIn,
+  checkUserIsMember,
+  postCtrl.dislikePost
+); // 게시물 싫어요
+
 export default router;
