@@ -42,3 +42,16 @@ export const postUpdateAPI = async (
   const response = await client.patch(`/post/update/${cafeId}`, body);
   return response.data;
 };
+
+// 좋아요
+export const postLikeAPI = async (cafeId: string, postId: string) => {
+  const response = await client.post(`/post/like/${cafeId}`, { postId });
+  console.log(response);
+  return response.data.post;
+};
+
+// 싫어요
+export const postDislikeAPI = async (cafeId: string, postId: string) => {
+  const response = await client.post(`/post/dislike/${cafeId}`, { postId });
+  return response.data.post;
+};

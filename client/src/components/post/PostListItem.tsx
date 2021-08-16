@@ -1,10 +1,11 @@
 import { palette } from 'lib/styles/palette';
-import { BiLike } from 'react-icons/bi';
 import { FaRegComment } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { BsPeopleCircle } from 'react-icons/bs';
+import useHandleLike from 'hooks/post/useHandleLike';
+import { css } from 'styled-components';
 
 interface PostListItemProps {
   route: string;
@@ -13,6 +14,8 @@ interface PostListItemProps {
   content: string;
   createdAt: string;
   nickname: string;
+  like_count: number;
+  like_users: { user: string; like: string }[];
 }
 
 const PostListItem = ({
@@ -22,15 +25,30 @@ const PostListItem = ({
   content,
   createdAt,
   nickname,
+  like_count,
+  like_users,
 }: PostListItemProps) => {
+  const { likeCount, onLike, onDislike, isLiked, isDisliked } = useHandleLike(
+    like_count,
+    like_users,
+  );
+
   return (
     <PostListItemBlock>
-      <StyledLikeBlock>
-        <button className="fst-btn">
+      <StyledLikeBlock isLiked={isLiked} isDisliked={isDisliked}>
+        <button
+          disabled={isDisliked ? true : false}
+          className="fst-btn"
+          onClick={() => onLike(postId)}
+        >
           <FiArrowUp size="22" />
         </button>
-        <span>20</span>
-        <button className="lst-btn">
+        <span className="count">{likeCount}</span>
+        <button
+          disabled={isLiked ? true : false}
+          className="lst-btn"
+          onClick={() => onDislike(postId)}
+        >
           <FiArrowDown size="22" />
         </button>
       </StyledLikeBlock>
@@ -89,7 +107,6 @@ const PostListItemBlock = styled.li`
       border-bottom: 1px solid #e6e6e6;
       margin-bottom: 15px;
     }
-
     .sub {
       white-space: nowrap;
       font-size: 12px;
@@ -104,7 +121,7 @@ const PostListItemBlock = styled.li`
           display: flex;
           align-items: center;
           .nickname {
-            color: ${palette.mainColor};
+            color: #555;
             font-weight: 700;
           }
           svg {
@@ -140,11 +157,10 @@ const StyledLikeBlock = styled.div`
   align-items: center;
   height: 75px;
   color: #999;
-  span {
+  .count {
     line-height: 23px;
     padding-bottom: 3px;
-    /* color: #df190f; */
-    color: ${palette.mainColor};
+    color: #999;
     font-weight: 700;
   }
   button {
@@ -152,12 +168,34 @@ const StyledLikeBlock = styled.div`
     color: #999;
   }
   .fst-btn {
-    color: ${palette.mainColor};
+    color: #999;
   }
   .lst-btn {
     flex-grow: 1;
-    /* color: #df190f; */
+    color: #999;
   }
+
+  ${(props: any) =>
+    props.isLiked &&
+    css`
+      .fst-btn {
+        color: ${palette.mainColor};
+      }
+      .count {
+        color: ${palette.mainColor};
+      }
+    `}
+
+  ${(props: any) =>
+    props.isDisliked &&
+    css`
+      .lst-btn {
+        color: #df190f;
+      }
+      .count {
+        color: #df190f;
+      }
+    `}
 `;
 
 export default PostListItem;

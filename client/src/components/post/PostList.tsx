@@ -34,6 +34,8 @@ const PostList = () => {
                   content={post.content}
                   createdAt={post.createdAt}
                   nickname={post.writer.nickname}
+                  like_count={post.like_count}
+                  like_users={post.like_users}
                 />
               ))}
             </ul>

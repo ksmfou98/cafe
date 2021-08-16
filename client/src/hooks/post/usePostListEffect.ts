@@ -11,6 +11,7 @@ export default function usePostListEffect() {
   useEffect(() => {
     const getData = async () => {
       const posts = await readPostListAPI(cafe._id, board._id);
+      console.log(posts);
       setPosts(posts);
     };
     if (cafe._id) getData();
