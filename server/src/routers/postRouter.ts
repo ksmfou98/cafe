@@ -33,6 +33,13 @@ router.delete(
   checkLoggedIn,
   checkUserIsMember,
   postCtrl.deletePost
-);
+); // 게시물 삭제
+
+router.post(
+  "/like/:cafeId",
+  checkLoggedIn,
+  checkUserIsMember,
+  postCtrl.likePost
+); // 게시물 좋아요
 
 export default router;

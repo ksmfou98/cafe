@@ -127,6 +127,7 @@ export const updatePost = async (req: Request, res: Response) => {
   }
 };
 
+// 게시물 삭제
 export const deletePost = async (req: Request, res: Response) => {
   const userId = res.locals.user._id;
   const { postId } = req.params;
@@ -159,3 +160,40 @@ export const deletePost = async (req: Request, res: Response) => {
     });
   }
 };
+
+// 게시물 좋아요
+export const likePost = async (req: Request, res: Response) => {
+  const { postId } = req.body;
+  const userId = res.locals.user._id;
+
+  try {
+    const post = await Post.findById({ _id: postId });
+    if (!post) {
+      return res.status(400).json({
+        success: false,
+        message: "해당 게시물을 찾을 수 없습니다",
+      });
+    }
+
+    post.like_count++;
+    post.like_users.push({
+      user: userId,
+      like: "good",
+    });
+
+    await post.save();
+
+    return res.status(200).json({
+      success: true,
+      post,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
+
+// 게시물 싫어요
+export const dislikePost = async (req: Request, res: Response) => {};

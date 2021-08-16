@@ -6,6 +6,8 @@ export interface IPost {
   cafe: string;
   board: string;
   writer: string;
+  like_count: number;
+  like_users: { user: string; like: string }[];
 }
 export interface IPostMethod extends IPost, Document {}
 export interface IPostStatics extends Model<IPostMethod> {}
@@ -34,6 +36,16 @@ const PostSchema: Schema<IPostMethod> = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    like_count: {
+      type: Number,
+      default: 0,
+    },
+    like_users: [
+      {
+        user: mongoose.Schema.Types.ObjectId,
+        like: String, // good , bad
+      },
+    ],
   },
   { timestamps: true }
 );
