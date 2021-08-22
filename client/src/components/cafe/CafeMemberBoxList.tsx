@@ -11,9 +11,9 @@ const CafeMemberBoxList = () => {
     <CafeMemberBoxListBlock>
       <div className="tit">
         <span>Members &nbsp; ({members.length})</span>
-        <LinkedAllMember to={''} className="">
+        <StyledButton to={''} className="">
           전체보기
-        </LinkedAllMember>
+        </StyledButton>
       </div>
 
       <ul>
@@ -42,7 +42,7 @@ const CafeMemberBoxListBlock = styled.div`
   }
 `;
 
-const LinkedAllMember = styled(Link)`
+const StyledButton = styled(Link)`
   font-size: 13px;
   color: #999;
   &:hover {
