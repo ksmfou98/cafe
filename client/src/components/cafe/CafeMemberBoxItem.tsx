@@ -9,7 +9,7 @@ const CafeMemberBoxItem = ({ nickname }: CafeMemberBoxItemProps) => {
   return (
     <CafeMemberBoxItemBlock>
       <div className="profile-ico">
-        <BsPeopleCircle size="28" />
+        <BsPeopleCircle size="20" />
       </div>
       <span className="nickname">{nickname}</span>
     </CafeMemberBoxItemBlock>
@@ -22,7 +22,7 @@ const CafeMemberBoxItemBlock = styled.li`
   height: 35px;
   .profile-ico {
     color: #c2c2c2;
-    margin-right: 10px;
+    margin-right: 5px;
   }
   .nickname {
     font-size: 14px;

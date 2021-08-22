@@ -1,7 +1,8 @@
+import Button from 'components/common/Button';
 import { SERVER_URL } from 'config';
 import useCreateCafe from 'hooks/cafe/useCreateCafe';
-import React from 'react';
-import './styles.scss';
+import useCheckLoginEffect from 'hooks/user/useCheckLoginEffect';
+import styled from 'styled-components';
 
 const CafeCreateForm = () => {
   const {
@@ -14,8 +15,10 @@ const CafeCreateForm = () => {
     imgURL,
   } = useCreateCafe();
 
+  useCheckLoginEffect();
+
   return (
-    <div id="CafeCreateForm">
+    <CafeCreateFormBlock>
       <div className="inner-form">
         <div className="form-tit">
           <span className="title">카페 만들기</span>
@@ -63,15 +66,72 @@ const CafeCreateForm = () => {
             </div>
 
             <div className="create-btn">
-              <button type="submit" className="btn-type1">
-                카페 생성
-              </button>
+              <StyledButton type="submit" color={'true'}>
+                카페생성
+              </StyledButton>
             </div>
           </form>
         </div>
       </div>
-    </div>
+    </CafeCreateFormBlock>
   );
 };
+
+const CafeCreateFormBlock = styled.div`
+  .inner-form {
+    overflow: hidden;
+    width: 800px;
+    margin: 50px auto 0;
+    .form-tit {
+      margin-bottom: 40px;
+      .title {
+        font-size: 20px;
+        color: #000;
+      }
+      .description {
+        padding-top: 10px;
+        font-size: 13px;
+        color: #666;
+      }
+    }
+    .form {
+      label {
+        width: 150px;
+        display: inline-block;
+      }
+      .list {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        .inner-input {
+          width: 500px;
+          display: flex;
+          align-items: center;
+          input[type='text'] {
+            flex-grow: 1;
+            height: 40px;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          .img-preview {
+            width: 60px;
+            height: 60px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const StyledButton = styled(Button)`
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: block;
+`;
 
 export default CafeCreateForm;

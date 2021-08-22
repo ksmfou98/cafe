@@ -7,10 +7,18 @@ interface ButtonProps {
   color: string;
   to?: string;
   children?: React.ReactNode;
+  type?: string;
   onClick?: () => void;
 }
 
-const Button = ({ color, to, children, onClick, ...rest }: ButtonProps) => {
+const Button = ({
+  color,
+  to,
+  type,
+  children,
+  onClick,
+  ...rest
+}: ButtonProps) => {
   if (to) {
     return (
       <StyledLink color={color} to={to} onClick={onClick} {...rest}>
@@ -19,7 +27,7 @@ const Button = ({ color, to, children, onClick, ...rest }: ButtonProps) => {
     );
   }
   return (
-    <StyledButton color={color} onClick={onClick} {...rest}>
+    <StyledButton color={color} type={type} onClick={onClick} {...rest}>
       {children}
     </StyledButton>
   );

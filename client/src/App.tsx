@@ -3,7 +3,6 @@ import LandingPage from 'pages/LandingPage';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';
 import ChattingPage from 'pages/ChattingPage';
-import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import 'styles/main.scss';
 import CafeManagePage from 'pages/CafeManagePage';
@@ -16,7 +15,7 @@ function App() {
         <Route path="/cafe/:cafe" component={CafePage} />
         <Route path="/manage/:cafe" component={CafeManagePage} />
         <Route path="/login" exact component={LoginPage} />
-        <Route path="/join" exact component={RegisterPage} />
+        <Route path="/register" exact component={RegisterPage} />
         <Route path="/" component={LandingPage} />
       </Switch>
     </>

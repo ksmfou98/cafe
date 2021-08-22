@@ -34,9 +34,9 @@ const CafeMemberBoxListBlock = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
   }
   ul {
-    padding: 15px 0 5px;
     max-height: 140px;
     overflow: scroll;
   }
