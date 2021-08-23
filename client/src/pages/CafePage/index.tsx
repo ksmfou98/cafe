@@ -6,7 +6,7 @@ import PostList from 'components/post/PostList';
 import { Route } from 'react-router-dom';
 import CafeJoinForm from 'components/cafe/CafeJoinForm';
 import PostDetail from 'components/post/PostDetail';
-import MyAlert from 'components/cafe/MyAlert';
+import ActivityAlert from 'components/cafe/ActivityAlert';
 import PostUpload from 'components/post/PostUpload';
 import PostEdit from 'components/post/PostEdit';
 import CafeMemberBoxList from 'components/cafe/CafeMemberBoxList';
@@ -36,7 +36,7 @@ const CafePage = () => {
           </div>
 
           <div className="cafe-right">
-            <MyAlert />
+            <ActivityAlert />
             <GoToGithubBox />
           </div>
         </div>

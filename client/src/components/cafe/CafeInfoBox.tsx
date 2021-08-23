@@ -1,10 +1,9 @@
 import useCafeInfoEffect from 'hooks/cafe/useCafeInfoEffect';
 import { reduxStateStore } from 'modules';
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { IoMdSettings } from 'react-icons/io';
-import './styles.scss';
+import styled from 'styled-components';
 
 interface matchProps {
   cafe: string;
@@ -27,7 +26,7 @@ const CafeInfoBox = () => {
 
   const { cafeInfo, isMember } = useCafeInfoEffect(route, user._id);
   return (
-    <div id="CafeInfoBox">
+    <CafeInfoBoxBlock>
       <div className="cafe-info-bg">
         <div className="info-tab">
           <div className="cafe-name">{cafeInfo.name}</div>
@@ -66,8 +65,85 @@ const CafeInfoBox = () => {
           )}
         </div>
       </div>
-    </div>
+    </CafeInfoBoxBlock>
   );
 };
+
+const CafeInfoBoxBlock = styled.div`
+  overflow: hidden;
+  padding-top: 50px;
+  margin-bottom: 30px;
+  .cafe-info-bg {
+    width: 100%;
+    .info-tab {
+      padding: 10px 15px;
+      font-weight: bold;
+      letter-spacing: -1px;
+      .active {
+        color: black;
+        font-weight: 700;
+      }
+    }
+    /* Cafe Info */
+    .cafe-name {
+      font-size: 17px;
+      line-height: 22px;
+      padding: 0 15px 5px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      letter-spacing: -1px;
+      word-break: break-all;
+    }
+    .cafe-info {
+      padding: 0 15px 4px 15px;
+      width: 100%;
+      text-align: left;
+      .info {
+        margin-bottom: 6px;
+        .info-tit {
+          width: 50px;
+          display: block;
+          float: left;
+          font-size: 15px;
+        }
+        .txt-point {
+          color: #333;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+
+      .cafe-manage {
+        padding-top: 8px;
+        font-weight: 400;
+        color: #666;
+        display: flex;
+        align-items: center;
+        svg {
+          color: rgb(180, 178, 178);
+        }
+      }
+    }
+
+    .cafe-btn {
+      padding: 5px 20px;
+      button {
+        width: 100%;
+      }
+      .btn-type1,
+      .btn-type2 {
+        padding: 9px 0 10px;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .spacing {
+        margin-bottom: 5px;
+      }
+    }
+  }
+`;
 
 export default CafeInfoBox;

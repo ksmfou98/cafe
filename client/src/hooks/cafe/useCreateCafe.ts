@@ -1,4 +1,3 @@
-import useInput from 'hooks/common/useInput';
 import { cafeCreateAPI, cafeThumbnailAPI } from 'lib/api/cafe';
 import { reduxStateStore } from 'modules';
 import { useState } from 'react';
@@ -7,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function useCreateCafe() {
   const [name, setName] = useState('');
-  const [route, onChangeRoute] = useInput('');
+  const [route, setRoute] = useState('');
   const [imgURL, setImgURL] = useState('');
   const [formValid, setFormValid] = useState({
     nameValid: 'none', // "none" , "success", "error"
@@ -52,6 +51,13 @@ export default function useCreateCafe() {
       return;
     }
     setName(e.target.value);
+  };
+
+  const onChangeRoute = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length > 20) {
+      return;
+    }
+    setRoute(e.target.value);
   };
 
   return {

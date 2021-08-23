@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import usePostDetailEffect from 'hooks/post/usePostDetailEffect';
 import Button from 'components/common/Button';
 import styled from 'styled-components';
+import PostComment from './PostComment';
 
 const PostDetail = () => {
   const { post, cafe, postId } = usePostDetailEffect();
@@ -34,17 +34,19 @@ const PostDetail = () => {
             dangerouslySetInnerHTML={{ __html: post.content }}
           ></div>
         </div>
+
+        <PostComment />
       </PostDetailBlock>
     </>
   );
 };
 
 const PostDetailBlock = styled.div`
+  background: #fff;
   .post-title {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
-    margin-bottom: 30px;
     .title-left {
       display: flex;
       a {
@@ -54,29 +56,34 @@ const PostDetailBlock = styled.div`
   }
   .post-body {
     padding: 20px;
-    background: #fff;
     .title {
-      font-size: 3rem;
+      font-size: 2.5rem;
       line-height: 1.5;
       letter-spacing: -0.004em;
       margin-top: 0px;
       font-weight: 800;
       color: rgb(52, 58, 64);
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       word-break: keep-all;
     }
     .writer {
       color: rgb(52, 58, 64);
       font-weight: bold;
+      font-size: 14px;
     }
     .sperator {
       margin-left: 0.5rem;
       margin-right: 0.5rem;
     }
+    .date {
+      font-size: 14px;
+    }
 
     .post-content {
+      border-top: 1px solid #ebecef;
       margin-top: 20px;
-      padding: 20px 0;
+      padding: 35px 0;
+      min-height: 250px;
       border-bottom: 1px solid #ebecef;
     }
   }

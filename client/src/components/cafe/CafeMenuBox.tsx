@@ -4,7 +4,7 @@ import { boardState, SetBoard } from 'modules/board';
 import { HiOutlineClipboardList } from 'react-icons/hi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './styles.scss';
+import styled from 'styled-components';
 
 const CafeMenuBox = () => {
   const { boards } = useBoardListEffect();
@@ -19,7 +19,7 @@ const CafeMenuBox = () => {
   };
 
   return (
-    <div id="CafeMenuBox">
+    <CafeMenuBoxBlock>
       <div className="menubox-in">
         <div className="menu-list">
           <ul className="cafe-menu-list">
@@ -55,8 +55,67 @@ const CafeMenuBox = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </CafeMenuBoxBlock>
   );
 };
+
+const CafeMenuBoxBlock = styled.div`
+  padding: 30px 0;
+  border-top: 1px solid #cecece;
+  border-bottom: 1px solid #cecece;
+  margin: 10px 0;
+  .menubox-in {
+    width: 100%;
+    .menu-list {
+      display: block;
+      color: #3e464a;
+      .cafe-menu-tit:first-child {
+        border-top: none;
+      }
+      .cafe-menu-list {
+        padding: 0 10px;
+        margin-top: 6px;
+        font-size: 13px;
+        line-height: 24px;
+        li {
+          padding: 7px;
+          display: flex;
+          align-items: center;
+          border-radius: 10px;
+          .ico {
+            line-height: 19px;
+            color: #706f6f;
+          }
+          .menu-link:hover {
+            text-decoration: underline;
+          }
+          button {
+            font-size: 15px;
+          }
+          &:hover {
+            background: #e0e7f7;
+            span {
+              color: #5b4ef6;
+            }
+            button {
+              color: #5b4ef6;
+              font-weight: 600;
+            }
+          }
+        }
+        .menu-active {
+          background: #e0e7f7;
+          span {
+            color: #5b4ef6;
+          }
+          button {
+            color: #5b4ef6;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default CafeMenuBox;
