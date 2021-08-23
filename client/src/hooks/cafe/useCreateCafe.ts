@@ -1,14 +1,21 @@
+import useInput from 'hooks/common/useInput';
 import { cafeCreateAPI, cafeThumbnailAPI } from 'lib/api/cafe';
 import { reduxStateStore } from 'modules';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import useInput from 'hooks/common/useInput';
 
 export default function useCreateCafe() {
-  const [name, onChangeName] = useInput('');
+  const [name, setName] = useState('');
   const [route, onChangeRoute] = useInput('');
   const [imgURL, setImgURL] = useState('');
+  const [formValid, setFormValid] = useState({
+    nameValid: 'none', // "none" , "success", "error"
+    routeValid: 'none',
+  });
+
+  const { nameValid, routeValid } = formValid;
+
   const user = useSelector((state: reduxStateStore) => state.user);
   const history = useHistory();
 
@@ -40,6 +47,13 @@ export default function useCreateCafe() {
     }
   };
 
+  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length > 30) {
+      return;
+    }
+    setName(e.target.value);
+  };
+
   return {
     onCreate,
     imgUpload,
@@ -48,5 +62,6 @@ export default function useCreateCafe() {
     route,
     onChangeRoute,
     imgURL,
+    nameValid,
   };
 }
