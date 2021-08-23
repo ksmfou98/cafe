@@ -1,17 +1,18 @@
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import "dotenv/config";
 import express from "express";
-import mongoose from "mongoose";
-import userRouter from "./routers/userRouter";
-import cafeRouter from "./routers/cafeRouter";
-import boardRouter from "./routers/boardRouter";
-import postRouter from "./routers/postRouter";
-import cors from "cors";
+import fs from "fs";
 // 여기서부터 웹소켓 테스트
 import http from "http";
+import mongoose from "mongoose";
 // import socketio from "socket.io";
 import { Server, Socket } from "socket.io";
 import userAuth from "./lib/userAuth";
+import boardRouter from "./routers/boardRouter";
+import cafeRouter from "./routers/cafeRouter";
+import postRouter from "./routers/postRouter";
+import userRouter from "./routers/userRouter";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -52,6 +53,8 @@ const server = http.createServer(app);
 
 // 서버 실행
 server.listen(PORT, () => {
+  let dir = "./uploads";
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
   console.log(`connect ✅ http://localhost:${PORT}`);
 });
 
