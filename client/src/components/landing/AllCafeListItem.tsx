@@ -51,8 +51,7 @@ const AllCafeListItemBlock = styled.li`
       width: 556px;
       overflow: hidden;
       .wrap-thumb {
-        width: 104px;
-        height: 65px;
+        width: 60px;
         margin-right: 8px;
         float: left;
         .img-thumb {

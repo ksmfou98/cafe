@@ -43,6 +43,11 @@ export const postUpdateAPI = async (
   return response.data;
 };
 
+export const postDeleteAPI = async (cafeId: string, postId: string) => {
+  const response = await client.delete(`/post/delete/${cafeId}/${postId}`);
+  return response.data;
+};
+
 // 좋아요
 export const postLikeAPI = async (cafeId: string, postId: string) => {
   const response = await client.post(`/post/like/${cafeId}`, { postId });

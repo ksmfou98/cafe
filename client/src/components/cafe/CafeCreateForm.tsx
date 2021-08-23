@@ -2,9 +2,9 @@ import Button from 'components/common/Button';
 import { SERVER_URL } from 'config';
 import useCreateCafe from 'hooks/cafe/useCreateCafe';
 import useCheckLoginEffect from 'hooks/user/useCheckLoginEffect';
-import { palette } from 'lib/styles/palette';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import styled from 'styled-components';
+import NoThumbnailIMG from 'static/NoThumbnail.png';
 
 const CafeCreateForm = () => {
   const {
@@ -87,7 +87,7 @@ const CafeCreateForm = () => {
                   />
                 </div>
                 <div className="img-preview">
-                  {!imgURL && <img src="" alt="" />}
+                  {!imgURL && <img src={NoThumbnailIMG} alt="" />}
                   {imgURL && <img src={`${SERVER_URL}/${imgURL}`} alt="" />}
                 </div>
               </div>
@@ -178,8 +178,7 @@ const CafeCreateFormBlock = styled.div`
           }
           .img-preview {
             margin-left: 10px;
-            width: 60px;
-            height: 60px;
+            width: 110px;
             img {
               width: 100%;
               height: 100%;

@@ -2,9 +2,11 @@ import usePostDetailEffect from 'hooks/post/usePostDetailEffect';
 import Button from 'components/common/Button';
 import styled from 'styled-components';
 import PostComment from './PostComment';
+import useHandlePost from 'hooks/post/useHandlePost';
 
 const PostDetail = () => {
   const { post, cafe, postId } = usePostDetailEffect();
+  const { onDelete } = useHandlePost();
   return (
     <>
       <PostDetailBlock>
@@ -16,7 +18,9 @@ const PostDetail = () => {
             >
               수정
             </StyledButton>
-            <StyledButton color={'false'}>삭제</StyledButton>
+            <StyledButton color={'false'} onClick={() => onDelete(postId)}>
+              삭제
+            </StyledButton>
           </div>
           <div className="title-right">
             <StyledButton to={`/cafe/${cafe.route}`} color={'true'}>
@@ -43,6 +47,8 @@ const PostDetail = () => {
 
 const PostDetailBlock = styled.div`
   background: #fff;
+  padding: 15px;
+  border-radius: 10px;
   .post-title {
     display: flex;
     justify-content: space-between;

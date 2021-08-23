@@ -1,4 +1,4 @@
-import { postCreateAPI, postUpdateAPI } from 'lib/api/post';
+import { postCreateAPI, postDeleteAPI, postUpdateAPI } from 'lib/api/post';
 import { reduxStateStore } from 'modules';
 import { SetPost } from 'modules/post';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,6 +33,17 @@ export default function useHandlePost() {
     }
   };
 
+  // 글 삭제
+  const onDelete = async (postId: string) => {
+    try {
+      await postDeleteAPI(cafe._id, postId);
+      history.push(`/cafe/${cafe.route}`);
+    } catch (e) {
+      alert('게시물 삭제에 실패했습니다');
+      console.log(e);
+    }
+  };
+
   // 게시물 (등록,수정)Form Input 관리
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -48,6 +59,7 @@ export default function useHandlePost() {
   return {
     onCreate,
     onUpdate,
+    onDelete,
     onChange,
     title,
     content,
