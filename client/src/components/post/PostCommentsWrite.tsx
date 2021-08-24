@@ -4,42 +4,32 @@ import { BsPeopleCircle } from 'react-icons/bs';
 import TextareaAutosize from 'react-textarea-autosize';
 import styled from 'styled-components';
 
-const PostComment = () => {
+const PostCommentsWrite = () => {
   return (
-    <PostCommentBlock>
-      <div className="tit">
-        <span>댓글 3개</span>
-      </div>
-
+    <PostCommentsWriteBlock>
       <div className="comment-input">
-        <BsPeopleCircle size="20" />
+        <BsPeopleCircle size="26" />
         <StyledCommentInput placeholder="댓글 추가 ..." />
       </div>
-      <div className="comment-add-btn">
+      <div className="comment-btn">
         <StyledCommentAddButton color="true">등록</StyledCommentAddButton>
         <StyledCommentAddButton color="false">취소</StyledCommentAddButton>
       </div>
-      
-      
-    </PostCommentBlock>
+    </PostCommentsWriteBlock>
   );
 };
 
-const PostCommentBlock = styled.div`
-  padding: 0 20px;
-  .tit {
-    margin-bottom: 10px;
-  }
+const PostCommentsWriteBlock = styled.div`
   .comment-input {
     display: flex;
     padding: 15px 0;
     svg {
       color: #978f8f;
+      margin-right: 5px;
     }
   }
-  .comment-add-btn {
+  .comment-btn {
     overflow: hidden;
-    margin-bottom: 15px;
   }
 `;
 
@@ -65,4 +55,4 @@ const StyledCommentAddButton = styled(Button)`
   }
 `;
 
-export default PostComment;
+export default PostCommentsWrite;

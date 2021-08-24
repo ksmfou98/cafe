@@ -1,7 +1,7 @@
 import usePostDetailEffect from 'hooks/post/usePostDetailEffect';
 import Button from 'components/common/Button';
 import styled from 'styled-components';
-import PostComment from './PostComment';
+import PostCommentsList from './PostCommentsList';
 import useHandlePost from 'hooks/post/useHandlePost';
 
 const PostDetail = () => {
@@ -39,7 +39,7 @@ const PostDetail = () => {
           ></div>
         </div>
 
-        <PostComment />
+        <PostCommentsList />
       </PostDetailBlock>
     </>
   );
