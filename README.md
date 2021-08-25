@@ -43,7 +43,7 @@
 - Redux
 - Redux-toolkit
 - socket io
-- SCSS
+- Styled-components
 
 ### Back-End
 
@@ -73,7 +73,6 @@
 <br />
 
 ### 설치
-
 
 1. 프로젝트 클론
 
