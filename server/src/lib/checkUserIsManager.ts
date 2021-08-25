@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Cafe from "../models/cafe";
 
-const checkUserIsManageer = async (
+const checkUserIsManager = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -29,4 +29,4 @@ const checkUserIsManageer = async (
   }
 };
 
-export default checkUserIsManageer;
+export default checkUserIsManager;

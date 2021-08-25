@@ -13,6 +13,7 @@ import boardRouter from "./routers/boardRouter";
 import cafeRouter from "./routers/cafeRouter";
 import postRouter from "./routers/postRouter";
 import userRouter from "./routers/userRouter";
+import commentRouter from "./routers/commentRouter";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -35,6 +36,7 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/cafe", cafeRouter);
 app.use("/api/v1/board", boardRouter);
 app.use("/api/v1/post", postRouter);
+app.use("/api/v1/comment", commentRouter);
 
 app.use("/uploads", express.static("uploads")); // 이걸 해줌으로써 http://localhost:4000/uploads/1625692%E1%85%AE%208.39.33.png 이런식으로 접속해서 이미지볼수있음
 

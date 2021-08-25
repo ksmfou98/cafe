@@ -1,28 +1,28 @@
 import express from "express";
 import * as boardCtrl from "../controllers/boardController";
 import checkLoggedIn from "../lib/checkLoggedin";
-import checkUserIsManageer from "../lib/checkUserIsManager";
-import checkManager from "../lib/checkUserIsManager";
+import checkUserIsManager from "../lib/checkUserIsManager";
+
 
 const router = express.Router();
 
 router.post(
   "/create/:cafeId",
   checkLoggedIn,
-  checkUserIsManageer,
+  checkUserIsManager,
   boardCtrl.createBoard
 ); // 게시판 생성
 router.get("/readBoardList/:cafeId", boardCtrl.readBoardList); // 게시판 목록 조회
 router.patch(
   "/update/:cafeId",
   checkLoggedIn,
-  checkUserIsManageer,
+  checkUserIsManager,
   boardCtrl.updateBoard
 ); // 게시판 수정
 router.delete(
   "/delete/:cafeId/:boardId",
   checkLoggedIn,
-  checkUserIsManageer,
+  checkUserIsManager,
   boardCtrl.deleteBoard
 ); // 게시판 삭제
 
