@@ -19,4 +19,6 @@ router.post(
   commentCtrl.saveReplyComment
 ); // 대댓글 생성
 
+router.get("/readComments/:postId", commentCtrl.readComments); // 댓글 조회
+
 export default router;
