@@ -117,6 +117,7 @@ const MyCafeListBlock = styled.div`
 
       .cafe-card {
         margin-top: 8px;
+        overflow: hidden;
         .list-cafe {
           position: relative;
           margin: 0 -9px 0 -10px;

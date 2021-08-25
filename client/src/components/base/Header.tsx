@@ -45,7 +45,7 @@ const Header = () => {
   );
 };
 
-const HeaderBlock = styled.header`
+const HeaderBlock = styled.div`
   width: 100%;
   background-color: #fff;
   height: 55px;

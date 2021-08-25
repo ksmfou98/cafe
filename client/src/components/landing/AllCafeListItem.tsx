@@ -1,4 +1,4 @@
-import { SERVER_URL } from 'config';
+import { SERVER_URL } from 'lib/config';
 import styled from 'styled-components';
 
 interface AllCafeListItemProps {

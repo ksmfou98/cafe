@@ -2,15 +2,14 @@ import CafeManageBoard from 'components/manage/CafeManageBoard';
 import CafeManageHome from 'components/manage/CafeManageHome';
 import CafeManageNav from 'components/manage/CafeManageNav';
 import Header from 'components/base/Header';
-import React from 'react';
 import { Route } from 'react-router-dom';
-import './styles.scss';
+import styled from 'styled-components';
 
 const CafeManagePage = () => {
   return (
     <>
       <Header />
-      <div id="CafeManagePage" className="page-layout">
+      <CafeManagePageBlock className="page-layout">
         <div className="manage-nav">
           <CafeManageNav />
         </div>
@@ -18,9 +17,27 @@ const CafeManagePage = () => {
           <Route path="/manage/:cafe" exact component={CafeManageHome} />
           <Route path="/manage/:cafe/board" exact component={CafeManageBoard} />
         </div>
-      </div>
+      </CafeManagePageBlock>
     </>
   );
 };
+
+const CafeManagePageBlock = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  .manage-nav {
+    flex: 0 1 250px;
+    padding: 30px 0;
+  }
+  .manage-cont {
+    flex: 1 1;
+    padding: 30px 0;
+    .tit {
+      font-size: 18px;
+      font-weight: 600;
+      padding-bottom: 30px;
+    }
+  }
+`;
 
 export default CafeManagePage;

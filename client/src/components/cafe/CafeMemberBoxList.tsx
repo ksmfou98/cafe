@@ -37,7 +37,7 @@ const CafeMemberBoxListBlock = styled.div`
     overflow-y: scroll;
     height: 140px;
     &::-webkit-scrollbar {
-      width: 7px;
+      width: 5px;
     }
     &::-webkit-scrollbar-thumb {
       background-color: #2f3542;
@@ -46,7 +46,7 @@ const CafeMemberBoxListBlock = styled.div`
       border: 2px solid transparent;
     }
     &::-webkit-scrollbar-track {
-      background-color: grey;
+      background-color: #b6b5b5;
       border-radius: 10px;
       box-shadow: inset 0px 0px 5px white;
     }

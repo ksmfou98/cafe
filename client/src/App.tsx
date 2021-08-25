@@ -1,11 +1,10 @@
-import CafePage from 'pages/CafePage';
-import LandingPage from 'pages/LandingPage';
+import CafePage from 'pages/cafe/CafePage';
+import HomePage from 'pages/home/HomePage';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';
-import ChattingPage from 'pages/ChattingPage';
+import ChattingPage from 'pages/cafe/ChattingPage';
 import { Route, Switch } from 'react-router-dom';
-import 'styles/main.scss';
-import CafeManagePage from 'pages/CafeManagePage';
+import CafeManagePage from 'pages/manage/CafeManagePage';
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
         <Route path="/manage/:cafe" component={CafeManagePage} />
         <Route path="/login" exact component={LoginPage} />
         <Route path="/register" exact component={RegisterPage} />
-        <Route path="/" component={LandingPage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </>
   );
