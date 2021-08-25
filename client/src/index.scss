@@ -227,3 +227,8 @@ button {
 input:focus {
   outline: none;
 }
+
+*::placeholder {
+  color: rgb(163, 162, 162);
+  font-size: 15px;
+}

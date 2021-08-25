@@ -1,19 +1,29 @@
 import { palette } from 'lib/styles/palette';
+import { useState } from 'react';
 import { BsPeopleCircle } from 'react-icons/bs';
 import { RiAddBoxLine } from 'react-icons/ri';
 import styled from 'styled-components';
 import { css } from 'styled-components';
+import PostCommentsWrite from './PostCommentsWrite';
 
 interface PostCommentItemProps {
   writer: string;
   content: string;
   response?: string;
+  commentId: string;
+  onActiveReply: (commentId: string) => void;
+  onCancelReply: () => void;
+  replyCommentId: string;
 }
 
 const PostCommentItem = ({
   writer,
   content,
   response,
+  commentId,
+  onActiveReply,
+  replyCommentId,
+  onCancelReply,
 }: PostCommentItemProps) => {
   return (
     <PostCommentItemBlock response={response}>
@@ -32,10 +42,18 @@ const PostCommentItem = ({
           {content}
         </div>
         <div className="reply-btn">
-          <StyledReplyButton>
+          <StyledReplyButton onClick={() => onActiveReply(commentId)}>
             <RiAddBoxLine size="18" />
             <span>답글쓰기</span>
           </StyledReplyButton>
+          {replyCommentId === commentId && (
+            <div className="reply-form">
+              <PostCommentsWrite
+                writer={writer}
+                onCancelReply={onCancelReply}
+              />
+            </div>
+          )}
         </div>
       </div>
     </PostCommentItemBlock>
@@ -46,8 +64,8 @@ const PostCommentItemBlock = styled.div`
   ${(props: any) =>
     !props.response &&
     css`
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     `}
   .top-box {
     display: flex;
@@ -86,6 +104,9 @@ const PostCommentItemBlock = styled.div`
     .reply-btn {
       button {
         padding: 0;
+      }
+      .reply-form {
+        padding-left: 20px;
       }
     }
   }
