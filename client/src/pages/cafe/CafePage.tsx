@@ -5,7 +5,6 @@ import PostList from 'components/post/PostList';
 import { Route } from 'react-router-dom';
 import CafeJoinForm from 'components/cafe/CafeJoinForm';
 import PostDetail from 'components/post/PostDetail';
-import ActivityAlert from 'components/cafe/ActivityAlert';
 import PostUpload from 'components/post/PostUpload';
 import PostEdit from 'components/post/PostEdit';
 import CafeMemberBoxList from 'components/cafe/CafeMemberBoxList';
@@ -22,6 +21,7 @@ const CafePage = () => {
             <CafeInfoBox />
             <CafeMenuBox />
             <CafeMemberBoxList />
+            <GoToGithubBox />
           </div>
           <div className="cafe-content">
             <Route path="/cafe/:cafe/join" exact component={CafeJoinForm} />
@@ -33,11 +33,6 @@ const CafePage = () => {
               component={PostDetail}
             />
             <Route path="/cafe/:cafe" exact component={PostList} />
-          </div>
-
-          <div className="cafe-right">
-            <ActivityAlert />
-            <GoToGithubBox />
           </div>
         </div>
       </div>
@@ -62,18 +57,10 @@ const CafePageBlock = styled.div`
       // top: 55px;
     }
     .cafe-content {
-      flex: 1 1 650px;
+      flex: 1 1 850px;
+      width: 850px;
       margin: 0 90px;
       // min-height: 100vh;
-      padding-top: 50px;
-      width: 650px;
-    }
-
-    .cafe-right {
-      flex: 0 0 220px;
-      // align-self: flex-start;
-      // position: sticky;
-      // top: 55px;
       padding-top: 50px;
     }
   }

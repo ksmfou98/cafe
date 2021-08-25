@@ -80,9 +80,8 @@ const PostListBlock = styled.div`
   }
   .write-btn {
     position: fixed;
-    bottom: 50px;
+    bottom: 120px;
     left: 50%;
-    margin-left: -50px;
   }
 `;
 

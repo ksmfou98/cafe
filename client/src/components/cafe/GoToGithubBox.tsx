@@ -24,6 +24,7 @@ const GoToGithubBox = () => {
 };
 
 const GoToGithubBoxBlock = styled.div`
+  margin-top: 50px;
   height: 200px;
   display: flex;
   flex-direction: column-reverse;
@@ -31,8 +32,8 @@ const GoToGithubBoxBlock = styled.div`
   .img {
     width: 150px;
     position: absolute;
-    top: -35px;
-    left: 25px;
+    top: -20px;
+    left: 20px;
     img {
       width: 100%;
     }

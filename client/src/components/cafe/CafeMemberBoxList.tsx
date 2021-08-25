@@ -1,3 +1,4 @@
+import { palette } from 'lib/styles/palette';
 import { reduxStateStore } from 'modules';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -22,7 +23,8 @@ const CafeMemberBoxList = () => {
 };
 
 const CafeMemberBoxListBlock = styled.div`
-  padding: 10px 15px;
+  padding: 10px 20px 20px 20px;
+  border-bottom: 1px solid #cecece;
   .tit {
     color: #505153;
     font-weight: 500;
