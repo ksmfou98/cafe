@@ -12,4 +12,11 @@ router.post(
   commentCtrl.saveComment
 ); // 댓글 생성
 
+router.post(
+  "/saveReplyComment/:cafeId",
+  checkLoggedIn,
+  checkUserIsMember,
+  commentCtrl.saveReplyComment
+); // 대댓글 생성
+
 export default router;

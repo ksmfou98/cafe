@@ -14,9 +14,34 @@ export const saveComment = async (req: Request, res: Response) => {
       });
     }
 
-    const comment = new Comment({ postId, content, writer });
+    let comment = new Comment({ postId, content, writer });
+    comment = await comment.populate("writer").execPopulate();
     await comment.save();
 
+    return res.status(201).json({
+      success: true,
+      comment,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
+
+// 대댓글 생성
+export const saveReplyComment = async (req: Request, res: Response) => {
+  const { commentId, content, responseTo } = req.body;
+  const writer = res.locals.user._id;
+  try {
+    let comment = await Comment.findById({ _id: commentId });
+
+    const replyComment = { writer, content, responseTo };
+    comment.reply.push(replyComment);
+    comment = await comment.populate("reply.writer").execPopulate();
+
+    await comment.save();
     return res.status(201).json({
       success: true,
       comment,
