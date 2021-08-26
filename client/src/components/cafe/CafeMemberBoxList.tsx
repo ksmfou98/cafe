@@ -1,4 +1,3 @@
-import { palette } from 'lib/styles/palette';
 import { reduxStateStore } from 'modules';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';

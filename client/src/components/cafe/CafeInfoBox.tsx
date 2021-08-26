@@ -51,9 +51,12 @@ const CafeInfoBox = () => {
         <div className="cafe-btn">
           {isMember === true ? (
             <>
-              <a href="" className="btn-type1 spacing">
+              <Link
+                to={`/cafe/${cafeInfo.route}/upload`}
+                className="btn-type1 spacing"
+              >
                 카페 글쓰기
-              </a>
+              </Link>
               <button onClick={openChatPopup} className="btn-type2">
                 카페 채팅
               </button>

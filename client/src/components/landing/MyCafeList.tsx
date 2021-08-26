@@ -28,10 +28,10 @@ const MyCafeList = () => {
             <div className="mycafe-menu">
               <ul className="list-menu">
                 <li className="list">
-                  <a href="#" className="list-item">
+                  <span className="list-item">
                     내 카페
                     <span className="num-item">{cafes.length}</span>
-                  </a>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -105,7 +105,6 @@ const MyCafeListBlock = styled.div`
               font-size: 20px;
               color: #000;
               text-decoration: none;
-              cursor: pointer;
               .num-item {
                 margin-left: 6px;
                 font-weight: 700;

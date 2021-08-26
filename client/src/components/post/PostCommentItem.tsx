@@ -1,4 +1,5 @@
 import { palette } from 'lib/styles/palette';
+import { userState } from 'modules/user';
 import { BsPeopleCircle } from 'react-icons/bs';
 import { RiAddBoxLine } from 'react-icons/ri';
 import styled from 'styled-components';
@@ -6,24 +7,15 @@ import { css } from 'styled-components';
 import PostCommentsWrite from './PostCommentsWrite';
 
 interface PostCommentItemProps {
-  writer: {
-    _id: string;
-    email: string;
-    name: string;
-    nickname: string;
-  };
+  writer: userState;
   content: string;
-  responseTo?: {
-    _id: string;
-    email: string;
-    name: string;
-    nickname: string;
-  };
+  responseTo?: userState;
   commentId: string;
   onActiveReply: (commentId: string) => void;
   onCancelReply: () => void;
   replyCommentActiveId: string;
   replyCommentId?: any;
+  createdAt: string;
 }
 
 const PostCommentItem = ({
@@ -35,6 +27,7 @@ const PostCommentItem = ({
   replyCommentActiveId,
   onCancelReply,
   replyCommentId,
+  createdAt,
 }: PostCommentItemProps) => {
   // 대댓글의 경우 대댓글id를 활성화id에 넣고 , 그냥 댓글일 경우 댓글id를 활성화id에 넣음
   const commentActiveId = responseTo ? replyCommentId : commentId;
@@ -47,7 +40,7 @@ const PostCommentItem = ({
         </div>
         <div className="right-box">
           <div className="writer">{writer.nickname}</div>
-          <div className="date">2021년 8월 16일</div>
+          <div className="date">{createdAt?.slice(0, 10)}</div>
         </div>
       </div>
       <div className="bottom-box">

@@ -1,17 +1,13 @@
 import Button from 'components/common/Button';
 import useHandleComment from 'hooks/comment/useHandleComment';
+import { userState } from 'modules/user';
 import { BsPeopleCircle } from 'react-icons/bs';
 import TextareaAutosize from 'react-textarea-autosize';
 import styled from 'styled-components';
 
 interface PostCommentsWriteProps {
   onCancelReply?: () => void;
-  writer?: {
-    _id: string;
-    email: string;
-    name: string;
-    nickname: string;
-  };
+  writer?: userState;
   commentId?: string;
 }
 

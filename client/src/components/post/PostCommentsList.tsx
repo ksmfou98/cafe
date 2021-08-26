@@ -5,6 +5,7 @@ import useCommentsEffect from 'hooks/comment/useCommentsEffect';
 import { useSelector } from 'react-redux';
 import { reduxStateStore } from 'modules';
 import useHandleComment from 'hooks/comment/useHandleComment';
+import { commentState, replyState } from 'modules/comment';
 
 const PostCommentsList = () => {
   useCommentsEffect();
@@ -18,25 +19,27 @@ const PostCommentsList = () => {
         <span>댓글 {comments.length}개</span>
       </div>
 
-      {comments.map((comment: any, index) => (
+      {comments.map((comment: commentState, index: number) => (
         <div className="comment-list" key={index}>
           <PostCommentItem
             writer={comment.writer}
             content={comment.content}
             commentId={comment._id}
+            createdAt={comment.createdAt}
             onActiveReply={onActiveReply}
             replyCommentActiveId={replyCommentActiveId}
             onCancelReply={onCancelReply}
           />
           {comment.reply.length > 0 &&
-            comment.reply.map((c: any, index: any) => (
+            comment.reply.map((c: replyState, index: number) => (
               <div className="reply-comment" key={index}>
                 <PostCommentItem
                   writer={c.writer}
                   responseTo={c.responseTo}
                   content={c.content}
-                  commentId={comment._id}
                   replyCommentId={c._id}
+                  createdAt={c.createdAt}
+                  commentId={comment._id}
                   onActiveReply={onActiveReply}
                   replyCommentActiveId={replyCommentActiveId}
                   onCancelReply={onCancelReply}

@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userState } from './user';
 
-interface replyState {
+export interface replyState {
   writer: userState;
   content: string;
   responseTo: userState;
   _id: string;
+  createdAt: string;
 }
 
 export interface commentState {
@@ -14,6 +15,7 @@ export interface commentState {
   content: string;
   writer: userState;
   reply: replyState[];
+  createdAt: string;
 }
 
 const userInitialState: userState = {
@@ -29,12 +31,14 @@ const initialState: commentState[] = [
     postId: '',
     content: '',
     writer: userInitialState,
+    createdAt: '',
     reply: [
       {
         _id: '',
         content: '',
         responseTo: userInitialState,
         writer: userInitialState,
+        createdAt: '',
       },
     ],
   },

@@ -31,21 +31,24 @@ const CommentSchema: Schema<ICommentMethod> = new Schema(
     },
     reply: [
       {
-        type: new mongoose.Schema({
-          writer: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
+        type: new mongoose.Schema(
+          {
+            writer: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "User",
+            },
+            content: {
+              type: String,
+              required: true,
+              trim: true,
+            },
+            responseTo: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "User",
+            },
           },
-          content: {
-            type: String,
-            required: true,
-            trim: true,
-          },
-          responseTo: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-          },
-        }),
+          { timestamps: true }
+        ),
       },
     ],
   },
