@@ -5,6 +5,7 @@ export interface IComment {
   writer: string;
   content: string;
   reply: {
+    _id?: string;
     writer: string;
     content: string;
     responseTo: string;

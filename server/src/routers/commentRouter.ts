@@ -28,4 +28,11 @@ router.patch(
   commentCtrl.updateComment
 ); // 댓글 수정
 
+router.patch(
+  "/updateReplyComment/:cafeId",
+  checkLoggedIn,
+  checkUserIsMember,
+  commentCtrl.updateReplyComment
+); // 대댓글 수정
+
 export default router;
