@@ -38,7 +38,9 @@ export const saveReplyComment = async (req: Request, res: Response) => {
     let comment = await Comment.findById({ _id: commentId });
 
     const replyComment = { writer, content, responseTo };
+    console.log(commentId);
     comment.reply.push(replyComment);
+
     comment = await comment
       .populate("reply.writer reply.responseTo")
       .execPopulate();

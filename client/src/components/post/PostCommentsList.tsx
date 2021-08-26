@@ -2,92 +2,63 @@ import styled from 'styled-components';
 import PostCommentsWrite from './PostCommentsWrite';
 import PostCommentItem from './PostCommentItem';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { readCommentsAPI } from 'lib/api/comment';
 
-const fakeData = [
-  {
-    _id: '1',
-    writer: 'dohyun',
-    content: '첫 댓글 입니다.',
-    reply: [
-      {
-        _id: '5',
-        writer: 'seunghyun',
-        content: '대댓글 입니다.',
-        response: 'dohyun',
-      },
-      {
-        _id: '6',
-        writer: 'seunghyun',
-        content: '대댓글 입니다.',
-        response: 'dohyun',
-      },
-      {
-        _id: '7',
-        writer: 'seunghyun',
-        content: '대댓글 입니다.',
-        response: 'dohyun',
-      },
-    ],
-  },
-  {
-    _id: '2',
-    writer: 'dohyun',
-    content: '첫 댓글 입니다.',
-    reply: [],
-  },
-  {
-    _id: '3',
-    writer: 'dohyun',
-    content: '첫 댓글 입니다.',
-    reply: [],
-  },
-  {
-    _id: '4',
-    writer: 'dohyun',
-    content: '첫 댓글 입니다.',
-    reply: [],
-  },
-];
+interface ParamsProps {
+  postId: string;
+}
 
 const PostCommentsList = () => {
-  const [replyCommentId, setReplyCommentId] = useState('');
+  const { postId } = useParams<ParamsProps>();
+  const [replyCommentActiveId, setReplyCommentActiveId] = useState('');
+  const [comments, setComments] = useState([]);
 
   const onActiveReply = (commentId: string) => {
-    setReplyCommentId(commentId);
+    setReplyCommentActiveId(commentId);
   };
 
   const onCancelReply = () => {
-    setReplyCommentId('');
+    setReplyCommentActiveId('');
   };
+
+  useEffect(() => {
+    const getData = async () => {
+      const comments = await readCommentsAPI(postId);
+      console.log(comments);
+      setComments(comments);
+    };
+    getData();
+  }, [postId]);
 
   return (
     <PostCommentBlock>
       <div className="tit">
-        <span>댓글 3개</span>
+        <span>댓글 {comments.length}개</span>
       </div>
 
-      {fakeData.map((data, index) => (
-        <div className="comment-list">
+      {comments.map((comment: any, index) => (
+        <div className="comment-list" key={index}>
           <PostCommentItem
-            key={index}
-            writer={data.writer}
-            content={data.content}
-            commentId={data._id}
+            writer={comment.writer}
+            content={comment.content}
+            commentId={comment._id}
             onActiveReply={onActiveReply}
-            replyCommentId={replyCommentId}
+            replyCommentActiveId={replyCommentActiveId}
             onCancelReply={onCancelReply}
           />
-          {data.reply.length > 0 &&
-            data.reply.map((d, index) => (
-              <div className="reply-comment">
+          {comment.reply.length > 0 &&
+            comment.reply.map((c: any, index: any) => (
+              <div className="reply-comment" key={index}>
                 <PostCommentItem
-                  key={index}
-                  writer={d.writer}
-                  response={d.response}
-                  content={d.content}
-                  commentId={d._id}
+                  writer={c.writer}
+                  responseTo={c.responseTo}
+                  content={c.content}
+                  commentId={comment._id}
+                  replyCommentId={c._id}
                   onActiveReply={onActiveReply}
-                  replyCommentId={replyCommentId}
+                  replyCommentActiveId={replyCommentActiveId}
                   onCancelReply={onCancelReply}
                 />
               </div>

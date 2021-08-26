@@ -1,5 +1,4 @@
 import { palette } from 'lib/styles/palette';
-import { useState } from 'react';
 import { BsPeopleCircle } from 'react-icons/bs';
 import { RiAddBoxLine } from 'react-icons/ri';
 import styled from 'styled-components';
@@ -7,50 +6,68 @@ import { css } from 'styled-components';
 import PostCommentsWrite from './PostCommentsWrite';
 
 interface PostCommentItemProps {
-  writer: string;
+  writer: {
+    _id: string;
+    email: string;
+    name: string;
+    nickname: string;
+  };
   content: string;
-  response?: string;
+  responseTo?: {
+    _id: string;
+    email: string;
+    name: string;
+    nickname: string;
+  };
   commentId: string;
   onActiveReply: (commentId: string) => void;
   onCancelReply: () => void;
-  replyCommentId: string;
+  replyCommentActiveId: string;
+  replyCommentId?: any;
 }
 
 const PostCommentItem = ({
   writer,
   content,
-  response,
+  responseTo,
   commentId,
   onActiveReply,
-  replyCommentId,
+  replyCommentActiveId,
   onCancelReply,
+  replyCommentId,
 }: PostCommentItemProps) => {
+  const commentActiveId = responseTo ? replyCommentId : commentId;
+
   return (
-    <PostCommentItemBlock response={response}>
+    <PostCommentItemBlock responseTo={responseTo}>
       <div className="top-box">
         <div className="left-box">
           <BsPeopleCircle size="40" />
         </div>
         <div className="right-box">
-          <div className="writer">{writer}</div>
+          <div className="writer">{writer.nickname}</div>
           <div className="date">2021년 8월 16일</div>
         </div>
       </div>
       <div className="bottom-box">
         <div className="content">
-          {response && <span className="response">@{response}</span>}
+          {responseTo && (
+            <span className="responseTo">@{responseTo.nickname}</span>
+          )}
           {content}
         </div>
         <div className="reply-btn">
-          <StyledReplyButton onClick={() => onActiveReply(commentId)}>
+          <StyledReplyButton onClick={() => onActiveReply(commentActiveId)}>
             <RiAddBoxLine size="18" />
             <span>답글쓰기</span>
           </StyledReplyButton>
-          {replyCommentId === commentId && (
+
+          {replyCommentActiveId === commentActiveId && (
             <div className="reply-form">
               <PostCommentsWrite
                 writer={writer}
                 onCancelReply={onCancelReply}
+                commentId={commentId}
               />
             </div>
           )}
@@ -62,7 +79,7 @@ const PostCommentItem = ({
 
 const PostCommentItemBlock = styled.div`
   ${(props: any) =>
-    !props.response &&
+    !props.responseTo &&
     css`
       padding-top: 1rem;
       padding-bottom: 1rem;
@@ -96,7 +113,7 @@ const PostCommentItemBlock = styled.div`
   .bottom-box {
     .content {
       margin: 1.5rem 0;
-      .response {
+      .responseTo {
         font-weight: 700;
         margin-right: 8px;
       }
