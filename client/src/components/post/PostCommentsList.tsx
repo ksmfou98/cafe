@@ -1,22 +1,15 @@
 import styled from 'styled-components';
 import PostCommentsWrite from './PostCommentsWrite';
 import PostCommentItem from './PostCommentItem';
-import { useState } from 'react';
 import useCommentsEffect from 'hooks/comment/useCommentsEffect';
 import { useSelector } from 'react-redux';
 import { reduxStateStore } from 'modules';
+import useHandleComment from 'hooks/comment/useHandleComment';
 
 const PostCommentsList = () => {
-  const [replyCommentActiveId, setReplyCommentActiveId] = useState('');
-
-  const onActiveReply = (commentId: string) => {
-    setReplyCommentActiveId(commentId);
-  };
-
-  const onCancelReply = () => {
-    setReplyCommentActiveId('');
-  };
   useCommentsEffect();
+  const { replyCommentActiveId, onActiveReply, onCancelReply } =
+    useHandleComment();
   const comments = useSelector((state: reduxStateStore) => state.comment);
 
   return (

@@ -36,6 +36,7 @@ const PostCommentItem = ({
   onCancelReply,
   replyCommentId,
 }: PostCommentItemProps) => {
+  // 대댓글의 경우 대댓글id를 활성화id에 넣고 , 그냥 댓글일 경우 댓글id를 활성화id에 넣음
   const commentActiveId = responseTo ? replyCommentId : commentId;
 
   return (
@@ -61,7 +62,6 @@ const PostCommentItem = ({
             <RiAddBoxLine size="18" />
             <span>답글쓰기</span>
           </StyledReplyButton>
-
           {replyCommentActiveId === commentActiveId && (
             <div className="reply-form">
               <PostCommentsWrite

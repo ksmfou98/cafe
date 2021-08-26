@@ -13,7 +13,6 @@ export default function useCommentsEffect() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('나 실행됨');
     const getData = async () => {
       const comments = await readCommentsAPI(postId);
       dispatch(SetComments(comments));

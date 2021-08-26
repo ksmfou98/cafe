@@ -23,8 +23,11 @@ const PostCommentsWrite = ({
   const { onSaveComment, onSaveReplyComment, onChangeContent, content } =
     useHandleComment();
 
-  const onSubmit = () => {
-    writer ? onSaveReplyComment(commentId, writer) : onSaveComment();
+  const onSubmit = async () => {
+    writer
+      ? await onSaveReplyComment(commentId, writer)
+      : await onSaveComment();
+    onCancelReply && onCancelReply();
   };
 
   return (
