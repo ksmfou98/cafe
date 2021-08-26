@@ -129,3 +129,4 @@ $ npm start
 - socket io를 처음 써봤습니다. 처음엔 어떻게 해야 될지 막막했지만 socket.io 의 [공식문서](https://socket.io/docs/v4)를 최대한 활용하였고, 이해가 가지 않은 부분은 velog, stackoverflow를 적극적으로 활용하여 공부했습니다.
 - emit, on, join, to(in), disconnect 기능들을 이용해서 구현하고 싶었던 채팅방을 구현하게 되었습니다.
 - react custom hooks를 이용하여 기능 구현을 할 때 최대한 재활용 가능한 컴포넌트를 만들기 위해 고민을 하게 되었습니다.
+- styled-components 를 처음 사용해보았습니다.
