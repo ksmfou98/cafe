@@ -2,18 +2,12 @@ import styled from 'styled-components';
 import PostCommentsWrite from './PostCommentsWrite';
 import PostCommentItem from './PostCommentItem';
 import { useState } from 'react';
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { readCommentsAPI } from 'lib/api/comment';
-
-interface ParamsProps {
-  postId: string;
-}
+import useCommentsEffect from 'hooks/comment/useCommentsEffect';
+import { useSelector } from 'react-redux';
+import { reduxStateStore } from 'modules';
 
 const PostCommentsList = () => {
-  const { postId } = useParams<ParamsProps>();
   const [replyCommentActiveId, setReplyCommentActiveId] = useState('');
-  const [comments, setComments] = useState([]);
 
   const onActiveReply = (commentId: string) => {
     setReplyCommentActiveId(commentId);
@@ -22,15 +16,8 @@ const PostCommentsList = () => {
   const onCancelReply = () => {
     setReplyCommentActiveId('');
   };
-
-  useEffect(() => {
-    const getData = async () => {
-      const comments = await readCommentsAPI(postId);
-      console.log(comments);
-      setComments(comments);
-    };
-    getData();
-  }, [postId]);
+  useCommentsEffect();
+  const comments = useSelector((state: reduxStateStore) => state.comment);
 
   return (
     <PostCommentBlock>

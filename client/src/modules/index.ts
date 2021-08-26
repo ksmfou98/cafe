@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import board, { boardState } from './board';
 import cafe, { cafeState } from './cafe';
+import comment, { commentState } from './comment';
 import post, { postState } from './post';
 import user, { userState } from './user';
 
@@ -10,6 +11,7 @@ export interface reduxStateStore {
   cafe: cafeState;
   board: boardState;
   post: postState;
+  comment: commentState[];
 }
 
 const rootReducer = combineReducers({
@@ -17,6 +19,7 @@ const rootReducer = combineReducers({
   cafe: cafe.reducer,
   board: board.reducer,
   post: post.reducer,
+  comment: comment.reducer,
 });
 
 const store = configureStore({
