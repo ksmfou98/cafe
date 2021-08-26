@@ -14,12 +14,7 @@ router.post(
 
 router.get("/readPostList/:cafeId/:boardId", postCtrl.readPostList); // 게시물 목록 조회
 
-router.get(
-  "/readPostDetail/:cafeId/:postId",
-  checkLoggedIn,
-  checkUserIsMember,
-  postCtrl.readPostDetail
-); // 게시물 상세보기
+router.get("/readPostDetail/:cafeId/:postId", postCtrl.readPostDetail); // 게시물 상세보기
 
 router.patch(
   "/update/:cafeId",

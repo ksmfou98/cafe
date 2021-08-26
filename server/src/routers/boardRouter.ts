@@ -12,6 +12,7 @@ router.post(
   checkUserIsManager,
   boardCtrl.createBoard
 ); // 게시판 생성
+
 router.get("/readBoardList/:cafeId", boardCtrl.readBoardList); // 게시판 목록 조회
 router.patch(
   "/update/:cafeId",
