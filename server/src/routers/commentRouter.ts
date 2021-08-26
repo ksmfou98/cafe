@@ -21,4 +21,11 @@ router.post(
 
 router.get("/readComments/:postId", commentCtrl.readComments); // 댓글 조회
 
+router.patch(
+  "/updateComment/:cafeId",
+  checkLoggedIn,
+  checkUserIsMember,
+  commentCtrl.updateComment
+); // 댓글 수정
+
 export default router;

@@ -82,3 +82,35 @@ export const readComments = async (req: Request, res: Response) => {
     });
   }
 };
+
+// 댓글 수정
+export const updateComment = async (req: Request, res: Response) => {
+  const { commentId, content } = req.body;
+  try {
+    const comment = await Comment.findOneAndUpdate(
+      {
+        _id: commentId,
+        writer: res.locals.user._id,
+      },
+      { content },
+      { new: true }
+    );
+
+    if (!comment) {
+      return res.status(400).json({
+        success: false,
+        message: "해당 댓글이 존재하지 않거나, 댓글 작성자가 아닙니다.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      comment,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
+    });
+  }
+};
