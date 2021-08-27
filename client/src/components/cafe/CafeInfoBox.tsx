@@ -74,12 +74,12 @@ const CafeInfoBox = () => {
 
 const CafeInfoBoxBlock = styled.div`
   overflow: hidden;
-  padding-top: 50px;
+  padding-top: 20px;
   margin-bottom: 30px;
   .cafe-info-bg {
     width: 100%;
     .info-tab {
-      padding: 10px 15px;
+      padding: 15px;
       font-weight: bold;
       letter-spacing: -1px;
       .active {

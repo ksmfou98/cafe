@@ -3,24 +3,31 @@ import Button from 'components/common/Button';
 import styled from 'styled-components';
 import PostCommentsList from './PostCommentsList';
 import useHandlePost from 'hooks/post/useHandlePost';
+import { useSelector } from 'react-redux';
+import { reduxStateStore } from 'modules';
 
 const PostDetail = () => {
   const { post, cafe, postId } = usePostDetailEffect();
   const { onDelete } = useHandlePost();
+  const user = useSelector((state: reduxStateStore) => state.user);
   return (
     <>
       <PostDetailBlock>
         <div className="post-title">
           <div className="title-left">
-            <StyledButton
-              to={`/cafe/${cafe.route}/edit/${postId}`}
-              color={'false'}
-            >
-              수정
-            </StyledButton>
-            <StyledButton color={'false'} onClick={() => onDelete(postId)}>
-              삭제
-            </StyledButton>
+            {post.writer._id === user._id && (
+              <>
+                <StyledButton
+                  to={`/cafe/${cafe.route}/edit/${postId}`}
+                  color={'false'}
+                >
+                  수정
+                </StyledButton>
+                <StyledButton color={'false'} onClick={() => onDelete(postId)}>
+                  삭제
+                </StyledButton>
+              </>
+            )}
           </div>
           <div className="title-right">
             <StyledButton to={`/cafe/${cafe.route}`} color={'true'}>
@@ -52,7 +59,7 @@ const PostDetailBlock = styled.div`
   .post-title {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 20px 14px 20px;
     .title-left {
       display: flex;
       a {
@@ -61,7 +68,7 @@ const PostDetailBlock = styled.div`
     }
   }
   .post-body {
-    padding: 20px;
+    padding: 5px 20px 20px 20px;
     .title {
       font-size: 2.5rem;
       line-height: 1.5;

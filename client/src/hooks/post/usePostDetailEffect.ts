@@ -16,6 +16,7 @@ export default function usePostDetailEffect() {
     title: '',
     content: '',
     writer: {
+      _id: '',
       email: '',
       name: '',
       nickname: '',

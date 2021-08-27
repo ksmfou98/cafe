@@ -61,7 +61,7 @@ const CafePageBlock = styled.div`
       width: 850px;
       margin: 0 90px;
       // min-height: 100vh;
-      padding-top: 50px;
+      padding-top: 20px;
     }
   }
 `;
