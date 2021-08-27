@@ -35,4 +35,11 @@ router.patch(
   commentCtrl.updateReplyComment
 ); // 대댓글 수정
 
+router.delete(
+  "/deleteComment/:cafeId/:commentId",
+  checkLoggedIn,
+  checkUserIsMember,
+  commentCtrl.deleteComment
+); // 댓글 삭제
+
 export default router;

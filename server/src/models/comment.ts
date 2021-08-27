@@ -4,6 +4,7 @@ export interface IComment {
   postId: string;
   writer: string;
   content: string;
+  deleted: boolean;
   reply: {
     _id?: string;
     writer: string;
@@ -29,6 +30,10 @@ const CommentSchema: Schema<ICommentMethod> = new Schema(
       type: String,
       required: true,
       trim: true,
+    },
+    deleted: {
+      type: Boolean,
+      default: false,
     },
     reply: [
       {

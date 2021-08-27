@@ -169,3 +169,46 @@ export const updateReplyComment = async (req: Request, res: Response) => {
     });
   }
 };
+
+// 댓글 삭제
+export const deleteComment = async (req: Request, res: Response) => {
+  // CommentId로 Comment를 찾아.
+  // comment.reply.length가 0보다 크면 그 comment의 deleted를 true로 변경
+  // 0보다 크지않으면 그냥 삭제.
+
+  const { commentId } = req.params;
+  try {
+    const comment = await Comment.findById({ _id: commentId });
+    if (!comment) {
+      return res.status(400).json({
+        success: false,
+        message: "해당 댓글이 존재하지 않습니다.",
+      });
+    }
+
+    if (comment.writer.toString() !== res.locals.user._id) {
+      return res.status(400).json({
+        success: false,
+        message: "댓글 작성자가 아닙니다.",
+      });
+    }
+
+    if (comment.reply.length > 0) {
+      comment.deleted = true;
+      await comment.save();
+      return res.status(200).json({
+        success: true,
+        message: "해당 댓글을 삭제했습니다.",
+      });
+    }
+    await comment.deleteOne();
+    return res.status(200).json({
+      success: true,
+      message: "해당 댓글을 삭제했습니다.",
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+    });
+  }
+};
