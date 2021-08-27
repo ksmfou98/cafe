@@ -22,8 +22,7 @@ const post = createSlice({
       const { key, value } = action.payload;
       state[key] = value;
     },
-    EditPost: (state: postState, action: PayloadAction<postState>) =>
-      action.payload,
+    EditPost: (state, action: PayloadAction<postState>) => action.payload,
 
     PostStateEmpty: () => initialState,
   },

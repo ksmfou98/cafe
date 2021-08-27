@@ -1,25 +1,32 @@
 import Button from 'components/common/Button';
 import useHandleComment from 'hooks/comment/useHandleComment';
 import { userState } from 'modules/user';
-import { BsPeopleCircle } from 'react-icons/bs';
 import TextareaAutosize from 'react-textarea-autosize';
 import styled from 'styled-components';
 
 interface PostCommentsWriteProps {
   onCancelReply?: () => void;
+  onCancelUpdate?: () => void;
   writer?: userState;
   commentId?: string;
+  update?: boolean;
+  updateContent?: string;
+  onChangeUpdateContent?: (e: any) => void;
 }
 
 const PostCommentsWrite = ({
   onCancelReply,
   writer,
   commentId,
+  update,
+  updateContent,
+  onChangeUpdateContent,
+  onCancelUpdate,
 }: PostCommentsWriteProps) => {
   const { onSaveComment, onSaveReplyComment, onChangeContent, content } =
     useHandleComment();
 
-  const onSubmit = async () => {
+  const onWriteSubmit = async () => {
     writer
       ? await onSaveReplyComment(commentId, writer)
       : await onSaveComment();
@@ -29,10 +36,9 @@ const PostCommentsWrite = ({
   return (
     <PostCommentsWriteBlock>
       <div className="comment-input">
-        <BsPeopleCircle size="26" />
         <StyledCommentInput
-          value={content}
-          onChange={onChangeContent}
+          value={update ? updateContent : content}
+          onChange={update ? onChangeUpdateContent : onChangeContent}
           placeholder={
             writer
               ? `${writer.nickname}님께 댓글쓰기 ...`
@@ -41,13 +47,24 @@ const PostCommentsWrite = ({
         />
       </div>
       <div className="comment-btn">
-        <StyledCommentAddButton color="true" onClick={onSubmit}>
-          등록
-        </StyledCommentAddButton>
-        {onCancelReply && (
-          <StyledCommentAddButton color="false" onClick={onCancelReply}>
-            취소
-          </StyledCommentAddButton>
+        {update ? (
+          <>
+            <StyledCommentAddButton color="true">수정</StyledCommentAddButton>
+            <StyledCommentAddButton color="false" onClick={onCancelUpdate}>
+              취소
+            </StyledCommentAddButton>
+          </>
+        ) : (
+          <>
+            <StyledCommentAddButton color="true" onClick={onWriteSubmit}>
+              등록
+            </StyledCommentAddButton>
+            {onCancelReply && (
+              <StyledCommentAddButton color="false" onClick={onCancelReply}>
+                취소
+              </StyledCommentAddButton>
+            )}
+          </>
         )}
       </div>
     </PostCommentsWriteBlock>
@@ -59,10 +76,6 @@ const PostCommentsWriteBlock = styled.div`
   .comment-input {
     display: flex;
     padding: 15px 0;
-    svg {
-      color: #978f8f;
-      margin-right: 10px;
-    }
   }
   .comment-btn {
     overflow: hidden;

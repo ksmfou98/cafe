@@ -12,7 +12,10 @@ export default function useHandleComment() {
   const { postId } = useParams<PostParams>();
   const cafe = useSelector((state: reduxStateStore) => state.cafe);
   const [content, onChangeContent, setContent] = useInput('');
+  const [updateContent, onChangeUpdateContent, setUpdateContent] = useInput('');
   const [replyCommentActiveId, setReplyCommentActiveId] = useState('');
+  const [updateCommentActiveId, setUpdateCommentActiveId] = useState('');
+
   const dispatch = useDispatch();
 
   const onSaveComment = async () => {
@@ -52,6 +55,15 @@ export default function useHandleComment() {
     setReplyCommentActiveId('');
   };
 
+  const onActiveUpdate = (commentId: string, content: string) => {
+    setUpdateContent(content);
+    setUpdateCommentActiveId(commentId);
+  };
+
+  const onCancelUpdate = () => {
+    setUpdateCommentActiveId('');
+  };
+
   return {
     onSaveComment,
     onSaveReplyComment,
@@ -60,5 +72,10 @@ export default function useHandleComment() {
     replyCommentActiveId,
     onActiveReply,
     onCancelReply,
+    updateCommentActiveId,
+    onActiveUpdate,
+    onCancelUpdate,
+    updateContent,
+    onChangeUpdateContent,
   };
 }
