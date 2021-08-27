@@ -89,25 +89,28 @@ export const updateComment = async (req: Request, res: Response) => {
   try {
     // _id 가 commentId 이고 writer가 현재 로그인한 유저인 댓글을 찾음
     // 현재 로그인한 유저인 댓글을 찾는 이유는 내가 작성하지 않은 댓글 수정을 막기위해.
-    const comment = await Comment.findOneAndUpdate(
-      {
-        _id: commentId,
-        writer: res.locals.user._id,
-      },
-      { content },
-      { new: true }
-    );
+
+    const comment = await Comment.findById({ _id: commentId });
 
     if (!comment) {
       return res.status(400).json({
         success: false,
-        message: "해당 댓글이 존재하지 않거나, 댓글 작성자가 아닙니다.",
+        message: "해당 댓글이 존재하지 않습니다.",
       });
     }
 
+    if (comment.writer.toString() !== res.locals.user._id) {
+      return res.status(400).json({
+        success: false,
+        message: "댓글 작성자가 아닙니다.",
+      });
+    }
+
+    const updateComment = await comment.updateOne({ content });
+
     return res.status(200).json({
       success: true,
-      comment,
+      comment: updateComment,
     });
   } catch (e) {
     return res.status(500).json({
