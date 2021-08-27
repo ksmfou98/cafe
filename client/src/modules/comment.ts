@@ -64,12 +64,43 @@ const comment = createSlice({
       for (let s of state) {
         if (s._id.toString() === commentId) {
           s.reply.push(comment);
+          break;
+        }
+      }
+    },
+
+    UpdateComment: (state: commentState[], action: PayloadAction<any>) => {
+      const { commentId, content } = action.payload;
+      for (let s of state) {
+        if (s._id.toString() === commentId) {
+          s.content = content;
+          break;
+        }
+      }
+    },
+
+    UpdateReplyComment: (state: commentState[], action: PayloadAction<any>) => {
+      const { commentId, replyCommentId, content } = action.payload;
+      for (let s of state) {
+        if (s._id.toString() === commentId) {
+          for (let replyComment of s.reply) {
+            if (replyComment._id === replyCommentId) {
+              replyComment.content = content;
+              break;
+            }
+          }
         }
       }
     },
   },
 });
 
-export const { SetComments, SaveComment, SaveReplyComment } = comment.actions;
+export const {
+  SetComments,
+  SaveComment,
+  SaveReplyComment,
+  UpdateComment,
+  UpdateReplyComment,
+} = comment.actions;
 
 export default comment;

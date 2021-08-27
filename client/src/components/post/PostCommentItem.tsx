@@ -74,6 +74,10 @@ const PostCommentItem = ({
               updateContent={updateContent}
               onChangeUpdateContent={onChangeUpdateContent}
               onCancelUpdate={onCancelUpdate}
+              writer={writer}
+              responseTo={responseTo}
+              commentId={commentId}
+              replyCommentId={replyCommentId}
             />
           </>
         ) : (

@@ -1,7 +1,17 @@
 import useInput from 'hooks/common/useInput';
-import { saveCommentAPI, saveReplyCommentAPI } from 'lib/api/comment';
+import {
+  saveCommentAPI,
+  saveReplyCommentAPI,
+  updateCommentAPI,
+  updateReplyCommentAPI,
+} from 'lib/api/comment';
 import { reduxStateStore } from 'modules';
-import { SaveComment, SaveReplyComment } from 'modules/comment';
+import {
+  SaveComment,
+  SaveReplyComment,
+  UpdateComment,
+  UpdateReplyComment,
+} from 'modules/comment';
 import { userState } from 'modules/user';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +28,7 @@ export default function useHandleComment() {
 
   const dispatch = useDispatch();
 
+  // 댓글 작성
   const onSaveComment = async () => {
     try {
       const comment = await saveCommentAPI(cafe._id, postId, content);
@@ -28,6 +39,7 @@ export default function useHandleComment() {
     }
   };
 
+  // 대댓글 작성
   const onSaveReplyComment = async (
     commentId: string | undefined,
     writer: userState,
@@ -47,21 +59,49 @@ export default function useHandleComment() {
     }
   };
 
+  // 대댓글 확성화
   const onActiveReply = (commentId: string) => {
     setReplyCommentActiveId(commentId);
   };
 
+  // 대댓글 활성화 취소
   const onCancelReply = () => {
     setReplyCommentActiveId('');
   };
 
+  // 댓글 수정 활성화
   const onActiveUpdate = (commentId: string, content: string) => {
     setUpdateContent(content);
     setUpdateCommentActiveId(commentId);
   };
 
+  // 댓글 수정 활성화 취소
   const onCancelUpdate = () => {
     setUpdateCommentActiveId('');
+  };
+
+  // 댓글 수정
+  const onUpdateComment = async (commentId?: string, content?: string) => {
+    try {
+      await updateCommentAPI(cafe._id, commentId, content);
+      dispatch(UpdateComment({ commentId, content }));
+    } catch (e) {
+      alert('댓글 수정에 실패했습니다.');
+    }
+  };
+
+  // 대댓글 수정
+  const onUpdateReplyComment = async (
+    commentId?: string,
+    replyCommentId?: string,
+    content?: string,
+  ) => {
+    try {
+      await updateReplyCommentAPI(cafe._id, commentId, replyCommentId, content);
+      dispatch(UpdateReplyComment({ commentId, replyCommentId, content }));
+    } catch (e) {
+      alert('대댓글 수정에 실패했습니다.');
+    }
   };
 
   return {
@@ -77,5 +117,7 @@ export default function useHandleComment() {
     onCancelUpdate,
     updateContent,
     onChangeUpdateContent,
+    onUpdateComment,
+    onUpdateReplyComment,
   };
 }

@@ -31,3 +31,29 @@ export const saveReplyCommentAPI = async (
   );
   return response.data.comment;
 };
+
+// 댓글 수정
+export const updateCommentAPI = async (
+  cafeId: string,
+  commentId?: string,
+  content?: string,
+) => {
+  const body = { commentId, content };
+  const response = await client.patch(`/comment/updateComment/${cafeId}`, body);
+  return response.data.comment;
+};
+
+// 대댓글 수정
+export const updateReplyCommentAPI = async (
+  cafeId: string,
+  commentId?: string,
+  replyCommentId?: string,
+  content?: string,
+) => {
+  const body = { commentId, replyCommentId, content };
+  const response = await client.patch(
+    `/comment/updateReplyComment/${cafeId}`,
+    body,
+  );
+  return response.data.comment;
+};

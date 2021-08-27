@@ -12,6 +12,8 @@ interface PostCommentsWriteProps {
   update?: boolean;
   updateContent?: string;
   onChangeUpdateContent?: (e: any) => void;
+  responseTo?: userState;
+  replyCommentId?: string;
 }
 
 const PostCommentsWrite = ({
@@ -22,15 +24,30 @@ const PostCommentsWrite = ({
   updateContent,
   onChangeUpdateContent,
   onCancelUpdate,
+  responseTo,
+  replyCommentId,
 }: PostCommentsWriteProps) => {
-  const { onSaveComment, onSaveReplyComment, onChangeContent, content } =
-    useHandleComment();
+  const {
+    onSaveComment,
+    onSaveReplyComment,
+    onChangeContent,
+    content,
+    onUpdateComment,
+    onUpdateReplyComment,
+  } = useHandleComment();
 
   const onWriteSubmit = async () => {
-    writer
+    writer // writer가 있으면 대댓글임
       ? await onSaveReplyComment(commentId, writer)
       : await onSaveComment();
     onCancelReply && onCancelReply();
+  };
+
+  const onUpdateSubmit = async () => {
+    responseTo // responseTo가 있으면 대댓글임
+      ? await onUpdateReplyComment(commentId, replyCommentId, updateContent)
+      : await onUpdateComment(commentId, updateContent);
+    onCancelUpdate && onCancelUpdate();
   };
 
   return (
@@ -49,7 +66,9 @@ const PostCommentsWrite = ({
       <div className="comment-btn">
         {update ? (
           <>
-            <StyledCommentAddButton color="true">수정</StyledCommentAddButton>
+            <StyledCommentAddButton color="true" onClick={onUpdateSubmit}>
+              수정
+            </StyledCommentAddButton>
             <StyledCommentAddButton color="false" onClick={onCancelUpdate}>
               취소
             </StyledCommentAddButton>
