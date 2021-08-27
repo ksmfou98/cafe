@@ -212,6 +212,68 @@ export const deleteComment = async (req: Request, res: Response) => {
   } catch (e) {
     return res.status(500).json({
       success: false,
+      e,
+    });
+  }
+};
+
+// 대댓글 삭제
+export const deleteReplyComment = async (req: Request, res: Response) => {
+  // Comment에서 _id가 commentId 인걸 찾아.
+  // 찾았으면 comment.reply 에서 _id가 replyCommentId 인걸 찾아
+  // 찾은 걔의 writer가 res.locals.user._id랑 다르면 "대댓글 작성자가 아닙니다" 라고 리턴
+  // 맞으면 그 대댓글을 삭제 시킬꺼임.
+  // 근데 대댓글이  방금 그거밖에업고 기존 comment의 deleted: true 이면 걍 댓글을 삭제시켜버림.
+
+  const { commentId, replyCommentId } = req.params;
+  try {
+    let comment = await Comment.findById({ _id: commentId });
+    if (!comment) {
+      return res.status(400).json({
+        success: false,
+        message: "해당 대댓글을 갖는 댓글이 존재하지 않습니다.",
+      });
+    }
+
+    const replyComments = comment.reply;
+    let existReplyComment = undefined;
+
+    for (let replyComment of replyComments) {
+      if (
+        replyComment._id.toString() === replyCommentId &&
+        replyComment.writer.toString() === res.locals.user._id
+      ) {
+        existReplyComment = replyComment;
+        if (replyComments.length === 1 && comment.deleted === true) {
+          await comment.deleteOne();
+          return res.status(200).json({
+            success: true,
+            message: "해당 대댓글을 삭제했습니다.",
+          });
+        }
+
+        comment.reply = replyComments.filter(
+          (replyComment) => replyComment._id.toString() !== replyCommentId
+        );
+
+        await comment.save();
+        return res.status(200).json({
+          success: true,
+          message: "해당 대댓글을 삭제했습니다.",
+        });
+      }
+    }
+
+    if (!existReplyComment) {
+      return res.status(400).json({
+        success: false,
+        messgae: "해당 대댓글이 존재하지 않거나, 대댓글 작성자가 아닙니다.",
+      });
+    }
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      e,
     });
   }
 };

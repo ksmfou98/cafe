@@ -42,4 +42,11 @@ router.delete(
   commentCtrl.deleteComment
 ); // 댓글 삭제
 
+router.delete(
+  "/deleteReplyComment/:cafeId/:commentId/:replyCommentId",
+  checkLoggedIn,
+  checkUserIsMember,
+  commentCtrl.deleteReplyComment
+); // 대댓글 삭제.
+
 export default router;
