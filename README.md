@@ -56,9 +56,7 @@
 
 <br/>
 
-## UI Screen (이미지를 클릭하시면 크게 보실 수 있습니다 !)
-
-※ 클릭시 확대된 원본 이미지를 확인할 수 있습니다. <br><br>
+## UI Screen (※ 클릭시 확대된 원본 이미지를 확인할 수 있습니다.)
 
 <table>
         <tbody>
@@ -84,6 +82,127 @@
         <tr>
            <td>구글 회원가입</td>
         </tr>
+   </tbody>
+</table>
+<br><br>
+
+<table>
+        <tbody>
+		<tr>
+			<td colspan=2>
+				<br>
+				<b> ✅ 랜딩페이지 ㆍ 카페 생성 </b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+            <td rowspan="2"><div align="center"><img src="/image/landing.png" width="60%" height="60%">
+            </div></td>
+            <td width="33%">내 카페 리스트</td>
+        </tr>
+        <tr>
+            <td>전체 카페 리스트</td>
+        </tr>
+        <tr>
+            <td rowspan="2"><div align="center"><img src="/image/createCafe.png" width="60%" height="60%"></div></td>
+           <td>카페 생성</td>
+        </tr>
+        <tr>
+           <td>이미지 업로드</td>
+        </tr>
+   </tbody>
+</table>
+<br><br>
+
+<table>
+        <tbody>
+		<tr>
+			<td colspan=2>
+				<br>
+				<b> ✅ 카페 메인페이지(게시물X) ㆍ 카페 가입 </b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+            <td rowspan="1"><div align="center"><img src="/image/cafeMain.png" width="60%" height="60%">
+            </div></td>
+            <td width="33%">아무 게시물이 없을 때</td>
+        </tr>
+        <tr>
+            <td rowspan="1"><div align="center"><img src="/image/cafeJoin.png" width="60%" height="60%"></div></td>
+           <td>카페 가입</td>
+        </tr>
+        
+   </tbody>
+</table>
+<br><br>
+
+<table>
+        <tbody>
+		<tr>
+			<td colspan=2>
+				<br>
+				<b> ✅ 카페 관리 ㆍ 카페 메인페이지(게시물O) </b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+            <td rowspan="2"><div align="center"><img src="/image/cafeManage.png" width="60%" height="60%">
+            </div></td>
+            <td width="33%">카페 게시판 관리</td>
+        </tr>
+        <tr>
+            <td>카페 관리</td>
+        </tr>
+        <tr>
+            <td rowspan="1"><div align="center"><img src="/image/CafeMainBoard.png" width="60%" height="60%"></div></td>
+           <td>카페 게시물</td>
+        </tr>
+   </tbody>
+</table>
+<br><br>
+
+<table>
+        <tbody>
+		<tr>
+			<td colspan=2>
+				<br>
+				<b> ✅ 게시물 작성 ㆍ 게시물 상세보기 </b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+            <td rowspan="1"><div align="center"><img src="/image/PostWrite.png" width="60%" height="60%">
+            </div></td>
+            <td width="33%">게시물 작성</td>
+        </tr>
+        <tr>
+            <td rowspan="2"><div align="center"><img src="/image/PostDetail.png" width="60%" height="60%"></div></td>
+           <td>게시물 상세보기, 수정, 삭제</td>
+           <tr>
+            <td>댓글 작성,수정,삭제</td>
+        </tr>
+        </tr>
+   </tbody>
+</table>
+<br><br>
+
+<table>
+        <tbody>
+		<tr>
+			<td colspan=1>
+				<br>
+				<b> ✅ 채팅 </b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+            <td rowspan="1"><div align="center"><img src="/image/chatting.png" width="60%" height="60%">
+            </div></td>
+            <td width="33%">카페채팅</td>
+        </tr>
+        <tr>
+     
    </tbody>
 </table>
 <br><br>
