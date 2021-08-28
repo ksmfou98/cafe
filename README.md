@@ -58,6 +58,36 @@
 
 ## UI Screen (이미지를 클릭하시면 크게 보실 수 있습니다 !)
 
+※ 클릭시 확대된 원본 이미지를 확인할 수 있습니다. <br><br>
+
+<table>
+        <tbody>
+		<tr>
+			<td colspan=2>
+				<br>
+				<b> ✅ 로그인 ㆍ 회원가입 </b><br>
+				<br>
+			</td>
+		</tr>
+		<tr>
+            <td rowspan="2"><div align="center"><img src="/image/login.png" width="60%" height="60%">
+            </div></td>
+            <td width="33%">일반 로그인</td>
+        </tr>
+        <tr>
+            <td>구글 로그인</td>
+        </tr>
+        <tr>
+            <td rowspan="2"><div align="center"><img src="/image/register.png" width="60%" height="60%"></div></td>
+           <td>일반 회원가입</td>
+        </tr>
+        <tr>
+           <td>구글 회원가입</td>
+        </tr>
+   </tbody>
+</table>
+<br><br>
+
 <img src="https://user-images.githubusercontent.com/64634992/128635224-53fb7d14-d14d-4acb-98c4-4cc3f87c60eb.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635277-0f5ca7ac-e168-47df-a410-508c7b8b0cff.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635286-4a76e9d8-0f39-40e7-a5a9-36ea57d23c43.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635294-2ce3b8e7-2af1-49c1-9742-dcbb491c6628.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635306-25697ba5-1242-43a1-875a-959a8458f9d8.png" width="48%" /><img src="https://user-images.githubusercontent.com/64634992/128635309-74575639-5fbd-4e17-811e-271a219560df.png" width="48%" />
 
 <br />
