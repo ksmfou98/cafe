@@ -1,11 +1,13 @@
+import DeleteModal from 'components/common/DeleteModal';
+import Modal from 'components/common/Modal';
+import useModal from 'hooks/common/useModal';
 import { palette } from 'lib/styles/palette';
 import { reduxStateStore } from 'modules';
 import { userState } from 'modules/user';
 import { BsPeopleCircle } from 'react-icons/bs';
 import { RiAddBoxLine } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import PostCommentsWrite from './PostCommentsWrite';
 
 interface PostCommentItemProps {
@@ -45,6 +47,8 @@ const PostCommentItem = ({
   const commentActiveId = responseTo ? replyCommentId : commentId;
   const user = useSelector((state: reduxStateStore) => state.user);
 
+  const { isModal, onToggleModal } = useModal();
+
   return (
     <PostCommentItemBlock responseTo={responseTo}>
       <div className="top-box">
@@ -62,24 +66,25 @@ const PostCommentItem = ({
             <span onClick={() => onActiveUpdate(commentActiveId, content)}>
               수정
             </span>
-            <span>삭제</span>
+            <span onClick={onToggleModal}>삭제</span>
           </div>
+        )}
+        {isModal && (
+          <DeleteModal onToggleModal={onToggleModal} isModal={isModal} />
         )}
       </div>
       <div className="bottom-box">
         {updateCommentActiveId === commentActiveId ? (
-          <>
-            <PostCommentsWrite
-              update
-              updateContent={updateContent}
-              onChangeUpdateContent={onChangeUpdateContent}
-              onCancelUpdate={onCancelUpdate}
-              writer={writer}
-              responseTo={responseTo}
-              commentId={commentId}
-              replyCommentId={replyCommentId}
-            />
-          </>
+          <PostCommentsWrite
+            update
+            updateContent={updateContent}
+            onChangeUpdateContent={onChangeUpdateContent}
+            onCancelUpdate={onCancelUpdate}
+            writer={writer}
+            responseTo={responseTo}
+            commentId={commentId}
+            replyCommentId={replyCommentId}
+          />
         ) : (
           <>
             <div className="content">
@@ -110,8 +115,8 @@ const PostCommentItem = ({
   );
 };
 
-const PostCommentItemBlock = styled.div`
-  ${(props: any) =>
+const PostCommentItemBlock = styled.div<{ responseTo?: userState }>`
+  ${(props) =>
     !props.responseTo &&
     css`
       padding-top: 1rem;

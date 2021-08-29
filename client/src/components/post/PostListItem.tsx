@@ -150,7 +150,7 @@ const PostListItemBlock = styled.li`
   }
 `;
 
-const StyledLikeBlock = styled.div`
+const StyledLikeBlock = styled.div<{ isLiked: boolean; isDisliked: boolean }>`
   padding-right: 25px;
   display: flex;
   flex-direction: column;
@@ -175,7 +175,7 @@ const StyledLikeBlock = styled.div`
     color: #999;
   }
 
-  ${(props: any) =>
+  ${(props) =>
     props.isLiked &&
     css`
       .fst-btn {
@@ -186,7 +186,7 @@ const StyledLikeBlock = styled.div`
       }
     `}
 
-  ${(props: any) =>
+  ${(props) =>
     props.isDisliked &&
     css`
       .lst-btn {

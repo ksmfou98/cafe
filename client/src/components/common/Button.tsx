@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 interface ButtonProps {
-  color: string;
+  color: 'true' | 'false';
   to?: string;
   children?: React.ReactNode;
-  type?: string;
+  type?: 'button' | 'reset' | 'submit' | undefined;
   onClick?: () => void;
 }
 
@@ -33,15 +33,11 @@ const Button = ({
   );
 };
 
-interface commonStyleProps {
-  color: string;
-}
-
-const commonStyle = css`
+const commonStyle = css<{ color: 'true' | 'false' }>`
   border-radius: 5px;
   font-weight: 700;
   font-size: 14px;
-  ${(props: commonStyleProps) =>
+  ${(props) =>
     props.color === 'true'
       ? css`
           background-color: ${palette.mainColor};
