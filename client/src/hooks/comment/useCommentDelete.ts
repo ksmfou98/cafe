@@ -3,8 +3,8 @@ import { deleteCommentAPI, deleteReplyCommentAPI } from 'lib/api/comment';
 export default function useCommentDelete() {
   const onCommentDelete = async (cafeId: string, commentId: string) => {
     try {
-      const response = await deleteCommentAPI(cafeId, commentId);
-      console.log(response);
+      await deleteCommentAPI(cafeId, commentId);
+      window.location.reload();
     } catch (e) {
       alert('댓글 삭제에 실패했습니다.');
     }
