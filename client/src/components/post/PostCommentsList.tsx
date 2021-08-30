@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { reduxStateStore } from 'modules';
 import useHandleComment from 'hooks/comment/useHandleComment';
 import { commentState, replyState } from 'modules/comment';
+import useCommentLengthEffect from 'hooks/comment/useCommentLengthEffect';
 
 const PostCommentsList = () => {
   useCommentsEffect();
@@ -21,10 +22,12 @@ const PostCommentsList = () => {
   } = useHandleComment();
   const comments = useSelector((state: reduxStateStore) => state.comment);
 
+  const { commentLength } = useCommentLengthEffect();
+
   return (
     <PostCommentBlock>
       <div className="tit">
-        <span>댓글 {comments.length}개</span>
+        <span>댓글 {commentLength}개</span>
       </div>
 
       {comments.map((comment: commentState, index: number) => (

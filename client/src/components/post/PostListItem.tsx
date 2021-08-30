@@ -6,6 +6,7 @@ import { FiArrowUp, FiArrowDown } from 'react-icons/fi';
 import { BsPeopleCircle } from 'react-icons/bs';
 import useHandleLike from 'hooks/post/useHandleLike';
 import { css } from 'styled-components';
+import useCommentLengthEffect from 'hooks/comment/useCommentLengthEffect';
 
 interface PostListItemProps {
   route: string;
@@ -75,7 +76,7 @@ const PostListItem = ({
           <div className="sub-right">
             <div className="item comment">
               <FaRegComment size="15" />
-              <span>[4]</span>
+              <span>[]</span>
             </div>
           </div>
         </div>
