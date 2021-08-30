@@ -34,6 +34,7 @@ const PostCommentsList = () => {
             content={comment.content}
             commentId={comment._id}
             createdAt={comment.createdAt}
+            deleted={comment.deleted}
             onActiveReply={onActiveReply}
             replyCommentActiveId={replyCommentActiveId}
             onCancelReply={onCancelReply}
@@ -79,11 +80,8 @@ const PostCommentBlock = styled.div`
     margin-bottom: 10px;
   }
   .comment-list {
-    border-bottom: 1px solid rgb(233, 236, 239);
     .reply-comment {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      padding-left: 50px;
+      padding-left: 60px;
     }
   }
 `;

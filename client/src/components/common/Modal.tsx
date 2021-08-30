@@ -39,9 +39,17 @@ const Modal = ({
           </button>
         </div>
         <div className="message-footer">
-          <button className="message-btn" onClick={onClick}>
-            {buttonName}
-          </button>
+          {onClick && (
+            <button
+              className="message-btn"
+              onClick={() => {
+                onClick();
+                onModalToggle();
+              }}
+            >
+              {buttonName}
+            </button>
+          )}
           <button
             type="button"
             onClick={onModalToggle}
@@ -92,7 +100,6 @@ const ModalBlock = styled.div<{ size: string; isModal: boolean }>`
       position: relative;
       margin: 25px;
       height: 100%;
-      overflow: scroll;
       display: flex;
       flex-direction: column;
       margin-bottom: 0;

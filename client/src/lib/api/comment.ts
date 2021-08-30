@@ -57,3 +57,24 @@ export const updateReplyCommentAPI = async (
   );
   return response.data.comment;
 };
+
+// 댓글 삭제
+export const deleteCommentAPI = async (cafeId: string, commentId: string) => {
+  const response = await client.delete(
+    `/comment/deleteComment/${cafeId}/${commentId}`,
+  );
+  return response.data;
+};
+
+// 대댓글 삭제
+export const deleteReplyCommentAPI = async (
+  cafeId: string,
+  commentId: string,
+  replyCommentId?: string,
+) => {
+  const response = await client.delete(
+    `/comment/deleteReplyComment/${cafeId}/${commentId}/${replyCommentId}`,
+  );
+
+  return response.data;
+};

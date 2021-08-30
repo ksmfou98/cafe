@@ -1,5 +1,5 @@
 import DeleteModal from 'components/common/DeleteModal';
-import Modal from 'components/common/Modal';
+import useCommentDelete from 'hooks/comment/useCommentDelete';
 import useModal from 'hooks/common/useModal';
 import { palette } from 'lib/styles/palette';
 import { reduxStateStore } from 'modules';
@@ -15,6 +15,7 @@ interface PostCommentItemProps {
   content: string;
   responseTo?: userState;
   commentId: string;
+  deleted?: boolean;
   onActiveReply: (commentId: string) => void;
   onCancelReply: () => void;
   replyCommentActiveId: string;
@@ -30,6 +31,7 @@ interface PostCommentItemProps {
 const PostCommentItem = ({
   writer,
   content,
+  deleted,
   responseTo,
   commentId,
   onActiveReply,
@@ -45,9 +47,18 @@ const PostCommentItem = ({
 }: PostCommentItemProps) => {
   // 대댓글의 경우 대댓글id를 활성화id에 넣고 , 그냥 댓글일 경우 댓글id를 활성화id에 넣음
   const commentActiveId = responseTo ? replyCommentId : commentId;
+
   const user = useSelector((state: reduxStateStore) => state.user);
+  const cafe = useSelector((state: reduxStateStore) => state.cafe);
 
   const { isModal, onToggleModal } = useModal();
+  const { onCommentDelete, onReplyCommentDelete } = useCommentDelete();
+
+  const onDeleteSubmit = async () => {
+    responseTo
+      ? await onReplyCommentDelete(cafe._id, commentId, replyCommentId)
+      : await onCommentDelete(cafe._id, commentId);
+  };
 
   return (
     <PostCommentItemBlock responseTo={responseTo}>
@@ -57,11 +68,13 @@ const PostCommentItem = ({
             <BsPeopleCircle size="34" />
           </div>
           <div className="profile-des">
-            <div className="writer">{writer.nickname}</div>
+            <div className="writer">
+              {deleted ? '알 수 없음' : writer.nickname}
+            </div>
             <div className="date">{createdAt?.slice(0, 10)}</div>
           </div>
         </div>
-        {writer._id === user._id && (
+        {writer._id === user._id && !deleted && (
           <div className="right-box">
             <span onClick={() => onActiveUpdate(commentActiveId, content)}>
               수정
@@ -70,7 +83,11 @@ const PostCommentItem = ({
           </div>
         )}
         {isModal && (
-          <DeleteModal onToggleModal={onToggleModal} isModal={isModal} />
+          <DeleteModal
+            onDelete={onDeleteSubmit}
+            onToggleModal={onToggleModal}
+            isModal={isModal}
+          />
         )}
       </div>
       <div className="bottom-box">
@@ -87,27 +104,37 @@ const PostCommentItem = ({
           />
         ) : (
           <>
-            <div className="content">
-              {responseTo && (
-                <span className="responseTo">@{responseTo.nickname}</span>
-              )}
-              {content}
-            </div>
-            <div className="reply-btn">
-              <StyledReplyButton onClick={() => onActiveReply(commentActiveId)}>
-                <RiAddBoxLine size="18" />
-                <span>답글쓰기</span>
-              </StyledReplyButton>
-              {replyCommentActiveId === commentActiveId && (
-                <div className="reply-form">
-                  <PostCommentsWrite
-                    writer={writer}
-                    onCancelReply={onCancelReply}
-                    commentId={commentId}
-                  />
-                </div>
-              )}
-            </div>
+            {deleted ? (
+              <div className="content">
+                <span className="deleted">삭제된 댓글입니다.</span>
+              </div>
+            ) : (
+              <div className="content">
+                {responseTo && (
+                  <span className="responseTo">@{responseTo.nickname}</span>
+                )}
+                {content}
+              </div>
+            )}
+            {!deleted && (
+              <div className="reply-btn">
+                <StyledReplyButton
+                  onClick={() => onActiveReply(commentActiveId)}
+                >
+                  <RiAddBoxLine size="18" />
+                  <span>답글쓰기</span>
+                </StyledReplyButton>
+                {replyCommentActiveId === commentActiveId && (
+                  <div className="reply-form">
+                    <PostCommentsWrite
+                      writer={writer}
+                      onCancelReply={onCancelReply}
+                      commentId={commentId}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
           </>
         )}
       </div>
@@ -116,12 +143,15 @@ const PostCommentItem = ({
 };
 
 const PostCommentItemBlock = styled.div<{ responseTo?: userState }>`
-  ${(props) =>
+  border-bottom: 1px solid rgb(233, 236, 239);
+  /* ${(props) =>
     !props.responseTo &&
     css`
       padding-top: 1rem;
       padding-bottom: 1rem;
-    `}
+    `} */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   .top-box {
     display: flex;
     align-items: center;
@@ -168,11 +198,16 @@ const PostCommentItemBlock = styled.div<{ responseTo?: userState }>`
   .bottom-box {
     .content {
       margin: 1.5rem 0;
+      .deleted {
+        color: rgb(134, 142, 150);
+        font-style: italic;
+      }
       .responseTo {
         font-weight: 700;
         margin-right: 8px;
       }
     }
+
     .reply-btn {
       button {
         padding: 0;

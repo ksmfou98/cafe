@@ -11,6 +11,7 @@ export interface replyState {
 
 export interface commentState {
   _id: string;
+  deleted: boolean;
   postId: string;
   content: string;
   writer: userState;
@@ -28,6 +29,7 @@ const userInitialState: userState = {
 const initialState: commentState[] = [
   {
     _id: '',
+    deleted: false,
     postId: '',
     content: '',
     writer: userInitialState,

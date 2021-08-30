@@ -201,7 +201,7 @@ export const deleteComment = async (req: Request, res: Response) => {
       await comment.save();
       return res.status(200).json({
         success: true,
-        message: "해당 댓글을 삭제했습니다.",
+        message: "대댓글이 존재해서 해당 댓글을 삭제처리 했습니다.",
       });
     }
     await comment.deleteOne();

@@ -3,10 +3,15 @@ import Modal from './Modal';
 
 interface DeleteModalProps {
   onToggleModal: () => void;
+  onDelete: () => void;
   isModal: boolean;
 }
 
-const DeleteModal = ({ onToggleModal, isModal }: DeleteModalProps) => {
+const DeleteModal = ({
+  onToggleModal,
+  isModal,
+  onDelete,
+}: DeleteModalProps) => {
   return (
     <Modal
       title="알림"
@@ -14,6 +19,7 @@ const DeleteModal = ({ onToggleModal, isModal }: DeleteModalProps) => {
       buttonName="삭제"
       size="small"
       isModal={isModal}
+      onClick={onDelete}
     >
       <DeleteModalBlock>
         <span>정말 삭제하시겠습니까?</span>
