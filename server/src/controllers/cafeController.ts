@@ -3,7 +3,7 @@ import Cafe from "../models/cafe";
 import multer from "multer";
 import User from "../models/user";
 
-// multer-optional
+
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/");
