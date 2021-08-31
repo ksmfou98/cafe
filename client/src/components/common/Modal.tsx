@@ -23,8 +23,8 @@ const Modal = ({
   onClick,
 }: ModalProps) => {
   return (
-    <ModalBlock size={size} isModal={isModal}>
-      <div className="modal-alert">
+    <ModalBlock size={size} isModal={isModal} onMouseDown={onModalToggle}>
+      <div className="modal-alert" onMouseDown={(e) => e.stopPropagation()}>
         <div className="modal-top"></div>
 
         <div className="modal-wrapper">
