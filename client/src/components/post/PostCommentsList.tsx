@@ -10,16 +10,8 @@ import useCommentLengthEffect from 'hooks/comment/useCommentLengthEffect';
 
 const PostCommentsList = () => {
   useCommentsEffect();
-  const {
-    replyCommentActiveId,
-    onActiveReply,
-    onCancelReply,
-    updateCommentActiveId,
-    onActiveUpdate,
-    onCancelUpdate,
-    updateContent,
-    onChangeUpdateContent,
-  } = useHandleComment();
+  const { replyCommentActiveId, onActiveReply, onCancelReply } =
+    useHandleComment();
   const comments = useSelector((state: reduxStateStore) => state.comment);
 
   const { commentLength } = useCommentLengthEffect();
@@ -41,11 +33,6 @@ const PostCommentsList = () => {
             onActiveReply={onActiveReply}
             replyCommentActiveId={replyCommentActiveId}
             onCancelReply={onCancelReply}
-            updateCommentActiveId={updateCommentActiveId}
-            onActiveUpdate={onActiveUpdate}
-            onCancelUpdate={onCancelUpdate}
-            updateContent={updateContent}
-            onChangeUpdateContent={onChangeUpdateContent}
           />
           {comment.reply.length > 0 &&
             comment.reply.map((c: replyState, index: number) => (
@@ -60,11 +47,6 @@ const PostCommentsList = () => {
                   onActiveReply={onActiveReply}
                   replyCommentActiveId={replyCommentActiveId}
                   onCancelReply={onCancelReply}
-                  updateCommentActiveId={updateCommentActiveId}
-                  onActiveUpdate={onActiveUpdate}
-                  onCancelUpdate={onCancelUpdate}
-                  updateContent={updateContent}
-                  onChangeUpdateContent={onChangeUpdateContent}
                 />
               </div>
             ))}

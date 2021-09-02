@@ -1,5 +1,6 @@
 import DeleteModal from 'components/common/DeleteModal';
 import useCommentDelete from 'hooks/comment/useCommentDelete';
+import useHandleComment from 'hooks/comment/useHandleComment';
 import useModal from 'hooks/common/useModal';
 import { ParamsProps } from 'hooks/post/usePostDetailEffect';
 import { palette } from 'lib/styles/palette';
@@ -23,11 +24,6 @@ interface PostCommentItemProps {
   replyCommentActiveId: string;
   replyCommentId?: any;
   createdAt: string;
-  updateCommentActiveId: string;
-  onActiveUpdate: (commentId: string, content: string) => void;
-  onCancelUpdate: () => void;
-  updateContent: string;
-  onChangeUpdateContent: (e: any) => void;
 }
 
 const PostCommentItem = ({
@@ -41,14 +37,17 @@ const PostCommentItem = ({
   onCancelReply,
   replyCommentId,
   createdAt,
-  updateCommentActiveId,
-  onActiveUpdate,
-  onCancelUpdate,
-  updateContent,
-  onChangeUpdateContent,
 }: PostCommentItemProps) => {
   // 대댓글의 경우 대댓글id를 활성화id에 넣고 , 그냥 댓글일 경우 댓글id를 활성화id에 넣음
   const commentActiveId = responseTo ? replyCommentId : commentId;
+
+  const {
+    updateCommentActiveId,
+    onActiveUpdate,
+    onCancelUpdate,
+    updateContent,
+    onChangeUpdateContent,
+  } = useHandleComment();
 
   const user = useSelector((state: reduxStateStore) => state.user);
   const cafe = useSelector((state: reduxStateStore) => state.cafe);
