@@ -4,16 +4,12 @@ import PostCommentItem from './PostCommentItem';
 import useCommentsEffect from 'hooks/comment/useCommentsEffect';
 import { useSelector } from 'react-redux';
 import { reduxStateStore } from 'modules';
-import useHandleComment from 'hooks/comment/useHandleComment';
 import { commentState, replyState } from 'modules/comment';
 import useCommentLengthEffect from 'hooks/comment/useCommentLengthEffect';
 
 const PostCommentsList = () => {
   useCommentsEffect();
-  // const { replyCommentActiveId, onActiveReply, onCancelReply } =
-  //   useHandleComment();
   const comments = useSelector((state: reduxStateStore) => state.comment);
-
   const { commentLength } = useCommentLengthEffect();
 
   return (
@@ -30,9 +26,6 @@ const PostCommentsList = () => {
             commentId={comment._id}
             createdAt={comment.createdAt}
             deleted={comment.deleted}
-            // onActiveReply={onActiveReply}
-            // replyCommentActiveId={replyCommentActiveId}
-            // onCancelReply={onCancelReply}
           />
           {comment.reply.length > 0 &&
             comment.reply.map((c: replyState, index: number) => (
@@ -44,9 +37,6 @@ const PostCommentsList = () => {
                   replyCommentId={c._id}
                   createdAt={c.createdAt}
                   commentId={comment._id}
-                  // onActiveReply={onActiveReply}
-                  // replyCommentActiveId={replyCommentActiveId}
-                  // onCancelReply={onCancelReply}
                 />
               </div>
             ))}

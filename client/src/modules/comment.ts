@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { readCommentsAPI } from 'lib/api/comment';
 import { userState } from './user';
 
 export interface replyState {
@@ -46,15 +47,18 @@ const initialState: commentState[] = [
   },
 ];
 
+export const getComments = createAsyncThunk(
+  'comment/getComments',
+  async (postId: string) => {
+    const comments = await readCommentsAPI(postId);
+    return comments;
+  },
+);
+
 const comment = createSlice({
   name: 'commentReducer',
   initialState,
   reducers: {
-    SetComments: (
-      state: commentState[],
-      action: PayloadAction<commentState[]>,
-    ) => action.payload,
-
     SaveComment: (
       state: commentState[],
       action: PayloadAction<commentState>,
@@ -95,10 +99,17 @@ const comment = createSlice({
       }
     },
   },
+
+  extraReducers: {
+    // 호출 성송
+    [getComments.fulfilled.type]: (
+      state: commentState[],
+      action: PayloadAction<commentState[]>,
+    ) => action.payload,
+  },
 });
 
 export const {
-  SetComments,
   SaveComment,
   SaveReplyComment,
   UpdateComment,

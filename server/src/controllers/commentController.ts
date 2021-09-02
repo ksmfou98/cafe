@@ -16,7 +16,6 @@ export const saveComment = async (req: Request, res: Response) => {
     }
 
     let comment = new Comment({ postId, content, writer });
-    console.log(comment);
     comment = await comment.populate("writer").execPopulate();
     await comment.save();
 
