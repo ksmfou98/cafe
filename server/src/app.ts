@@ -11,9 +11,9 @@ import { Server, Socket } from "socket.io";
 import userAuth from "./lib/userAuth";
 import boardRouter from "./routers/boardRouter";
 import cafeRouter from "./routers/cafeRouter";
+import commentRouter from "./routers/commentRouter";
 import postRouter from "./routers/postRouter";
 import userRouter from "./routers/userRouter";
-import commentRouter from "./routers/commentRouter";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -107,7 +107,7 @@ io.on("connection", (socket: Socket) => {
       delete users[socket.id];
       io.emit("exit", users, outMember);
     } else {
-      console.log("dd");
+      console.log("disconnect");
     }
   });
 });

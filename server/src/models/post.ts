@@ -8,6 +8,7 @@ export interface IPost {
   writer: string;
   like_count: number;
   like_users: { user: string; like: string }[];
+  comments: string[];
 }
 export interface IPostMethod extends IPost, Document {}
 export interface IPostStatics extends Model<IPostMethod> {}
@@ -44,6 +45,12 @@ const PostSchema: Schema<IPostMethod> = new Schema(
       {
         user: mongoose.Schema.Types.ObjectId,
         like: String, // good , bad
+      },
+    ],
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
       },
     ],
   },
