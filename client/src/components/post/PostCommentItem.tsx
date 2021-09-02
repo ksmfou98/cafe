@@ -19,9 +19,9 @@ interface PostCommentItemProps {
   responseTo?: userState;
   commentId: string;
   deleted?: boolean;
-  onActiveReply: (commentId: string) => void;
-  onCancelReply: () => void;
-  replyCommentActiveId: string;
+  // onActiveReply: (commentId: string) => void;
+  // onCancelReply: () => void;
+  // replyCommentActiveId: string;
   replyCommentId?: any;
   createdAt: string;
 }
@@ -32,9 +32,9 @@ const PostCommentItem = ({
   deleted,
   responseTo,
   commentId,
-  onActiveReply,
-  replyCommentActiveId,
-  onCancelReply,
+  // onActiveReply,
+  // replyCommentActiveId,
+  // onCancelReply,
   replyCommentId,
   createdAt,
 }: PostCommentItemProps) => {
@@ -47,6 +47,9 @@ const PostCommentItem = ({
     onCancelUpdate,
     updateContent,
     onChangeUpdateContent,
+    onActiveReply,
+    replyCommentActiveId,
+    onCancelReply,
   } = useHandleComment();
 
   const user = useSelector((state: reduxStateStore) => state.user);
