@@ -1,12 +1,14 @@
 import DeleteModal from 'components/common/DeleteModal';
 import useCommentDelete from 'hooks/comment/useCommentDelete';
 import useModal from 'hooks/common/useModal';
+import { ParamsProps } from 'hooks/post/usePostDetailEffect';
 import { palette } from 'lib/styles/palette';
 import { reduxStateStore } from 'modules';
 import { userState } from 'modules/user';
 import { BsPeopleCircle } from 'react-icons/bs';
 import { RiAddBoxLine } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import PostCommentsWrite from './PostCommentsWrite';
 
@@ -54,10 +56,12 @@ const PostCommentItem = ({
   const { isModal, onToggleModal } = useModal();
   const { onCommentDelete, onReplyCommentDelete } = useCommentDelete();
 
+  const { postId } = useParams<ParamsProps>();
+
   const onDeleteSubmit = async () => {
     responseTo
-      ? await onReplyCommentDelete(cafe._id, commentId, replyCommentId)
-      : await onCommentDelete(cafe._id, commentId);
+      ? await onReplyCommentDelete(cafe._id, postId, commentId, replyCommentId)
+      : await onCommentDelete(cafe._id, postId, commentId);
   };
 
   return (

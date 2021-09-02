@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-interface ParamsProps {
+export interface ParamsProps {
   postId: string;
 }
 
@@ -25,6 +25,7 @@ export default function usePostDetailEffect() {
     board: {
       _id: '',
     },
+    comments: [],
   });
   useEffect(() => {
     const getData = async () => {

@@ -47,6 +47,7 @@ export default function useHandleComment() {
     try {
       const comment = await saveReplyCommentAPI(
         cafe._id,
+        postId,
         commentId,
         content,
         writer?._id,
@@ -103,8 +104,6 @@ export default function useHandleComment() {
       alert('대댓글 수정에 실패했습니다.');
     }
   };
-
-  
 
   return {
     onSaveComment,

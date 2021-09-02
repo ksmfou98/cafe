@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Comment from "../models/comment";
+import Post from "../models/post";
 
 // 댓글 생성
 export const saveComment = async (req: Request, res: Response) => {
@@ -15,8 +16,13 @@ export const saveComment = async (req: Request, res: Response) => {
     }
 
     let comment = new Comment({ postId, content, writer });
+    console.log(comment);
     comment = await comment.populate("writer").execPopulate();
     await comment.save();
+
+    const post = await Post.findById({ _id: postId });
+    post.comments.push(comment._id);
+    await post.save();
 
     return res.status(201).json({
       success: true,
@@ -32,7 +38,7 @@ export const saveComment = async (req: Request, res: Response) => {
 
 // 대댓글 생성
 export const saveReplyComment = async (req: Request, res: Response) => {
-  const { commentId, content, responseTo } = req.body;
+  const { commentId, content, responseTo, postId } = req.body;
   const writer = res.locals.user._id;
   try {
     let comment = await Comment.findById({ _id: commentId });
@@ -45,6 +51,12 @@ export const saveReplyComment = async (req: Request, res: Response) => {
       .execPopulate();
 
     await comment.save();
+
+    // 게시물 model에 commentId 추가
+    const post = await Post.findById({ _id: postId });
+    post.comments.push(comment.reply[comment.reply.length - 1]._id);
+    await post.save();
+
     return res.status(201).json({
       success: true,
       comment: comment.reply[comment.reply.length - 1],
@@ -179,7 +191,7 @@ export const deleteComment = async (req: Request, res: Response) => {
   // comment.reply.length가 0보다 크면 그 comment의 deleted를 true로 변경
   // 0보다 크지않으면 그냥 삭제.
 
-  const { commentId } = req.params;
+  const { commentId, postId } = req.params;
   try {
     const comment = await Comment.findById({ _id: commentId });
     if (!comment) {
@@ -196,6 +208,14 @@ export const deleteComment = async (req: Request, res: Response) => {
       });
     }
 
+    // post model 에서 해당 댓글 삭제
+    let post = await Post.findById({ _id: postId });
+    post.comments = post.comments.filter(
+      (comment) => comment.toString() !== commentId
+    );
+    await post.save();
+
+    // 만약에 댓글의 대댓글이 1개 이상 일경우
     if (comment.reply.length > 0) {
       comment.deleted = true;
       await comment.save();
@@ -225,7 +245,7 @@ export const deleteReplyComment = async (req: Request, res: Response) => {
   // 맞으면 그 대댓글을 삭제 시킬꺼임.
   // 근데 대댓글이  방금 그거밖에업고 기존 comment의 deleted: true 이면 걍 댓글을 삭제시켜버림.
 
-  const { commentId, replyCommentId } = req.params;
+  const { commentId, replyCommentId, postId } = req.params;
   try {
     let comment = await Comment.findById({ _id: commentId });
     if (!comment) {
@@ -244,6 +264,14 @@ export const deleteReplyComment = async (req: Request, res: Response) => {
         replyComment.writer.toString() === res.locals.user._id
       ) {
         existReplyComment = replyComment;
+
+        // post model 에서 해당 댓글 삭제
+        let post = await Post.findById({ _id: postId });
+        post.comments = post.comments.filter(
+          (comment) => comment.toString() !== replyCommentId
+        );
+        await post.save();
+
         if (replyComments.length === 1 && comment.deleted === true) {
           await comment.deleteOne();
           return res.status(200).json({

@@ -17,6 +17,7 @@ interface PostListItemProps {
   nickname: string;
   like_count: number;
   like_users: { user: string; like: string }[];
+  comments: string[];
 }
 
 const PostListItem = ({
@@ -28,6 +29,7 @@ const PostListItem = ({
   nickname,
   like_count,
   like_users,
+  comments,
 }: PostListItemProps) => {
   const { likeCount, onLike, onDislike, isLiked, isDisliked } = useHandleLike(
     like_count,
@@ -76,7 +78,7 @@ const PostListItem = ({
           <div className="sub-right">
             <div className="item comment">
               <FaRegComment size="15" />
-              <span>[]</span>
+              <span>[{comments.length}]</span>
             </div>
           </div>
         </div>

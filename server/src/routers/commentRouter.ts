@@ -36,14 +36,14 @@ router.patch(
 ); // 대댓글 수정
 
 router.delete(
-  "/deleteComment/:cafeId/:commentId",
+  "/deleteComment/:cafeId/:postId/:commentId",
   checkLoggedIn,
   checkUserIsMember,
   commentCtrl.deleteComment
 ); // 댓글 삭제
 
 router.delete(
-  "/deleteReplyComment/:cafeId/:commentId/:replyCommentId",
+  "/deleteReplyComment/:cafeId/:postId/:commentId/:replyCommentId",
   checkLoggedIn,
   checkUserIsMember,
   commentCtrl.deleteReplyComment

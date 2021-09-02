@@ -20,11 +20,12 @@ export const saveCommentAPI = async (
 // 대댓글 작성
 export const saveReplyCommentAPI = async (
   cafeId: string,
+  postId: string,
   commentId: string | undefined,
   content: string,
   responseTo: string | undefined,
 ) => {
-  const body = { commentId, content, responseTo };
+  const body = { commentId, content, responseTo, postId };
   const response = await client.post(
     `/comment/saveReplyComment/${cafeId}`,
     body,
@@ -59,9 +60,13 @@ export const updateReplyCommentAPI = async (
 };
 
 // 댓글 삭제
-export const deleteCommentAPI = async (cafeId: string, commentId: string) => {
+export const deleteCommentAPI = async (
+  cafeId: string,
+  postId: string,
+  commentId: string,
+) => {
   const response = await client.delete(
-    `/comment/deleteComment/${cafeId}/${commentId}`,
+    `/comment/deleteComment/${cafeId}/${postId}/${commentId}`,
   );
   return response.data;
 };
@@ -69,11 +74,12 @@ export const deleteCommentAPI = async (cafeId: string, commentId: string) => {
 // 대댓글 삭제
 export const deleteReplyCommentAPI = async (
   cafeId: string,
+  postId: string,
   commentId: string,
   replyCommentId?: string,
 ) => {
   const response = await client.delete(
-    `/comment/deleteReplyComment/${cafeId}/${commentId}/${replyCommentId}`,
+    `/comment/deleteReplyComment/${cafeId}/${postId}/${commentId}/${replyCommentId}`,
   );
 
   return response.data;

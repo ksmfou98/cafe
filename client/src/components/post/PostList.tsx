@@ -36,6 +36,7 @@ const PostList = () => {
                   nickname={post.writer.nickname}
                   like_count={post.like_count}
                   like_users={post.like_users}
+                  comments={post.comments}
                 />
               ))}
             </ul>
