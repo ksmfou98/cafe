@@ -48,7 +48,7 @@ const PostList = () => {
         <StyledButton
           to={`/cafe/${cafe.route}/upload`}
           onClick={() => dispatch(PostStateEmpty())}
-          color={'true'}
+          color="true"
         >
           글쓰기
         </StyledButton>

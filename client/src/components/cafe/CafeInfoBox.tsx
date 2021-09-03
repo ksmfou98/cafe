@@ -1,10 +1,11 @@
 import useCafeInfoEffect from 'hooks/cafe/useCafeInfoEffect';
 import { reduxStateStore } from 'modules';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { IoMdSettings } from 'react-icons/io';
 import styled from 'styled-components';
 import Button from 'components/common/Button';
+import { PostStateEmpty } from 'modules/post';
 
 interface matchProps {
   cafe: string;
@@ -14,6 +15,7 @@ const CafeInfoBox = () => {
   const match = useRouteMatch<matchProps>();
   const route = match.params.cafe;
   const user = useSelector((state: reduxStateStore) => state.user);
+  const dispatch = useDispatch();
 
   const openChatPopup = () => {
     const popupX = window.screen.width / 2 - 800 / 2; // 팝업창을 가운데 띄우기 위한거
@@ -52,7 +54,11 @@ const CafeInfoBox = () => {
         <div className="cafe-btn">
           {isMember === true ? (
             <>
-              <StyledButton to={`/cafe/${cafeInfo.route}/upload`} color="true">
+              <StyledButton
+                to={`/cafe/${cafeInfo.route}/upload`}
+                onClick={() => dispatch(PostStateEmpty())}
+                color="true"
+              >
                 카페 글쓰기
               </StyledButton>
               <StyledButton color="false" onClick={openChatPopup}>
@@ -63,9 +69,6 @@ const CafeInfoBox = () => {
             <StyledButton color="true" to={`/cafe/${route}/join`}>
               5초 카페 가입하기
             </StyledButton>
-            // <Link to={`/cafe/${route}/join`} className="btn-type1">
-            //   5초 카페 가입하기
-            // </Link>
           )}
         </div>
       </div>
