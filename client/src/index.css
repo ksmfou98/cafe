@@ -206,21 +206,6 @@ table {
   display: block;
 }
 
-.btn-type1 {
-  background-color: #5b4ef6;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  display: block;
-}
-
-.btn-type2 {
-  border: 1px solid #5b4ef6;
-  color: #5b4ef6;
-  display: block;
-  border-radius: 5px;
-}
-
 /** 버튼회색배경, 보더 없애기, 커서 포인터 주기**/
 button {
   border: 0 none;

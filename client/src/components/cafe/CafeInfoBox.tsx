@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { IoMdSettings } from 'react-icons/io';
 import styled from 'styled-components';
+import Button from 'components/common/Button';
 
 interface matchProps {
   cafe: string;
@@ -51,20 +52,20 @@ const CafeInfoBox = () => {
         <div className="cafe-btn">
           {isMember === true ? (
             <>
-              <Link
-                to={`/cafe/${cafeInfo.route}/upload`}
-                className="btn-type1 spacing"
-              >
+              <StyledButton to={`/cafe/${cafeInfo.route}/upload`} color="true">
                 카페 글쓰기
-              </Link>
-              <button onClick={openChatPopup} className="btn-type2">
+              </StyledButton>
+              <StyledButton color="false" onClick={openChatPopup}>
                 카페 채팅
-              </button>
+              </StyledButton>
             </>
           ) : (
-            <Link to={`/cafe/${route}/join`} className="btn-type1">
+            <StyledButton color="true" to={`/cafe/${route}/join`}>
               5초 카페 가입하기
-            </Link>
+            </StyledButton>
+            // <Link to={`/cafe/${route}/join`} className="btn-type1">
+            //   5초 카페 가입하기
+            // </Link>
           )}
         </div>
       </div>
@@ -75,7 +76,6 @@ const CafeInfoBox = () => {
 const CafeInfoBoxBlock = styled.div`
   overflow: hidden;
   padding-top: 20px;
-  margin-bottom: 30px;
   .cafe-info-bg {
     width: 100%;
     .info-tab {
@@ -130,22 +130,19 @@ const CafeInfoBoxBlock = styled.div`
 
     .cafe-btn {
       padding: 5px 20px;
-      button {
-        width: 100%;
-      }
-      .btn-type1,
-      .btn-type2 {
-        padding: 9px 0 10px;
-        font-size: 14px;
-        line-height: 16px;
-        text-align: center;
-        cursor: pointer;
-        font-weight: bold;
-      }
-      .spacing {
-        margin-bottom: 5px;
-      }
     }
+  }
+`;
+
+const StyledButton = styled(Button)`
+  padding: 9px 0 10px;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  &:first-child {
+    margin-bottom: 5px;
   }
 `;
 

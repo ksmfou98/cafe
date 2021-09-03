@@ -43,10 +43,17 @@ const commonStyle = css<{ color: 'true' | 'false' }>`
           background-color: ${palette.mainColor};
           color: #fff;
           border: none;
+          &:hover {
+            background-color: #958cfc;
+          }
         `
       : css`
           border: 1px solid ${palette.mainColor};
           color: ${palette.mainColor};
+          &:hover {
+            background-color: ${palette.mainColor};
+            color: #fff;
+          }
         `}
 `;
 

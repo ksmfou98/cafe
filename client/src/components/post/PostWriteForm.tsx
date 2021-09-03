@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { SetPost } from 'modules/post';
 import useHandlePost from 'hooks/post/useHandlePost';
 import styled from 'styled-components';
+import Button from 'components/common/Button';
 
 const PostWriteForm = ({ onSubmit }: any) => {
   const { boards } = useBoardListEffect();
@@ -16,9 +17,6 @@ const PostWriteForm = ({ onSubmit }: any) => {
     <PostWriteFormBlock>
       <div className="list-title">
         <h3 className="title">카페 글쓰기</h3>
-        <button className="title-btn" type="button" onClick={onSubmit}>
-          완료
-        </button>
       </div>
       <div className="cont-write">
         <div className="form">
@@ -66,18 +64,16 @@ const PostWriteForm = ({ onSubmit }: any) => {
           </div>
         </div>
       </div>
+      <div className="submit-btn">
+        <StyledButton color="true" type="button" onClick={onSubmit}>
+          완료
+        </StyledButton>
+      </div>
     </PostWriteFormBlock>
   );
 };
 
 const PostWriteFormBlock = styled.div`
-  .list-title {
-    .title-btn {
-      padding: 8px 28px;
-      font-weight: 700;
-    }
-  }
-
   .cont-write {
     padding-top: 12px;
     padding-bottom: 50px;
@@ -129,6 +125,17 @@ const PostWriteFormBlock = styled.div`
       }
     }
   }
+
+  .submit-btn {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  height: 40px;
+  width: 100px;
+  font-size: 16px;
 `;
 
 export default PostWriteForm;
