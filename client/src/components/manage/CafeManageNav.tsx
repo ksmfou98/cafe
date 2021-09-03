@@ -7,6 +7,7 @@ import { reduxStateStore } from 'modules';
 import useCafeInfoEffect from 'hooks/cafe/useCafeInfoEffect';
 import styled from 'styled-components';
 import { palette } from 'lib/styles/palette';
+import Button from 'components/common/Button';
 
 interface matchProps {
   cafe: string;
@@ -64,7 +65,7 @@ const CafeManageNav = () => {
       </div>
 
       <div className="cafe-delete">
-        <button className="btn-type1">카페 삭제</button>
+        <StyledButton color="true">카페 삭제</StyledButton>
       </div>
     </CafeManageNavBlock>
   );
@@ -114,15 +115,12 @@ const CafeManageNavBlock = styled.div`
       }
     }
   }
+`;
 
-  .cafe-delete {
-    button {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      font-weight: 700;
-    }
-  }
+const StyledButton = styled(Button)`
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
 `;
 
 export default CafeManageNav;

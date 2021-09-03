@@ -6,6 +6,7 @@ import { IoMdSettings } from 'react-icons/io';
 import styled from 'styled-components';
 import Button from 'components/common/Button';
 import { PostStateEmpty } from 'modules/post';
+import Loading from 'components/common/Loading';
 
 interface matchProps {
   cafe: string;
@@ -27,7 +28,10 @@ const CafeInfoBox = () => {
     );
   };
 
-  const { cafeInfo, isMember } = useCafeInfoEffect(route, user._id);
+  const { cafeInfo, isMember, loading } = useCafeInfoEffect(route, user._id);
+
+  if (loading) return <Loading />;
+
   return (
     <CafeInfoBoxBlock>
       <div className="cafe-info-bg">
