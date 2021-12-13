@@ -1,4 +1,4 @@
-# <div align="center">dofe - community</div>
+# <div align="center">dofe</div>
 
 ### <div align="center">커뮤니티 및 채팅을 할 수 있는 친목도모 서비스 👨‍💻👩‍💻</div>
 
